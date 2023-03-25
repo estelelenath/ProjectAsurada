@@ -5,7 +5,11 @@
 <br/>
 <center> Workflow Version 0. </center>  
 <br/>
-<center><img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_002.jpg?raw=true" width="288" height="741"></center>
+
+<p align="center">
+    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_002.jpg?raw=true" width="288" height="741"></center>
+</p>
+
 <br/>
 
 ### Algorithm
