@@ -1,10 +1,10 @@
 # <p align="center">ProjectAsurada</p>
 
-## <p align="center">Driving Assistence System supported by Jetson</p>
+### <p align="center">Driving Assistence System supported by Jetson</p>
 
 <br/>
 
-### The goals / steps of this project are the following:
+## The goals / steps of this project are the following:
  - a.
  - b.
  - c.
@@ -19,7 +19,7 @@
 
 <br/>
 
-### Algorithm
+## Algorithm
 Vehicle recognition is a task in the field of computer vision that involves detecting and identifying vehicles in digital images or videos. 
 Here are some of the most frequently used algorithms for vehicle recognition and their pros and cons:
 
@@ -36,20 +36,23 @@ On the other hand, YOLO is a real-time object detection system that uses a singl
 In the field of autonomous driving, both HOG and YOLO have been used for vehicle recognition, but YOLO is more commonly used due to its ability to handle a wide range of object categories, including vehicles. However, the choice of algorithm will also depend on the specific requirements and constraints of the task, such as the processing speed, accuracy, and the complexity of the driving environment.
 <br/>
 
-### Basic Functions
+## Basic Functions
 
-#### Vehicle Detection
+### Vehicle Detection
 
 <br/>
 
-#### Lane Detection
+### Lane Detection
 <br/>
 
-### Extended Functions
-#### Chat GPT API
+## Extended Functions
+### Chat GPT API (User-friendly environment settings)
 <br/>
 
-#### Route optimization (Google API) 
+### Navigation (Route optimization) 
 <br/>
 
-#### AR Enviroment
+### Real-time data accumulation and self-learning
+<br/>
+
+### AR Enviroment
