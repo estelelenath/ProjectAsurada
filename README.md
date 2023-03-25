@@ -1,10 +1,16 @@
-# ProjectAsurada
-{: .text-center}
+# <p align="center">ProjectAsurada</p>
 
-## <center> Driving Assistence System supported by Jetson  </center>
+## <p align="center">Driving Assistence System supported by Jetson</p>
 
 <br/>
-<center> Workflow Version 0. </center>  
+
+### The goals / steps of this project are the following:
+ - a.
+ - b.
+ - c.
+ - 
+<br/>
+<p align="center">Workflow Version 0.</p>
 <br/>
 
 <p align="center">
@@ -28,3 +34,22 @@ Specially the choice between Histogram of Oriented Gradients (HOG) and You Only 
 HOG is a feature-based object detection method that is computationally efficient and can handle partial occlusions, making it well-suited for real-time applications. It has been widely used for object detection tasks, including vehicle recognition, and has shown good results in terms of accuracy and processing speed.
 On the other hand, YOLO is a real-time object detection system that uses a single convolutional neural network (CNN) to perform object detection and classification. YOLO has the advantage of being able to process images in real-time and can handle a large number of object categories. However, compared to HOG, YOLO may not be as computationally efficient and may require more resources to achieve the same level of accuracy.
 In the field of autonomous driving, both HOG and YOLO have been used for vehicle recognition, but YOLO is more commonly used due to its ability to handle a wide range of object categories, including vehicles. However, the choice of algorithm will also depend on the specific requirements and constraints of the task, such as the processing speed, accuracy, and the complexity of the driving environment.
+<br/>
+
+### Basic Functions
+
+#### Vehicle Detection
+
+<br/>
+
+#### Lane Detection
+<br/>
+
+### Extended Functions
+#### Chat GPT API
+<br/>
+
+#### Route optimization (Google API) 
+<br/>
+
+#### AR Enviroment
