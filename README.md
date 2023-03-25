@@ -1,4 +1,4 @@
-# <center>ProjectAsurada</center>
+# ProjectAsurada{: .text-center}
 
 ## <center> Driving Assistence System supported by Jetson  </center>
 
