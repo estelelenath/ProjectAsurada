@@ -1,4 +1,4 @@
-# <center> ProjectAsurada </center>
+# <center>ProjectAsurada</center>
 
 ## <center> Driving Assistence System supported by Jetson  </center>
 
@@ -6,7 +6,9 @@
 <center> Workflow Version 0. </center>  
 <br/>
 
-
+<p align="center">
+    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_002.jpg?raw=true" width="288" height="741"></center>
+</p>
 
 <br/>
 
