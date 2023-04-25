@@ -1,26 +1,37 @@
 # <p align="center">ProjectAsurada</p>
 
 ### <p align="center">Driving Assistence System supported by Jetson</p>
+<br/>
 
+<p align="center">
+    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/title_001.jpg?raw=true" width="490" height="490"></center>
+</p>
+
+<br/>
+<br/>
+<br/>
 <br/>
 
 ## The goals / steps of this project are the following:
- - Integrating Vehicle and Lane Detection in Live Streaming and Updating to the Latest 2023 Version
- - Enhancing Driving Assistance Systems with Advanced Features and Functionality
- - Providing Enhanced Driving Assistance Experiences through Real-Time Data Accumulation and Augmented Reality, and Outlining Our Future Work
+ - Step 1: Identify the Optimal Algorithms for Vehicle and Lane Detection in Autonomous Driving
+ - Step 2: Integrate Vehicle and Lane Detection in Live Streaming and Update to the Latest 2023 Version
+ - Step 3: Enhance Driving Assistance Systems with Advanced Features and Functionality
+ - Step 4: Provide Enhanced Driving Assistance Experiences through Real-Time Data Accumulation and Augmented Reality, and Outline Our Future Work
  
 <br/>
 <p align="center">Workflow Version 0.</p>
 <br/>
 
 <p align="center">
-    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_002.jpg?raw=true" width="288" height="741"></center>
+    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_002.jpg?raw=true" width="432" height="741"></center>
 </p>
 
 <br/>
 
 ## Basic Functions
 ### Algorithm
+<Conduct a literature review of existing algorithms for vehicle and lane detection in autonomous driving.>
+<Analyze the strengths and weaknesses of each algorithm to the latest 2023 version>
 Vehicle recognition is a task in the field of computer vision that involves detecting and identifying vehicles in digital images or videos. 
 Here are some of the most frequently used algorithms for vehicle recognition and their pros and cons:
 
@@ -39,6 +50,8 @@ In the field of autonomous driving, both HOG and YOLO have been used for vehicle
 <br/>
 
 ### Vehicle Detection
+<Develop a programming framework to integrate vehicle and lane detection into live streaming.>
+<Test the system's performance under various real-world conditions.>
 <br/>
 
 ### Lane Detection
@@ -46,15 +59,18 @@ In the field of autonomous driving, both HOG and YOLO have been used for vehicle
 
 ## Extended Functions
 ### Safe distance assessment through the speed estimation and thus driving support
+<Enhance the functionality of the system by integrating GPS data to provide real-time traffic updates and rerouting suggestions.>
 <br/>
 
 ### Chat GPT API (User-friendly environment settings)
 <br/>
 
 ### Navigation and visualisation (Route optimization) 
+<Enhance the functionality of the system by integrating GPS data to provide real-time traffic updates and rerouting suggestions.>
 <br/>
 
 ### Real-time data accumulation and self-learning
+<Enhance the functionality of the system by integrating GPS data to provide real-time traffic updates and rerouting suggestions.>
 <br/>
 
 ### AR Enviroment
