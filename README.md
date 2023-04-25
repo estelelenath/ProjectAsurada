@@ -4,7 +4,7 @@
 <br/>
 
 <p align="center">
-    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/title_001.jpg?raw=true" width="490" height="490"></center>
+    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/title_001.png?raw=true" width="490" height="490"></center>
 </p>
 
 <br/>
