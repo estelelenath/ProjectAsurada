@@ -1,0 +1,69 @@
+main goal : Design and Implementation of a Two-Camera System for Enhanced Autonomous Driving Assistance
+
+gen 0.
+step 1 : A Comparative Analysis and Assessment of Latest Object Recognition and Lane Detection Algorithms for Autonomous Driving
+
+step 2 : we would like to implement in linux with python, but if it is necessary, we could choose another program language or methods. In addition, live streaming(or even a saved video can be used in a project, but I recommend commenting out this option for now) will be used mainly.
+
+step 3 : Based on the investigated and decided in step 1, object recognition (including vehicle, vehicle registration plate, pedestrian, and traffic signs) required for autonomous driving using two front and rear cameras is implemented.
+
+step 4 : Based on the investigated and decided in step 1, lane detection required for autonomous driving using front camera is implemented.
+
+step 5 : My next implementation is to figure out how to measure the speed my car is currently moving, and how to measure the speed of other objects approaching.
+
+step 6 : In addition, a safety distance will be set according to researching, if it is closer than the safe distance or approaching the car at a high speed or if it will be forcasted a danger for my car and me, it is implemented in red. In addition, the degree of risk is displayed as a numerical value in percentile. If it is located at a safe distance or are not a danger to my car, implement it to green.
+
+step 7 : If your vehicle tries to change lanes to the right lane, it recognizes this and determines the degree of danger in the right lane. If there is no danger, the right lane is displayed in green, and if there is an oncoming or following fast vehicle or obstacle, the right lane is displayed in red to warn the driver. it is also same applied to the left lane too.
+
+step 8 : As another setting option, if the risk level increases above a certain level according to the previously set risk level, a video pop-up window is displayed to alert the user.
+This setting means that only the front camera window is used, and the rear camera is displayed as a pop-up window only in case of danger.
+
+step 9 : After all implementation all the processes and the investigation so far are documented in the form of a thesis into a pdf or text document file. Attach figures, tables and graphs if necessary.
+
+step 10 : If there are additional APIs or requirements in the process, request it.
+
+step 11 : 
+
+step 12 :
+
+
+gen 1. Navigation and Visualisation
+sub goal. 0 : navigation (Route optimization)
+sub goal. 1 : realtime traffic 
+sub goal. 2 :
+sub goal. 3 :
+
+gen 2. Realtime data accumulation and self-learning, and Remote Control/monitoring in VR Enviroment
+sub goal. 0 : data accumulation and self-learning
+sub goal. 1 : VR Remote Control/monitoring
+sub goal. 2 :
+sub goal. 3 :
+
+
+
+Object / Lane Detection
+https://github.com/windowsub0406/Vehicle-Detection-YOLO-ver
+https://github.com/visualbuffer/copilot
+https://github.com/JustinHeaton/Lane-And-Vehicle-Detection
+
+Multi Camera
+https://github.com/ika-rwth-aachen/Cam2BEV
+
+Lane
+https://github.com/fabvio/ld-lsi
+https://github.com/JunshengFu/driving-lane-departure-warning
+https://github.com/lucastabelini/PolyLaneNet
+
+Speed
+https://github.com/shafu0x/vehicle-speed-estimation
+https://github.com/ZhenboSong/mono_velocity
+
+Distance
+https://github.com/lucifertrj/Real-Time-Object-Distance-Measurement
+
+danger
+https://github.com/Ekim-Yurtsever/DeepTL-Lane-Change-Classification
+
+VIN
+https://github.com/murtazahassan/Learn-OpenCV-in-3-hours
+
