@@ -23,7 +23,7 @@
 <br/>
 
 <p align="center">
-    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_002.jpg?raw=true" width="432" height="741"></center>
+    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_003.jpg?raw=true" width="432" height="741"></center>
 </p>
 
 <br/>
