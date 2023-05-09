@@ -12,8 +12,8 @@ import numpy as np
 #cap_rear = cv2.VideoCapture(1)
 
 # for video Mode (for video mode recommended video width and height setting deactivate...)
-cap_front = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\FrontCameraTestn.mp4")
-cap_rear = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\MulticamTestRearn.mp4")
+cap_front = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\FrontCameraTestnnn.mp4")
+cap_rear = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\MulticamTestRearnn.mp4")
 
 # video width setting for front camera
 #cap_front.set(3, 1280)

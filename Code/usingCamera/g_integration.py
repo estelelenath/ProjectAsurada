@@ -1,25 +1,48 @@
-# https://moon-coco.tistory.com/entry/OpenCV%EC%B0%A8%EC%84%A0-%EC%9D%B8%EC%8B%9D
-
+from ultralytics import YOLO
 import cv2
-import youtube_dl
-import pafy
+import cvzone
+import math
 import numpy as np
+# https://moon-coco.tistory.com/entry/OpenCV%EC%B0%A8%EC%84%A0-%EC%9D%B8%EC%8B%9D
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle
 # pip install youtube_dl && pip install pafy
 
-# Load video from youtube
-#url = 'https://www.youtube.com/watch?v=ipyzW38sHg0'
-#video = pafy.new(url)
-#best = video.getbest(preftype = 'mp4')
 
-cap = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\FrontCameraTestnnn.mp4")
-frame_size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+# external functions
 
-#Video Record
-# fourcc = cv2.VideoWriter_fourcc(*'XVID')
-# out1 = cv2.VideoWriter('D:\ProjectAsurada\ProjectAsurada\VideoSample\OutputSample.mp4', fourcc, 20.0, frame_size)
+# front camera capture
+#cap_front = cv2.VideoCapture(0)
+# rear camera capture
+#cap_rear = cv2.VideoCapture(1)
 
+# for video Mode (for video mode recommended video width and height setting deactivate...)
+cap_front = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\FrontCameraTestnnn.mp4")
+cap_rear = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\MulticamTestRearnn.mp4")
+
+frame_size_front = (int(cap_front.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap_front.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+frame_size_rear = (int(cap_rear.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap_rear.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+
+# video width setting for front camera
+#cap_front.set(3, 1280)
+# video height setting for front camera
+#cap_front.set(4, 720)
+
+# video width setting for rear camera
+#cap_rear.set(3, 1280)
+# video height setting for rear camera
+#cap_rear.set(4, 720)
+
+# option for object detection data set
+model_n = YOLO('/YOLO_WEIGHTS/yolov8n.pt')
+#model_m = YOLO('/YOLO_WEIGHTS/yolov8m.pt')
+
+classNames = []
+ #class 배열 만들기
+with open("coco.names", "r") as f:
+    classNames = [line.strip() for line in f.readlines()]
+# 읽어온 coco 파일을 whitespace(공백라인)를 제거하여 classes 배열 안에 넣는다.
+# strip() : whitespace(띄워쓰기, 탭, 엔터)를 없애는 것, 중간에 끼어있는 것은 없어지지 않는다.
 
 #--------------------------------------Warpping (Bird Eye View)-------------------------------
 def wrapping(image):
@@ -255,79 +278,80 @@ def draw_lane_lines(original_image, warped_image, Minv, draw_info):
     return pts_mean, result
 #---------------------------------------------------------------------------------------------
 
+
 while True:
-    retval, img = cap.read()
-    if not retval:
-         break
-    
-    ##ckeck the points through the circle for the original image
-    #cv2.circle(img, center, radius, color, thickness=1, lineType=8, shift=0)
-    (h, w) = (img.shape[0], img.shape[1])
-    thickness = 3
-    #cv2.circle(img, (int(w * 4.8 // 10), int(h * 0.62)), thickness, (255,0,0), -1)
-    #cv2.circle(img, (int(w * 6.1 // 10), int(h * 0.62)), thickness, (255,0,0), -1)
-    #cv2.circle(img, (int(w * 0.20), int(h)), thickness, (255,0,0), -1)
-    #cv2.circle(img, (int(w* 0.85), int(h)), thickness, (255,0,0), -1)
+    success, img_lane = cap_front.read()
+    success, img_front = cap_front.read()
+    success, img_rear = cap_rear.read()
 
-    ## original video show
-    cv2.imshow("video", img)
-    
+# Front Camera Lane Detection
     ## wrapped video show (bird eye-version)
-    wrapped_img, minverse = wrapping(img)
-    
-    #ckeck the points through the circle for the wrapped image  
-    cv2.circle(wrapped_img, (int(200), int(0)), thickness, (255,0,0), -1)
-    cv2.circle(wrapped_img, (int(w-380), int(0)), thickness, (255,0,0), -1)
-    cv2.circle(wrapped_img, (int(400), int(h)), thickness, (255,0,0), -1)
-    cv2.circle(wrapped_img, (int(w-150), int(h)), thickness, (255,0,0), -1)
-
+    wrapped_img, minverse = wrapping(img_lane)
     #cv2.imshow('wrapped', wrapped_img)
-
     # color filter and mask (yellow and white lane)
     w_f_img = color_filter(wrapped_img)
     #cv2.imshow('w_f_img', w_f_img)
-
     ##ROI from color filtered image
     w_f_r_img = roi(w_f_img)
-
-    # cv2.circle(w_f_r_img, (int(0.23*w), int(h)), thickness, (255,0,255), -1)
-    # cv2.circle(w_f_r_img, (int(0.23*w), int(0.1*h)), thickness, (255,0,255), -1)
-    # cv2.circle(w_f_r_img, (int(0.45*w), int(0.1*h)), thickness, (255,0,0), -1)
-    # cv2.circle(w_f_r_img, (int(0.5*w), int(h)), thickness, (255,0,255), -1)
-    # cv2.circle(w_f_r_img, (int(0.6*w), int(h)), thickness, (255,0,0), -1)
-    # cv2.circle(w_f_r_img, (int(0.6*w), int(0.1*h)), thickness, (255,0,0), -1)
-    # cv2.circle(w_f_r_img, (int(0.75*w), int(0.1*h)), thickness, (255,0,0), -1)
-    # cv2.circle(w_f_r_img, (int(0.75*w), int(h)), thickness, (255,0,0), -1)
-    # cv2.circle(w_f_r_img, (int(0.3*w), int(h)), thickness, (255,255,0), -1)
-
     #cv2.imshow('w_f_r_img', w_f_r_img)
-
     ## ROI and wrapped img threshold
     _gray = cv2.cvtColor(w_f_r_img, cv2.COLOR_BGR2GRAY)
     ret, thresh = cv2.threshold(_gray, 140, 195, cv2.THRESH_BINARY)
     #cv2.imshow('threshold', thresh)
-
     ## 선 분포도 조사 histogram
     leftbase, rightbase = plothistogram(thresh)
-    #plt.plot(hist)
-    #plt.show()
-
     ## histogram 기반 window roi 영역
     draw_info = slide_window_search(thresh, leftbase, rightbase)
-    #plt.plot(left_fit)
-    #plt.show()
-
     ## 원본 이미지에 라인 넣기
-    meanPts, result = draw_lane_lines(img, thresh, minverse, draw_info)
-    cv2.imshow("result", result)
+    meanPts, img_front = draw_lane_lines(img_front, thresh, minverse, draw_info)
 
-    ## 동영상 녹화
-    #out1.write(result)
 
-    key = cv2.waitKey(25)
-    if key == 27:
-    	break
+# Vehicle Detection with ML_Model with input video    
+    results_front = model_n(img_front, stream=True)
+    results_rear = model_n(img_rear, stream=True)
 
-if cap.isOpened():
-	cap.release()
+    
+# Vehicle Detection for front camera
+    for rf in results_front:
+        boxesf = rf.boxes
+        for boxf in boxesf:
+
+            # Bounding Box
+            x1,y1,x2,y2 = boxf.xyxy[0]
+            x1,y1,x2,y2 = int(x1), int(y1), int(x2), int(y2)
+            # cv2.rectangle(img_front, (x1,y1), (x2,y2), (0, 0, 255, 127), -1)
+            w, h = x2 - x1, y2 - y1
+            # rt = -1 -> fullfilled rectangle, 0~ -> normal thickness
+            cvzone.cornerRect(img_front, (x1, y1, w, h), rt=1, colorR=(0, 0, 255))         
+            # Confidence
+            confidence = math.ceil((boxf.conf[0] * 100)) / 100
+            
+            # Class Name
+            cls = int(boxf.cls[0])
+
+            cvzone.putTextRect(img_front, f'{classNames[cls]} {confidence}', (max(0, x1), max(35, y1))) # , scale = 3, thickness = 3
+
+# Vehicle Detection for rear camera
+    for rr in results_rear:
+        boxesr = rr.boxes
+        for boxr in boxesr:
+            x3,y3,x4,y4 = boxr.xyxy[0]
+            x3,y3,x4,y4 = int(x3), int(y3), int(x4), int(y4)
+            # last parameter -1 -> fullfilled rectangle, 0~ -> normal thickness
+            cv2.rectangle(img_rear, (x3,y3), (x4,y4), (0, 0, 255), 1)
+            # alpha = 0.4
+            # opacity_rear = cv2.addWeighted(img_rear, alpha, img_rear, 1-alpha,0)
+
+
+
+    cv2.imshow("img_front",img_front)
+    cv2.imshow("img_rear",img_rear)
+    #cv2.imshow("img_lane",img_lane)
+    
+
+    if cv2.waitKey(1) == ord('q'):
+        break
+
+cap_front.release()
+cap_rear.release()
 cv2.destroyAllWindows()
