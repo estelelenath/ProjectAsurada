@@ -41,9 +41,9 @@
 </p>
 
 Overall, ...
-<p align="center">
-    [![Asurada at the "Future GPX Cyber Formula", 1996.](https://github.com/estelelenath/ProjectAsurada/blob/main/pic/titleVideoImgPlay.jpg)](https://youtu.be/_Xp0s9JJjzA)
-</p>
+
+[![Asurada at the "Future GPX Cyber Formula", 1996.](https://github.com/estelelenath/ProjectAsurada/blob/main/pic/titleVideoImgPlay.jpg)](https://youtu.be/_Xp0s9JJjzA)
+
 
 <br/>
 
