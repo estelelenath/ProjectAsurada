@@ -41,10 +41,12 @@
 </p>
 
 Overall, ...
+<p align="center">
+    [![Video Label](https://github.com/estelelenath/ProjectAsurada/blob/main/pic/titleVideoImgPlay.PNG)](https://youtu.be/_Xp0s9JJjzA)
+</p>
 
-[![Video Label](https://github.com/estelelenath/ProjectAsurada/blob/main/pic/titleVideoImg25.jpg)](https://youtu.be/_Xp0s9JJjzA)
 
-<br/>
+
 <p align="center">Asurada at the "Future GPX Cyber Formula", 1996.</p>
 <br/>
 
