@@ -42,7 +42,7 @@
 
 Overall, ...
 <p align="center">
-    [![Video Label](https://github.com/estelelenath/ProjectAsurada/blob/main/pic/titleVideoImgPlay.PNG)](https://youtu.be/_Xp0s9JJjzA)
+    [![Video Label](https://github.com/estelelenath/ProjectAsurada/blob/main/pic/titleVideoImgPlay.png)](https://youtu.be/_Xp0s9JJjzA)
 </p>
 
 
