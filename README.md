@@ -1,6 +1,6 @@
 # <p align="center">ProjectAsurada</p>
 
-### <p align="center">Driving Assistence System supported by Jetson</p>
+### <p align="center">Driving Assistence System supported by Embedded System 'Jetson'</p>
 <br/>
 
 <p align="center">
@@ -13,22 +13,49 @@
 <br/>
 
 ## The goals / steps of this project are the following:
- - Step 1: Identify the Optimal Algorithms for Vehicle and Lane Detection in Autonomous Driving
- - Step 2: Integrate Vehicle and Lane Detection in Live Streaming and Update to the Latest 2023 Version
+ - Step 1: Identify the Optimal Algorithms for Vehicle and Lane Detection in Autonomous Driving and integrate Vehicle and Lane Detection in Live Streaming and Update to the Latest 2023 Version.
+ - Step 2: Enhance Driving Assistance Systems with Advanced Features and Functionality
+    - Speed Estimation
+    - Distance Estimation
+    - Dager Risk judgment (Pop up Rear Camera screen)
+    - Decision of driving assistance
+    - Vehicle Identification Number Detection
  - Step 3: Enhance Driving Assistance Systems with Advanced Features and Functionality
- - Step 4: Provide Enhanced Driving Assistance Experiences through Real-Time Data Accumulation and Augmented Reality, and Outline Our Future Work
+    - Navigation
+        - Route optimization based on real-time road traffic information
+    - Visualisation
+        - Traffic Information
+        - Information for Driving and Driver
+    - Driving Support System
+        - Steering Maintenance and Compensation
+        - User-friendly driving assistance system based on ChatGPT
+
+ - Step 4: Provide Enhanced Driving Assistance Experiences through Real-Time Data Accumulation and Virtual Reality
  
 <br/>
-<p align="center">Workflow Version 0.</p>
+<p align="center">Workflow Version 1.</p>
 <br/>
 
 <p align="center">
     <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_003.jpg?raw=true" width="432" height="741"></center>
 </p>
 
+Overall, ...
+
 <br/>
 
-## Basic Functions
+<p align="center">Asurada at the "Future GPX Cyber Formula", 1996.</p>
+<br/>
+
+<br/>
+
+## Step 1. Basic Functions - Warming up
+***
+Goal : 
+<br/>
+
+## Vehicle Detection
+Goal : 
 ### Algorithm
 <Conduct a literature review of existing algorithms for vehicle and lane detection in autonomous driving.>
 <Analyze the strengths and weaknesses of each algorithm to the latest 2023 version>
@@ -47,36 +74,138 @@ HOG is a feature-based object detection method that is computationally efficient
 On the other hand, YOLO is a real-time object detection system that uses a single convolutional neural network (CNN) to perform object detection and classification. YOLO has the advantage of being able to process images in real-time and can handle a large number of object categories. However, compared to HOG, YOLO may not be as computationally efficient and may require more resources to achieve the same level of accuracy.
 In the field of autonomous driving, both HOG and YOLO have been used for vehicle recognition, but YOLO is more commonly used due to its ability to handle a wide range of object categories, including vehicles. However, the choice of algorithm will also depend on the specific requirements and constraints of the task, such as the processing speed, accuracy, and the complexity of the driving environment.
 
+a programming framework to integrate vehicle and lane detection into live streaming.
+the system's performance under various real-world conditions.
+
 <br/>
 
-### Vehicle Detection
-<Develop a programming framework to integrate vehicle and lane detection into live streaming.>
-<Test the system's performance under various real-world conditions.>
+### Implementation
+
+### Evaluation
+
+
+
 <br/>
 
-### Lane Detection
+## Lane Detection
+Goal : 
+### Algorithm
+### Implementation
+### Evaluation
+
 <br/>
 
-## Extended Functions
-### Safe distance assessment through the speed estimation and thus driving support
+## Integration
+### CUDA
+
+
+<br/>
+
+## Step 2. Extended Functions - First Half
+***
+Goal : 
+## Speed Estimation 
+Goal : 
+### Algorithm
+### Implementation
+### Evaluation
+<br/>
+
+## Distance Estimation 
+Goal : 
+### Algorithm
+### Implementation
+### Evaluation
+<br/>
+
+## Danger Rist Judgment 
+Goal : 
+### Algorithm
+### Implementation
+### Evaluation
+<br/>
+
+## Decision of driving assistance 
+Goal : 
+### Algorithm
+### Implementation
+### Evaluation
+<br/>
+
+## Vehicle Identification Number Detection 
+Goal : 
+### Algorithm
+### Implementation
+### Evaluation
+<br/>
+<br/>
+
+## Step 3. Extended Functions - Second Half 
+***
+Goal :
+## Navigation
+- Route Optimization based on real-time road traffic information  
 <Enhance the functionality of the system by integrating GPS data to provide real-time traffic updates and rerouting suggestions.>
+
+Goal : 
+
+### Algorithm
+### Implementation
+### Evaluation
+
 <br/>
 
-### Chat GPT API (User-friendly environment settings)
+
+## Visualisation
+- Traffic Information
+- Information for driving and driver
+
+Goal : 
+
+### Algorithm
+### Implementation
+### Evaluation
+
 <br/>
 
-### Navigation and visualisation (Route optimization) 
-<Enhance the functionality of the system by integrating GPS data to provide real-time traffic updates and rerouting suggestions.>
+## Driving Support System
+- Steering Maintenance and Compensation
+- User-friendly driving environment system based on ChatGPT API
+
+Goal : 
+
+### Algorithm
+### Implementation
+### Evaluation
+
 <br/>
 
-### Real-time data accumulation and self-learning
-<Enhance the functionality of the system by integrating GPS data to provide real-time traffic updates and rerouting suggestions.>
+## Step 4. Extended Functions - Overtime 
+***
+Goal :
+## Real-time data accumulation and self-learning
+Goal : 
+
+### Algorithm
+### Implementation
+### Evaluation
+
 <br/>
 
-### AR Enviroment
+## Remote Control through the Virtual Reality
+Goal : 
+
+### Algorithm
+### Implementation
+### Evaluation
+
 <br/>
 
 ## Conclusion
+***
 <br/>
 
 ## Outlining Future Work
+***
+
+<br/>

@@ -6,6 +6,7 @@ import numpy as np
 # https://moon-coco.tistory.com/entry/OpenCV%EC%B0%A8%EC%84%A0-%EC%9D%B8%EC%8B%9D
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle
+
 # pip install youtube_dl && pip install pafy
 
 
@@ -17,7 +18,7 @@ from matplotlib.patches import Circle
 #cap_rear = cv2.VideoCapture(1)
 
 # for video Mode (for video mode recommended video width and height setting deactivate...)
-cap_front = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\FrontCameraTestnnn.mp4")
+cap_front = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\FrontCamera_Odeon.mp4")
 cap_rear = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\MulticamTestRearnn.mp4")
 
 frame_size_front = (int(cap_front.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap_front.get(cv2.CAP_PROP_FRAME_HEIGHT)))

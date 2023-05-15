@@ -276,10 +276,10 @@ while True:
     wrapped_img, minverse = wrapping(img)
     
     #ckeck the points through the circle for the wrapped image  
-    cv2.circle(wrapped_img, (int(200), int(0)), thickness, (255,0,0), -1)
-    cv2.circle(wrapped_img, (int(w-380), int(0)), thickness, (255,0,0), -1)
-    cv2.circle(wrapped_img, (int(400), int(h)), thickness, (255,0,0), -1)
-    cv2.circle(wrapped_img, (int(w-150), int(h)), thickness, (255,0,0), -1)
+    # cv2.circle(wrapped_img, (int(200), int(0)), thickness, (255,0,0), -1)
+    # cv2.circle(wrapped_img, (int(w-380), int(0)), thickness, (255,0,0), -1)
+    # cv2.circle(wrapped_img, (int(400), int(h)), thickness, (255,0,0), -1)
+    # cv2.circle(wrapped_img, (int(w-150), int(h)), thickness, (255,0,0), -1)
 
     #cv2.imshow('wrapped', wrapped_img)
 
