@@ -45,7 +45,7 @@ Overall, ...
     <p align="center">
         <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/titleGif.gif?raw=true" width="400" height="225"></center>
     </p>
-    <figcaption>Asurada at the Future GPX Cyber Formula, 1996.</figcaption>
+    <figcaption align="center">Asurada at the Future GPX Cyber Formula, 1996.</figcaption>
 </figure>
 
 <br/>
