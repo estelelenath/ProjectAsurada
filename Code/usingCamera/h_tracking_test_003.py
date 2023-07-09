@@ -13,147 +13,155 @@ from matplotlib.patches import Circle
 # external functions
 
 # front camera capture
-#cap_front = cv2.VideoCapture(0)
+# cap_front = cv2.VideoCapture(0)
 # rear camera capture
-#cap_rear = cv2.VideoCapture(1)
+# cap_rear = cv2.VideoCapture(1)
 
 # for video Mode (for video mode recommended video width and height setting deactivate...)
 cap_front = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\FrontCamera_Odeon.mp4")
-#cap_front = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\FFrontCameraTestnnn.mp4")
-#cap_front = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\Ffront_driving_plate_hwy_880_H264HD1080.mp4")
+# cap_front = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\FFrontCameraTestnnn.mp4")
+# cap_front = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\Ffront_driving_plate_hwy_880_H264HD1080.mp4")
 cap_rear = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\MulticamTestRearnn.mp4")
 
 frame_size_front = (int(cap_front.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap_front.get(cv2.CAP_PROP_FRAME_HEIGHT)))
-#frame_size_front = (320, 240)
+# frame_size_front = (320, 240)
 frame_size_rear = (int(cap_rear.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap_rear.get(cv2.CAP_PROP_FRAME_HEIGHT)))
-#print("frame_size_front", frame_size_front)
-#print("frame_size_rear", frame_size_rear)
+# print("frame_size_front", frame_size_front)
+# print("frame_size_rear", frame_size_rear)
 
 
 # video width setting for front camera
-#cap_front.set(3, 1280)
+# cap_front.set(3, 1280)
 # video height setting for front camera
-#cap_front.set(4, 720)
+# cap_front.set(4, 720)
 
 # video width setting for rear camera
-#cap_rear.set(3, 1280)
+# cap_rear.set(3, 1280)
 # video height setting for rear camera
-#cap_rear.set(4, 720)
+# cap_rear.set(4, 720)
 
 # option for object detection data set
 model_n = YOLO('/YOLO_WEIGHTS/yolov8n.pt')
-#model_m = YOLO('/YOLO_WEIGHTS/yolov8m.pt')
+# model_m = YOLO('/YOLO_WEIGHTS/yolov8m.pt')
 
 classNames = []
- #class 배열 만들기
+# class 배열 만들기
 with open("coco.names", "r") as f:
     classNames = [line.strip() for line in f.readlines()]
+
+
 # 읽어온 coco 파일을 whitespace(공백라인)를 제거하여 classes 배열 안에 넣는다.
 # strip() : whitespace(띄워쓰기, 탭, 엔터)를 없애는 것, 중간에 끼어있는 것은 없어지지 않는다.
 
-#--------------------------------------Warpping (Bird Eye View)-------------------------------
+# --------------------------------------Warpping (Bird Eye View)-------------------------------
 def wrapping(image):
     if image is None:
         print('Image is None, skippung this iteration')
         return None, None
 
     (h, w) = (image.shape[0], image.shape[1])
-    
-    #source = np.float32([[w // 2 - 30, h * 0.53], [w // 2 + 60, h * 0.53], [w * 0.3, h], [w, h]])
-    #destination = np.float32([[0, 0], [w-350, 0], [400, h], [w-150, h]])
 
-    #one lane version
+    # source = np.float32([[w // 2 - 30, h * 0.53], [w // 2 + 60, h * 0.53], [w * 0.3, h], [w, h]])
+    # destination = np.float32([[0, 0], [w-350, 0], [400, h], [w-150, h]])
+
+    # one lane version
     source_point_left_upper = [w * 4.8 // 10, h * 0.62]
     source_point_right_upper = [w * 6.1 // 10, h * 0.62]
     source_point_left_bottom = [w * 0.20, h]
-    source_point_right_bottom = [w* 0.85, h]
+    source_point_right_bottom = [w * 0.85, h]
 
     destination_point_left_upper = [200, 0]
-    destination_point_right_upper = [w-380, 0]
+    destination_point_right_upper = [w - 380, 0]
     destination_point_left_bottom = [400, h]
-    destination_point_right_bottom = [w-150, h]
+    destination_point_right_bottom = [w - 150, h]
 
-    source = np.float32([source_point_left_upper, source_point_right_upper, source_point_left_bottom, source_point_right_bottom])
-    destination = np.float32([destination_point_left_upper, destination_point_right_upper, destination_point_left_bottom, destination_point_right_bottom])
+    source = np.float32(
+        [source_point_left_upper, source_point_right_upper, source_point_left_bottom, source_point_right_bottom])
+    destination = np.float32(
+        [destination_point_left_upper, destination_point_right_upper, destination_point_left_bottom,
+         destination_point_right_bottom])
 
-    #getPerspectiveTransformation? the properties that it hold the property of linear, but not the property of parallelity
-    #for example, train lanes are parallel but through the perspective transformation, it looks like they are meeing at the end of point
-    #we need 4 point of input and moving point of output
+    # getPerspectiveTransformation? the properties that it hold the property of linear, but not the property of parallelity
+    # for example, train lanes are parallel but through the perspective transformation, it looks like they are meeing at the end of point
+    # we need 4 point of input and moving point of output
     # for the transformation matrix we need, through the cv2.getPerspectiveTransform() function and adjust our transformation matrix to cv2.warpPerspective() function, we could have a final image
-    # 
+    #
     transform_matrix = cv2.getPerspectiveTransform(source, destination)
     minv = cv2.getPerspectiveTransform(destination, source)
     _image = cv2.warpPerspective(image, transform_matrix, (w, h))
 
     return _image, minv
-#---------------------------------------------------------------------------------------------
 
-#-------------------------------------Color Filter (using HLS)--------------------------------------------------------
-# HLS(Hue, Luminanse, Saturation) : 
-#lower = ([minimum_blue, m_green, m_red])
-#upper = ([Maximum_blue, M_green, M_red])
+
+# ---------------------------------------------------------------------------------------------
+
+# -------------------------------------Color Filter (using HLS)--------------------------------------------------------
+# HLS(Hue, Luminanse, Saturation) :
+# lower = ([minimum_blue, m_green, m_red])
+# upper = ([Maximum_blue, M_green, M_red])
 def color_filter(image):
     hls = cv2.cvtColor(image, cv2.COLOR_BGR2HLS)
 
-    #White Filter
-    #white_lower = np.array([20, 150, 20])
-    #white_upper = np.array([255, 255, 255])
+    # White Filter
+    # white_lower = np.array([20, 150, 20])
+    # white_upper = np.array([255, 255, 255])
     # White-ish areas in image
     # H value can be arbitrary, thus within [0 ... 360] (OpenCV: [0 ... 180])
     # L value must be relatively high (we want high brightness), e.g. within [0.7 ... 1.0] (OpenCV: [0 ... 255])
     # S value must be relatively low (we want low saturation), e.g. within [0.0 ... 0.3] (OpenCV: [0 ... 255])
-    white_lower = np.array([np.round(  0 / 2), np.round(0.55 * 255), np.round(0.00 * 255)])
+    white_lower = np.array([np.round(0 / 2), np.round(0.55 * 255), np.round(0.00 * 255)])
     white_upper = np.array([np.round(360 / 2), np.round(1.00 * 255), np.round(0.20 * 255)])
     white_mask = cv2.inRange(hls, white_lower, white_upper)
 
-    #Yellow Filter
-    #yellow_lower = np.array([0, 85, 81])
-    #yellow_upper = np.array([190, 255, 255])
+    # Yellow Filter
+    # yellow_lower = np.array([0, 85, 81])
+    # yellow_upper = np.array([190, 255, 255])
     # Yellow-ish areas in image
     # H value must be appropriate (see HSL color space), e.g. within [40 ... 60]
     # L value can be arbitrary (we want everything between bright and dark yellow), e.g. within [0.0 ... 1.0]
     # S value must be above some threshold (we want at least some saturation), e.g. within [0.35 ... 1.0]
-    yellow_lower = np.array([np.round( 40 / 2), np.round(0.00 * 255), np.round(0.35 * 255)])
-    yellow_upper = np.array([np.round( 60 / 2), np.round(1.00 * 255), np.round(1.00 * 255)])
+    yellow_lower = np.array([np.round(40 / 2), np.round(0.00 * 255), np.round(0.35 * 255)])
+    yellow_upper = np.array([np.round(60 / 2), np.round(1.00 * 255), np.round(1.00 * 255)])
     yellow_mask = cv2.inRange(hls, yellow_lower, yellow_upper)
-
 
     # Do filtering the each yellow lane and white lane,
     # Bitwise_or makes (yellow line and white line) combining -> mask
     # bitwise_and maeks (original image and mask) -> then left just masked part -> masked
-    #yellow_mask = cv2.inRange(hls, yellow_lower, yellow_upper)
-    #white_mask = cv2.inRange(hls, white_lower, white_upper)
+    # yellow_mask = cv2.inRange(hls, yellow_lower, yellow_upper)
+    # white_mask = cv2.inRange(hls, white_lower, white_upper)
     mask = cv2.bitwise_or(yellow_mask, white_mask)
-    masked = cv2.bitwise_and(image, image, mask = mask)
+    masked = cv2.bitwise_and(image, image, mask=mask)
 
     return masked
-#---------------------------------------------------------------------------------------------
 
-#-------------------------------------ROI--------------------------------------------------------
+
+# ---------------------------------------------------------------------------------------------
+
+# -------------------------------------ROI--------------------------------------------------------
 def roi(image):
     x = int(image.shape[1])
     y = int(image.shape[0])
     # height, width, number of channels in image
-    #height = img.shape[0]
-    #width = img.shape[1]
-    #channels = img.shape[2]
-    #Height represents the number of pixel rows in the image or the number of pixels in each column of the image array.
-    #Width represents the number of pixel columns in the image or the number of pixels in each row of the image array.
-    #Number of Channels represents the number of components used to represent each pixel.
-    #In the above example, Number of Channels = 4 represent Alpha, Red, Green and Blue channels.
+    # height = img.shape[0]
+    # width = img.shape[1]
+    # channels = img.shape[2]
+    # Height represents the number of pixel rows in the image or the number of pixels in each column of the image array.
+    # Width represents the number of pixel columns in the image or the number of pixels in each row of the image array.
+    # Number of Channels represents the number of components used to represent each pixel.
+    # In the above example, Number of Channels = 4 represent Alpha, Red, Green and Blue channels.
     # *** here traffic sign on the street is deleted and ignored, if you don't wanna that, modify the ROI part.
     # 한 붓 그리기
     _shape = np.array([
-        [int(0.19*x), int(y)],
-          [int(0.19*x), int(0.1*y)],
-            [int(0.45*x), int(0.1*y)],
-              [int(0.5*x), int(y)],
-                [int(0.6*x), int(y)],
-                  [int(0.6*x), int(0.1*y)],
-                  [int(0.82*x), int(0.1*y)],
-                    [int(0.82*x), int(y)],
-                      [int(0.3*x), int(y)]
-                      ])
+        [int(0.19 * x), int(y)],
+        [int(0.19 * x), int(0.1 * y)],
+        [int(0.45 * x), int(0.1 * y)],
+        [int(0.5 * x), int(y)],
+        [int(0.6 * x), int(y)],
+        [int(0.6 * x), int(0.1 * y)],
+        [int(0.82 * x), int(0.1 * y)],
+        [int(0.82 * x), int(y)],
+        [int(0.3 * x), int(y)]
+    ])
 
     mask = np.zeros_like(image)
 
@@ -167,24 +175,28 @@ def roi(image):
     masked_image = cv2.bitwise_and(image, mask)
 
     return masked_image
-#---------------------------------------------------------------------------------------------
 
-#-------------------------------------Histogram--------------------------------------------------------
+
+# ---------------------------------------------------------------------------------------------
+
+# -------------------------------------Histogram--------------------------------------------------------
 # it is not histogram of opencv
 # bitwise image has one channel and value between 0 ~ 255.
 # if it is lane, they have a value near by 255, and if it isn't, then 0.
 # it means for one column, when we add all row values, if there are lane, they has relative big value, if not, small value
 # 1050 -> right lane, 350 -> left lane
 def plothistogram(image):
-    histogram = np.sum(image[image.shape[0]//2:, :], axis=0)
-    midpoint = np.int64(histogram.shape[0]/2)
+    histogram = np.sum(image[image.shape[0] // 2:, :], axis=0)
+    midpoint = np.int64(histogram.shape[0] / 2)
     leftbase = np.argmax(histogram[:midpoint])
     rightbase = np.argmax(histogram[midpoint:]) + midpoint
-    
-    return leftbase, rightbase
-#---------------------------------------------------------------------------------------------
 
-#-------------------------------------Window ROI--------------------------------------------------------
+    return leftbase, rightbase
+
+
+# ---------------------------------------------------------------------------------------------
+
+# -------------------------------------Window ROI--------------------------------------------------------
 # why not cv2.HoughLines() and cv2.HoughLinesP()? -> these functions are heavy and detection is not exact for curve.
 # left_current = a biggest index of image's left side
 # good_left = save the part just in window
@@ -196,9 +208,9 @@ def slide_window_search(binary_warped, left_current, right_current):
 
     nwindows = 4
     window_height = np.int64(binary_warped.shape[0] / nwindows)
-    nonzero = binary_warped.nonzero()  # 선이 있는 부분의 인덱스만 저장 
+    nonzero = binary_warped.nonzero()  # 선이 있는 부분의 인덱스만 저장
     nonzero_y = np.array(nonzero[0])  # 선이 있는 부분 y의 인덱스 값
-    nonzero_x = np.array(nonzero[1])  # 선이 있는 부분 x의 인덱스 값 
+    nonzero_x = np.array(nonzero[1])  # 선이 있는 부분 x의 인덱스 값
     margin = 100
     minpix = 50
     left_lane = []
@@ -211,17 +223,19 @@ def slide_window_search(binary_warped, left_current, right_current):
         win_y_high = binary_warped.shape[0] - w * window_height  # window 아랫 부분
         win_xleft_low = left_current - margin  # 왼쪽 window 왼쪽 위
         win_xleft_high = left_current + margin  # 왼쪽 window 오른쪽 아래
-        win_xright_low = right_current - margin  # 오른쪽 window 왼쪽 위 
+        win_xright_low = right_current - margin  # 오른쪽 window 왼쪽 위
         win_xright_high = right_current + margin  # 오른쪽 window 오른쪽 아래
 
         cv2.rectangle(out_img, (win_xleft_low, win_y_low), (win_xleft_high, win_y_high), color, thickness)
         cv2.rectangle(out_img, (win_xright_low, win_y_low), (win_xright_high, win_y_high), color, thickness)
         # window 안에 있는 부분만을 저장
-        good_left = ((nonzero_y >= win_y_low) & (nonzero_y < win_y_high) & (nonzero_x >= win_xleft_low) & (nonzero_x < win_xleft_high)).nonzero()[0]
-        good_right = ((nonzero_y >= win_y_low) & (nonzero_y < win_y_high) & (nonzero_x >= win_xright_low) & (nonzero_x < win_xright_high)).nonzero()[0]
+        good_left = ((nonzero_y >= win_y_low) & (nonzero_y < win_y_high) & (nonzero_x >= win_xleft_low) & (
+                    nonzero_x < win_xleft_high)).nonzero()[0]
+        good_right = ((nonzero_y >= win_y_low) & (nonzero_y < win_y_high) & (nonzero_x >= win_xright_low) & (
+                    nonzero_x < win_xright_high)).nonzero()[0]
         left_lane.append(good_left)
         right_lane.append(good_right)
-        #cv2.imshow("oo", out_img)
+        # cv2.imshow("oo", out_img)
 
         if len(good_left) > minpix:
             left_current = np.int64(np.mean(nonzero_x[good_left]))
@@ -249,19 +263,21 @@ def slide_window_search(binary_warped, left_current, right_current):
     out_img[nonzero_y[left_lane], nonzero_x[left_lane]] = [255, 0, 0]
     out_img[nonzero_y[right_lane], nonzero_x[right_lane]] = [0, 0, 255]
 
-    #plt.imshow(out_img)
-    #plt.plot(left_fitx, ploty, color = 'yellow')
-    #plt.plot(right_fitx, ploty, color = 'yellow')
-    #plt.xlim(0, 1280)
-    #plt.ylim(720, 0)
-    #plt.show()
+    # plt.imshow(out_img)
+    # plt.plot(left_fitx, ploty, color = 'yellow')
+    # plt.plot(right_fitx, ploty, color = 'yellow')
+    # plt.xlim(0, 1280)
+    # plt.ylim(720, 0)
+    # plt.show()
 
-    ret = {'left_fitx' : ltx, 'right_fitx': rtx, 'ploty': ploty}
+    ret = {'left_fitx': ltx, 'right_fitx': rtx, 'ploty': ploty}
 
     return ret
-#---------------------------------------------------------------------------------------------
 
-#-------------------------------------Draw Line--------------------------------------------------------
+
+# ---------------------------------------------------------------------------------------------
+
+# -------------------------------------Draw Line--------------------------------------------------------
 # with fillPoly function draw a polygon including left and right lane
 # through the pts_mean, we could know the degree of curvature between the lane and lane
 # from the function warpping, using the value minb, to the perspectived image, with addWeighted function, finish the work by combining the color of polygon lightly.
@@ -287,25 +303,26 @@ def draw_lane_lines(original_image, warped_image, Minv, draw_info):
     result = cv2.addWeighted(original_image, 1, newwarp, 0.4, 0)
 
     return pts_mean, result
-#---------------------------------------------------------------------------------------------
-#Implenting for detection and tracking
 
 
+# ---------------------------------------------------------------------------------------------
+# Implenting for detection and tracking
 
-#---------------------------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------------------------
 
 # Initialize count
 count_f = 0
 count_r = 0
-#center_points_prev_frame = []
+# center_points_prev_frame = []
 center_points_prev_frame_f = []
 center_points_prev_frame_r = []
 
-#rectangle_space_of_center_points_prev_frame_f = []
-#rectangle_space_of_center_points_prev_frame_r = []
+# rectangle_space_of_center_points_prev_frame_f = []
+# rectangle_space_of_center_points_prev_frame_r = []
 
-#tracking_objects = {}
-#track_id = 0
+# tracking_objects = {}
+# track_id = 0
 
 tracking_objects_f = {}
 track_id_f = 0
@@ -313,7 +330,7 @@ track_id_f = 0
 tracking_objects_r = {}
 track_id_r = 0
 
-#tracking_objects_space_f = {}
+# tracking_objects_space_f = {}
 
 while True:
     success, img_lane = cap_front.read()
@@ -321,37 +338,35 @@ while True:
     success, frame_rear = cap_rear.read()
 
     # ------Tracking Part_1------
-    #count += 1
+    # count += 1
     count_f += 1
     count_r += 1
     # Point current frame
-    #center_points_cur_frame = []
+    # center_points_cur_frame = []
     center_points_cur_frame_f = []
     center_points_cur_frame_r = []
     # ------Tracking Part_1------
-    #rectangle_space_of_center_points_cur_frame_f = []
-    #rectangle_space_of_center_points_cur_frame_r = []
-
+    # rectangle_space_of_center_points_cur_frame_f = []
+    # rectangle_space_of_center_points_cur_frame_r = []
 
     # ------Tracking Part_1------
 
-
-# Front Camera Lane Detection
+    # Front Camera Lane Detection
     ## wrapped video show (bird eye-version)
     wrapped_img, minverse = wrapping(img_lane)
     if wrapped_img is None:
         continue
-    #cv2.imshow('wrapped', wrapped_img)
+    # cv2.imshow('wrapped', wrapped_img)
     # color filter and mask (yellow and white lane)
     w_f_img = color_filter(wrapped_img)
-    #cv2.imshow('w_f_img', w_f_img)
+    # cv2.imshow('w_f_img', w_f_img)
     ##ROI from color filtered image
     w_f_r_img = roi(w_f_img)
-    #cv2.imshow('w_f_r_img', w_f_r_img)
+    # cv2.imshow('w_f_r_img', w_f_r_img)
     ## ROI and wrapped img threshold
     _gray = cv2.cvtColor(w_f_r_img, cv2.COLOR_BGR2GRAY)
     ret, thresh = cv2.threshold(_gray, 140, 195, cv2.THRESH_BINARY)
-    #cv2.imshow('threshold', thresh)
+    # cv2.imshow('threshold', thresh)
     ## 선 분포도 조사 histogram
     leftbase, rightbase = plothistogram(thresh)
     ## histogram 기반 window roi 영역
@@ -359,38 +374,36 @@ while True:
     ## 원본 이미지에 라인 넣기
     meanPts, frame_front = draw_lane_lines(frame_front, thresh, minverse, draw_info)
 
-
-# Vehicle Detection with ML_Model with input video    
+    # Vehicle Detection with ML_Model with input video
     results_front = model_n(frame_front, stream=True)
     results_rear = model_n(frame_rear, stream=True)
 
-    
-# Vehicle Detection for front camera
+    # Vehicle Detection for front camera
     for rf in results_front:
         boxesf = rf.boxes
         for boxf in boxesf:
 
             # Bounding Box
-            x1,y1,x2,y2 = boxf.xyxy[0]
-            x1,y1,x2,y2 = int(x1), int(y1), int(x2), int(y2)
+            x1, y1, x2, y2 = boxf.xyxy[0]
+            x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
             # cv2.rectangle(frame_front, (x1,y1), (x2,y2), (0, 0, 255, 127), -1)
             w, h = x2 - x1, y2 - y1
             # rt = -1 -> fullfilled rectangle, 0~ -> normal thickness
             cvzone.cornerRect(frame_front, (x1, y1, w, h), rt=0, colorR=(0, 0, 255))
             # Confidence
             confidence = math.ceil((boxf.conf[0] * 100)) / 100
-            
+
             # Class Name
             cls = int(boxf.cls[0])
 
-            #cvzone.putTextRect(frame_front, f'{classNames[cls]} {confidence}', (max(0, x1), max(35, y1))) # , scale = 3, thickness = 3
+            # cvzone.putTextRect(frame_front, f'{classNames[cls]} {confidence}', (max(0, x1), max(35, y1))) # , scale = 3, thickness = 3
 
             # ------Tracking Part_2------
             # Assuming boxr.xyxy[0] gives you the coordinates in the form (x1, y1, x2, y2)
-            #x1, y1, x2, y2 = map(int, boxf.xyxy[0])
+            # x1, y1, x2, y2 = map(int, boxf.xyxy[0])
             # Calculate the width and height from the coordinates
-            #w = x2 - x1
-            #h = y2 - y1
+            # w = x2 - x1
+            # h = y2 - y1
 
             # cv2.rectangle(frame_rear, (x1, y1), (x2, y2), (0, 0, 255), 1)
 
@@ -399,15 +412,15 @@ while True:
             cy = y1 + h // 2
 
             center_points_cur_frame_f.append((cx, cy))
-            #rectangle_space_of_center_points_cur_frame_f.append(w*h)
-            #print("testForCenterPointsAndSpace.....!!!!!!Start")
-            #print("center_points_cur_frame_f", center_points_cur_frame_f)
-            #print("rectangle_space_of_center_points_cur_frame_f", rectangle_space_of_center_points_cur_frame_f)
-            #print("testForCenterPointsAndSpace.....!!!!!!End")
-            #print("FRAME Numb.", count_f, " ", x1, y1, w, h)
+            # rectangle_space_of_center_points_cur_frame_f.append(w*h)
+            # print("testForCenterPointsAndSpace.....!!!!!!Start")
+            # print("center_points_cur_frame_f", center_points_cur_frame_f)
+            # print("rectangle_space_of_center_points_cur_frame_f", rectangle_space_of_center_points_cur_frame_f)
+            # print("testForCenterPointsAndSpace.....!!!!!!End")
+            # print("FRAME Numb.", count_f, " ", x1, y1, w, h)
 
             cv2.circle(frame_front, (cx, cy), 5, (0, 0, 255), -1)
-            #cv2.rectangle(frame_front, (x1, y1), (x1 + w, y1 + h), (0, 255, 255), 2)
+            # cv2.rectangle(frame_front, (x1, y1), (x1 + w, y1 + h), (0, 255, 255), 2)
 
             # Only at the beginning we compare previous and current frame
             if count_f <= 2:
@@ -418,25 +431,25 @@ while True:
 
                         if distance_f < 30:
                             tracking_objects_f[track_id_f] = pt
-                            #tracking_objects_space_f[track_id_f] = w*h
+                            # tracking_objects_space_f[track_id_f] = w*h
                             track_id_f += 1
             else:
 
-                tracking_objects_copy = tracking_objects_f.copy()               #one frame older?
-                center_points_cur_frame_copy = center_points_cur_frame_f.copy() #new, and here always appended..!
+                tracking_objects_copy = tracking_objects_f.copy()  # one frame older?
+                center_points_cur_frame_copy = center_points_cur_frame_f.copy()  # new, and here always appended..!
 
-                #tracking_objects_space_f_copy = tracking_objects_space_f.copy()
-                #rectangle_space_of_center_points_cur_frame_f_copy = rectangle_space_of_center_points_cur_frame_f.copy()
-                #print("center_points_cur_frame_f", center_points_cur_frame_f)
-                #print("tracking_objects_copy", tracking_objects_copy)
-                #print("tracking_objects_f", tracking_objects_f)
-                #print("pt", pt)
-                #print("rectangle_space_of_center_points_cur_frame_f", rectangle_space_of_center_points_cur_frame_f)
-                #print("tracking_objects_space_f_copy", tracking_objects_space_f_copy)
-                #print("tracking_objects_space_f", tracking_objects_space_f)
-                #print("w,h,w*h", w, h, w * h)
-                #print("track_id_f", track_id_f)
-                #print("---------------------------------------------------------------------------")
+                # tracking_objects_space_f_copy = tracking_objects_space_f.copy()
+                # rectangle_space_of_center_points_cur_frame_f_copy = rectangle_space_of_center_points_cur_frame_f.copy()
+                # print("center_points_cur_frame_f", center_points_cur_frame_f)
+                # print("tracking_objects_copy", tracking_objects_copy)
+                # print("tracking_objects_f", tracking_objects_f)
+                # print("pt", pt)
+                # print("rectangle_space_of_center_points_cur_frame_f", rectangle_space_of_center_points_cur_frame_f)
+                # print("tracking_objects_space_f_copy", tracking_objects_space_f_copy)
+                # print("tracking_objects_space_f", tracking_objects_space_f)
+                # print("w,h,w*h", w, h, w * h)
+                # print("track_id_f", track_id_f)
+                # print("---------------------------------------------------------------------------")
 
                 for object_id, pt2 in tracking_objects_copy.items():
                     object_exists = False
@@ -445,78 +458,77 @@ while True:
                         # Update object(IDs) position
                         if distance < 30:
                             tracking_objects_f[object_id] = pt
-                            #tracking_objects_space_f[object_id] = w*h
-                            #print("objectID", object_id)
-                            #print("previous space", tracking_objects_space_f_copy)
-                            #print("tracking_objects_f", tracking_objects_f)
-                            #print("previous space", tracking_objects_space_f_copy[object_id])
-                            #print("current space", rectangle_space_of_center_points_cur_frame_f_copy[object_id])
-                            #print("space derivative", "test....")
+                            # tracking_objects_space_f[object_id] = w*h
+                            # print("objectID", object_id)
+                            # print("previous space", tracking_objects_space_f_copy)
+                            # print("tracking_objects_f", tracking_objects_f)
+                            # print("previous space", tracking_objects_space_f_copy[object_id])
+                            # print("current space", rectangle_space_of_center_points_cur_frame_f_copy[object_id])
+                            # print("space derivative", "test....")
                             object_exists = True
                             if pt in center_points_cur_frame_f:
                                 center_points_cur_frame_f.remove(pt)
-                                #rectangle_space_of_center_points_cur_frame_f.remove(w*h)
+                                # rectangle_space_of_center_points_cur_frame_f.remove(w*h)
                                 continue
 
                     # if object is disappear, then id is also should be disappear. Remove ID Lost
                     if not object_exists:
                         tracking_objects_f.pop(object_id)
-                        #tracking_objects_space_f.pop(object_id)
+                        # tracking_objects_space_f.pop(object_id)
 
                 # Add new IDs found
                 for pt in center_points_cur_frame_f:
                     tracking_objects_f[track_id_f] = pt
-                    #tracking_objects_space_f[track_id_f] = w*h
+                    # tracking_objects_space_f[track_id_f] = w*h
                     track_id_f += 1
 
             for object_id, pt in tracking_objects_f.items():
                 cv2.circle(frame_front, pt, 5, (0, 0, 255), -1)
                 cv2.putText(frame_front, str(object_id), (pt[0], pt[1] - 7), 0, 1, (0, 0, 255), 1)
 
-            #print("Tracking Object")
-            #print(tracking_objects)
+            # print("Tracking Object")
+            # print(tracking_objects)
 
-            #print("CUR FRAME")
-            #print(center_points_cur_frame)
+            # print("CUR FRAME")
+            # print(center_points_cur_frame)
 
-            #print("PREV FRAME")
-            #print(center_points_prev_frame)
+            # print("PREV FRAME")
+            # print(center_points_prev_frame)
 
-            #cv2.imshow("Frame", frame_front)
+            # cv2.imshow("Frame", frame_front)
 
             # Make a copy of the points
             center_points_prev_frame = center_points_cur_frame_f.copy()
 
+            cvzone.putTextRect(frame_front, f'{classNames[cls]} {confidence}', (max(0, x1), max(35, y1)), thickness=1,
+                               scale=1, offset=5)  # , scale = 3, thickness = 3
 
-            cvzone.putTextRect(frame_front, f'{classNames[cls]} {confidence}',(max(0, x1), max(35, y1)), thickness=1, scale=1, offset=5)  # , scale = 3, thickness = 3
-
-
-# Vehicle Detection for rear camera
+    # Vehicle Detection for rear camera
     for rr in results_rear:
         boxesr = rr.boxes
         for boxr in boxesr:
-            x3,y3,x4,y4 = boxr.xyxy[0]
-            x3,y3,x4,y4 = int(x3), int(y3), int(x4), int(y4)
+            x3, y3, x4, y4 = boxr.xyxy[0]
+            x3, y3, x4, y4 = int(x3), int(y3), int(x4), int(y4)
             # last parameter -1 -> fullfilled rectangle, 0~ -> normal thickness
-            cv2.rectangle(frame_rear, (x3,y3), (x4,y4), (0, 0, 255), 1)
+            cv2.rectangle(frame_rear, (x3, y3), (x4, y4), (0, 0, 255), 1)
             font = cv2.FONT_HERSHEY_SIMPLEX
             fontscale = 1
             color = (255, 0, 0)
             tickness = 2
-            cv2.putText(frame_rear, 'testText', (x3,y3), font, fontscale, color, tickness)
+            cv2.putText(frame_rear, 'testText', (x3, y3), font, fontscale, color, tickness)
             cv2.putText(frame_rear, f'{classNames[cls]}', (x4, y4), font, fontscale, color, tickness)
             # https://stackoverflow.com/questions/56472024/how-to-change-the-opacity-of-boxes-cv2-rectangle
             # alpha = 0.4
             # opacity_rear = cv2.addWeighted(frame_rear, alpha, frame_rear, 1-alpha,0)
 
-        # ------Tracking Part_2------
+            # ------Tracking Part_2------
             # Assuming boxr.xyxy[0] gives you the coordinates in the form (x1, y1, x2, y2)
             x1, y1, x2, y2 = map(int, boxr.xyxy[0])
             # Calculate the width and height from the coordinates
             w = x2 - x1
             h = y2 - y1
 
-            #cv2.rectangle(frame_rear, (x1, y1), (x2, y2), (0, 0, 255), 1)
+            # cv2.rectangle(frame_rear, (x1, y1), (x2, y2), (0, 0, 255), 1)
 
             # The center point of the box
             cx = x1 + w // 2
@@ -526,7 +538,7 @@ while True:
             print("FRAME Numb.", count_r, " ", x1, y1, w, h)
 
             cv2.circle(frame_rear, (cx, cy), 5, (0, 0, 255), -1)
-            #cv2.rectangle(frame_rear, (x1, y1), (x1 + w, y1 + h), (0, 255, 255), 2)
+            # cv2.rectangle(frame_rear, (x1, y1), (x1 + w, y1 + h), (0, 255, 255), 2)
 
             # Only at the beginning we compare previous and current frame
             if count_r <= 2:
@@ -568,29 +580,25 @@ while True:
                 cv2.circle(frame_rear, pt, 5, (0, 0, 255), -1)
                 cv2.putText(frame_rear, str(object_id), (pt[0], pt[1] - 7), 0, 1, (0, 0, 255), 1)
 
-            #print("Tracking Object")
-            #print(tracking_objects)
+            # print("Tracking Object")
+            # print(tracking_objects)
 
-            #print("CUR FRAME")
-            #print(center_points_cur_frame)
+            # print("CUR FRAME")
+            # print(center_points_cur_frame)
 
-            #print("PREV FRAME")
-            #print(center_points_prev_frame)
+            # print("PREV FRAME")
+            # print(center_points_prev_frame)
 
-            #cv2.imshow("Frame", frame_front)
+            # cv2.imshow("Frame", frame_front)
 
             # Make a copy of the points
             center_points_prev_frame = center_points_cur_frame_r.copy()
 
             cv2.putText(frame_rear, f'{classNames[cls]}', (x4, y4), font, fontscale, color, tickness)
 
-
-
-
-    cv2.imshow("frame_front",frame_front)
-    cv2.imshow("frame_rear",frame_rear)
-    #cv2.imshow("img_lane",img_lane)
-    
+    cv2.imshow("frame_front", frame_front)
+    cv2.imshow("frame_rear", frame_rear)
+    # cv2.imshow("img_lane",img_lane)
 
     if cv2.waitKey(1) == ord('q'):
         break

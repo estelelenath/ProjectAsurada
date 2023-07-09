@@ -37,10 +37,15 @@
 <br/>
 
 <p align="center">
-    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_003.jpg?raw=true" width="432" height="741"></center>
+    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_004.jpg?raw=true" width="432" height="741"></center>
 </p>
 
+<br/>
+
 Overall, ...
+
+<br/>
+
 <figure>
     <p align="center">
         <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/titleGif.gif?raw=true" width="400" height="225"></center>
