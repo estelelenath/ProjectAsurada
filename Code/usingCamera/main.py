@@ -63,11 +63,15 @@ while True:
             list.append([x1,y1,x2,y2])
     bbox_id=tracker.update(list)
     for bbox in bbox_id:
-        x3,y3,x4,y4,id=bbox
+        x3,y3,x4,y4,sd,id=bbox
+        #x3, y3, x4, y4, id = bbox
+        print("space_difference", sd)
+        # distance from other car to my car -> x_dist = cx - my car x coordinate, y_dist = cy - my car y coordinate
         cx=int(x3+x4)//2
         cy=int(y3+y4)//2
         cv2.circle(frame,(cx,cy),4,(0,0,255),-1)
         cv2.putText(frame,str(id),(cx,cy),cv2.FONT_HERSHEY_COMPLEX,0.8,(0,255,255),2)
+        #print("space_difference", x3,y3,id)
            
 
 
