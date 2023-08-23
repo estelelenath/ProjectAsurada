@@ -105,12 +105,26 @@ There is direct comparison data for Faster R-CNN and YOLO, so I quote it.
     <figcaption align="center"> Comparison of YOLO and Faster R-CNN left: YOLO / right: Faster R-CNN</figcaption>
      <figcaption align="center"> source) https://github.com/alen-smajic/Real-time-Object-Detection-for-Autonomous-Driving-using-Deep-Learning</figcaption>
 </figure>
+
+<br/>
+
++-------------------------+--------------------------+
+| Architecture            | mAP %      | FPS         |
++=========================+============+=============+
+| ``YOLO``                | 18,6          | 212,4    |
++-------------------------+------------+-------------+
+| ``Faster R-CNN``        | 41,8          | 17,1     |
++-------------------------+------------+-------------+
+
+    **Legend:**
+
+    * **mAP %**  : Mean Average Precision.
+    * **FPS**    : Frames per second.
+
 <figure>
-    <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/yoloFasterRCnn.jpg?raw=true" width="400" height="225">
+    <p align="right">
         <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/yolo-comparison-plots.png?raw=true" width="400" height="225">
     </p>
-    <figcaption align="center"> left: benchmark of YOLO and Faster R-CNN / right: benchmark of YOLO performance by version</figcaption>
     <figcaption align="center"> source) https://github.com/ultralytics/ultralytics</figcaption>
 </figure>
 In the table above, you can consider mAP % as accuracy and FPS as processing speed.
