@@ -108,6 +108,9 @@ There is direct comparison data for Faster R-CNN and YOLO, so I quote it.
 
 <br/>
 
+``bom.components.component``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 +-------------------------+--------------------------+
 | Architecture            | mAP %      | FPS         |
 +=========================+============+=============+
@@ -121,12 +124,16 @@ There is direct comparison data for Faster R-CNN and YOLO, so I quote it.
     * **mAP %**  : Mean Average Precision.
     * **FPS**    : Frames per second.
 
+
 <figure>
     <p align="right">
         <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/yolo-comparison-plots.png?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> source) https://github.com/ultralytics/ultralytics</figcaption>
 </figure>
+
+<br/>
+
 In the table above, you can consider mAP % as accuracy and FPS as processing speed.
 As can be seen from the table, in terms of accuracy, Faster R-CNN has better values and YOLO processes data faster.
 Therefore, algorithms such as YOLO and SSD, which focus on speed, is considered as front runners.
