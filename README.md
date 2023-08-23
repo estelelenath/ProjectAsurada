@@ -108,28 +108,28 @@ There is direct comparison data for Faster R-CNN and YOLO, so I quote it.
 
 <br/>
 
-``bom.components.component``
+``benchmark of YOLO and Faster R-CNN``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +-------------------------+--------------------------+
 | Architecture            | mAP %      | FPS         |
 +=========================+============+=============+
-| ``YOLO``                | 18,6          | 212,4    |
+| ``YOLO``                | 18,6       | 212,4       |
 +-------------------------+------------+-------------+
-| ``Faster R-CNN``        | 41,8          | 17,1     |
+| ``Faster R-CNN``        | 41,8       | 17,1        |
 +-------------------------+------------+-------------+
 
     **Legend:**
 
     * **mAP %**  : Mean Average Precision.
     * **FPS**    : Frames per second.
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 <figure>
-    <p align="right">
+    <p align="center">
         <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/yolo-comparison-plots.png?raw=true" width="400" height="225">
     </p>
-    <figcaption align="center"> source) https://github.com/ultralytics/ultralytics</figcaption>
+    <figcaption align="center"> benchmark of YOLO performance by version) (https://github.com/ultralytics/ultralytics</figcaption>)
 </figure>
 
 <br/>
