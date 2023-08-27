@@ -13,7 +13,7 @@ from tracking_function import *
 
 '''
 August
-#ToDo: 1) Risk judgement Algorithm_(X)( 4) using two camera), 2) Bounding Box Interface_(X), 3) curve and object acceleration control. (Steering)
+#ToDo: 1) Risk judgement Algorithm_(X)( 4) using two camera), 2) Bounding Box Interface_(X), 3) curve and object acceleration control. (Steering) 19) Output Image Process Update
 September_1
 #ToDo: 5) Multiple Lane Detection 6) Traffic Signal 7) CUDA 8) M.A.P, 
 September_2
@@ -131,6 +131,7 @@ def camera_calibration():
             cv2.drawChessboardCorners(img, (nx, ny), corners2, ret)  #
             imgpoints.append(corners2)
             objpoints.append(objp)
+            print(objpoints)
     ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1], None, None)
     #Output Explain (https://foss4g.tistory.com/1665)
 
@@ -979,7 +980,7 @@ while True:
             cv2.putText(video_front_resize_input, f'{"unknown"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
             cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
             #cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
-            
+
     ##########################Front Camera_End##########################
 
     ##########################Rear Camera_Start#########################
@@ -1133,8 +1134,9 @@ while True:
     else:
         init = False
 
-    cv2.namedWindow('frame', cv2.WINDOW_NORMAL)
-    cv2.imshow('frame', img_out)
+    # Original Image Transfer and processing and add to detected Vehicles Image, not directly using detected Vehicles Images
+    cv2.namedWindow('camera_front_input', cv2.WINDOW_NORMAL)
+    cv2.imshow('camera_front_input', img_out)
     cv2.namedWindow('colorwarp', cv2.WINDOW_NORMAL)
     cv2.imshow('colorwarp', colorwarp)
     cv2.namedWindow('draw_poly', cv2.WINDOW_NORMAL)
