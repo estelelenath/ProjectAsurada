@@ -13,7 +13,7 @@ from tracking_function import *
 
 '''
 August
-#ToDo: 1) Risk judgement Algorithm_(X)( 4) using two camera), 2) Bounding Box Interface_(X), 3) curve and object acceleration control. (Steering)_(X) 19) Output Image Process Update
+#ToDo: 1) Risk judgement Algorithm_(X)( 4) using two camera), 2) Bounding Box Interface_(X), 3) curve and object acceleration control. (Steering) 19) Output Image Process Update
 September_1
 #ToDo: 5) Multiple Lane Detection 6) Traffic Signal 7) CUDA 8) M.A.P,(Canny Mask? or white and yellow color ) 
 September_2
@@ -1225,38 +1225,39 @@ while True:
         init = False
 
     # -----------------------------------StterWheel-----------------------------------
-        # Get the shape of the original image and the steering wheel image
-        height, width, _ = img_out.shape
-        height_s, width_s, _ = rotated_image.shape
-        scale_factor = 0.25  # 50% of the original size
+    # Get the shape of the original image and the steering wheel image
+    height, width, _ = img_out.shape
+    height_s, width_s, _ = rotated_image.shape
+    # Position to overlay the steering wheel image at the bottom-middle of the original image
+    position = (width // 2 - width_s // 2, int(height * 0.75) - height_s // 2)
+    # Get the region of interest (ROI) in the original image where the steering wheel will be placed
+    x_offset, y_offset = 300, 300
+    roi = img_out[y_offset:y_offset + rotated_image.shape[0], x_offset:x_offset + rotated_image.shape[1]]
 
-        # Calculate new dimensions
-        new_width = int(width_s * scale_factor)
-        new_height = int(height_s * scale_factor)
+    # Define the scale factor, for example, 0.5 will make the image half the size
+    scale_factor = 0.5
 
-        # Resize the image
-        rotated_image_resized = cv2.resize(rotated_image, (new_width, new_height))
-        height_s, width_s, _ = rotated_image_resized.shape
+    # Get the dimensions of the steering wheel image
+    height, width = steering_wheel_image.shape[:2]
+    # Calculate new dimensions
+    new_height = int(height * scale_factor)
+    new_width = int(width * scale_factor)
 
-        # Position to overlay the steering wheel image at the bottom-middle of the original image
-        position = (width // 2 - width_s // 2, int(height * 0.75) - height_s // 2)
+    # Resize the image
+    rotated_image_resized = cv2.resize(steering_wheel_image, (new_width, new_height))
+    print("ROI shape:", roi.shape)
+    print("Rotated image shape:", rotated_image_resized.shape)
+    ## Resize the rotated_image to fit the ROI
+    #rotated_image_resized = cv2.resize(rotated_image, (roi.shape[1], roi.shape[0]))
 
-        # Create a region of interest in the original image where the steering wheel will be placed
-        roi = img_out[position[1]:position[1] + height_s, position[0]:position[0] + width_s]
-
-        # Resize the rotated_image to fit the ROI
-        rotated_image_resized = cv2.resize(rotated_image, (roi.shape[1], roi.shape[0]))
-
-        # Then blend the images
-        blended = cv2.addWeighted(roi, 1, rotated_image_resized, 0.8, 0)
-
-        # Place the blended image back into the original image
-        img_out[position[1]:position[1] + height_s, position[0]:position[0] + width_s] = blended
-
-        # Display the final image with the overlay
-        cv2.imshow('camera_front_input', img_out)
-
-
+    # Blend the ROI with the rotated steering wheel image
+    # Resizing the rotated_image to fit into the region of interest (roi)
+    rotated_image_resized = cv2.resize(rotated_image, (roi.shape[1], roi.shape[0]))
+    blended = cv2.addWeighted(roi, 1, rotated_image_resized, 0.8, 0)
+    # Place the blended image back into the original image
+    img_out[position[1]:position[1] + height_s, position[0]:position[0] + width_s] = blended
+    # Display the final image with the overlay
+    cv2.imshow('camera_front_input', img_out)
     # -----------------------------------StterWheel-----------------------------------
 
     # Original Image Transfer and processing and add to detected Vehicles Image, not directly using detected Vehicles Images

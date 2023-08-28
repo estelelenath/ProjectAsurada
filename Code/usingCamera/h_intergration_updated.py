@@ -13,7 +13,7 @@ from tracking_function import *
 
 '''
 August
-#ToDo: 1) Risk judgement Algorithm_(X)( 4) using two camera), 2) Bounding Box Interface_(X), 3) curve and object acceleration control. (Steering)_(X) 19) Output Image Process Update
+#ToDo: 1) Risk judgement Algorithm_(X)( 4) using two camera), 2) Bounding Box Interface_(X), 3) curve and object acceleration control. (Steering) 19) Output Image Process Update
 September_1
 #ToDo: 5) Multiple Lane Detection 6) Traffic Signal 7) CUDA 8) M.A.P,(Canny Mask? or white and yellow color ) 
 September_2
@@ -661,63 +661,6 @@ def measure_position_meters(binary_warped, left_fit, right_fit):
     return veh_pos
 
 
-# To store the previous N steering angles
-previous_angles = []
-
-# This function now keeps track of the last num_prev_angles (default is 5) steering angles and averages them to determine the current steering angle.
-# It also divides the calculated angle by a sensitivity factor (default is 4) to make it less sensitive.
-# You can adjust num_prev_angles and sensitivity as needed to get the desired performance.
-def calculate_steering_angle(left_lane_points, right_lane_points, num_prev_angles=5, sensitivity=4):
-    global previous_angles
-
-    # Calculate midpoints of the first and last coordinates of the lanes
-    mid_start = [(left_lane_points[0][0] + right_lane_points[0][0]) // 2,
-                 (left_lane_points[0][1] + right_lane_points[0][1]) // 2]
-    mid_end = [(left_lane_points[1][0] + right_lane_points[1][0]) // 2,
-               (left_lane_points[1][1] + right_lane_points[1][1]) // 2]
-
-    # Calculate angle
-    angle = math.atan2(mid_end[1] - mid_start[1], mid_end[0] - mid_start[0])
-    angle = math.degrees(angle)
-
-    # Normalize the angle by dividing it by a sensitivity factor
-    normalized_angle = angle / sensitivity
-
-    # Add to the list of previous angles
-    previous_angles.append(normalized_angle)
-
-    # Only keep the last N angles
-    if len(previous_angles) > num_prev_angles:
-        previous_angles.pop(0)
-
-    # Average the last N angles for smoother transitions
-    average_angle = sum(previous_angles) / len(previous_angles)
-
-    return average_angle
-
-
-# Function to get lane information based on the coordinates of the left and right lanes
-def get_lane_info(left_lane, right_lane):
-    return {'left_lane': left_lane, 'right_lane': right_lane}
-
-steering_wheel_image = cv2.imread('SteerWheel.png')
-# Function to rotate the steering wheel image based on the calculated steering angle
-def rotate_steering_wheel(image, angle):
-    # Get image dimensions
-    (h, w) = image.shape[:2]
-
-    # Calculate the center of the image
-    center = (w // 2, h // 2)
-
-    # Perform the rotation
-    M = cv2.getRotationMatrix2D(center, angle, 1.0)
-    rotated = cv2.warpAffine(image, M, (w, h))
-
-    return rotated
-
-
-
-
 ### STEP 7: Project Lane Delimitations Back on Image Plane and Add Text for Lane Info ###
 
 def project_lane_info(img, binary_warped, ploty, left_fitx, right_fitx, M_inv, left_curverad, right_curverad, veh_pos):
@@ -805,21 +748,6 @@ def lane_finding_pipeline(img, init):
         new_right_fit = np.array(right_fit)
         right_fit_hist = np.vstack([right_fit_hist, new_right_fit])
 
-        # SteerWheel Control
-        # left_x1 = left_fitx[0], left_y1 = ploty[0], left_x2 = left_fitx[-1], left_y2 = ploty[-1]
-        # right_x1 = right_fitx[0], right_y1 = ploty[0], right_x2 = right_fitx[-1], right_y2 = ploty[-1]
-        # lane_info = get_lane_info((left_x1, left_y1, left_x2, left_y2), (right_x1, right_y1, right_x2, right_y2))
-        # lane_info = get_lane_info((left_fitx[0], ploty[0], left_fitx[-1], ploty[-1]), (right_fitx[0], ploty[0], right_fitx[-1], ploty[-1]))
-        #left_lane_points = [(left_x1, left_y1), (left_x2, left_y2)]
-        #right_lane_points = [(right_x1, right_y1), (right_x2, right_y2)]
-
-        left_lane_points = [(left_fitx[0], ploty[0]), (left_fitx[-1], ploty[-1])]
-        right_lane_points = [(right_fitx[0], ploty[0]), (right_fitx[-1], ploty[-1])]
-        steering_angle = calculate_steering_angle(left_lane_points, right_lane_points, num_prev_angles=5, sensitivity=20)
-        print(f"Steering Angle: {steering_angle} degrees")
-        rotated_image = rotate_steering_wheel(steering_wheel_image, steering_angle)
-
-
     else:
         prev_left_fit = [np.mean(left_fit_hist[:, 0]), np.mean(left_fit_hist[:, 1]), np.mean(left_fit_hist[:, 2])]
         prev_right_fit = [np.mean(right_fit_hist[:, 0]), np.mean(right_fit_hist[:, 1]), np.mean(right_fit_hist[:, 2])]
@@ -833,20 +761,6 @@ def lane_finding_pipeline(img, init):
         left_fit_hist = np.vstack([left_fit_hist, new_left_fit])
         new_right_fit = np.array(right_fit)
         right_fit_hist = np.vstack([right_fit_hist, new_right_fit])
-
-        # SteerWheel Control
-        # left_x1 = left_fitx[0], left_y1 = ploty[0], left_x2 = left_fitx[-1], left_y2 = ploty[-1]
-        # right_x1 = right_fitx[0], right_y1 = ploty[0], right_x2 = right_fitx[-1], right_y2 = ploty[-1]
-        # lane_info = get_lane_info((left_x1, left_y1, left_x2, left_y2), (right_x1, right_y1, right_x2, right_y2))
-        # lane_info = get_lane_info((left_fitx[0], ploty[0], left_fitx[-1], ploty[-1]), (right_fitx[0], ploty[0], right_fitx[-1], ploty[-1]))
-        # left_lane_points = [(left_x1, left_y1), (left_x2, left_y2)]
-        # right_lane_points = [(right_x1, right_y1), (right_x2, right_y2)]
-
-        left_lane_points = [(left_fitx[0], ploty[0]), (left_fitx[-1], ploty[-1])]
-        right_lane_points = [(right_fitx[0], ploty[0]), (right_fitx[-1], ploty[-1])]
-        steering_angle = calculate_steering_angle(left_lane_points, right_lane_points, num_prev_angles=5, sensitivity=20)
-        print(f"Steering Angle: {steering_angle} degrees")
-        rotated_image = rotate_steering_wheel(steering_wheel_image, steering_angle)
 
         # Remove old values from history
         if (len(left_fit_hist) > 5):  # 10
@@ -862,11 +776,7 @@ def lane_finding_pipeline(img, init):
     veh_pos = measure_position_meters(binary_warped, left_fit, right_fit)
     out_img, colorwarp_img, newwarp = project_lane_info(img, binary_warped, ploty, left_fitx, right_fitx, M_inv,
                                                         left_curverad, right_curverad, veh_pos)
-
-    # SteerWheel Control
-    #cv2.imshow('Rotated Steering Wheel', rotated_image)
-
-    return out_img, veh_pos, colorwarp_img, draw_poly_img, rotated_image
+    return out_img, veh_pos, colorwarp_img, draw_poly_img
 
 # ---------------------------------------------------------------------------------------------
 
@@ -1217,47 +1127,12 @@ while True:
     ## 원본 이미지에 라인 넣기
     meanPts, video_front_resize_input = draw_lane_lines(video_front_resize_input, thresh, minverse, left_fitx, right_fitx, ploty)
     """
-    img_out, angle, colorwarp, draw_poly_img, rotated_image = lane_finding_pipeline(video_front_resize_input, init)
+    img_out, angle, colorwarp, draw_poly_img = lane_finding_pipeline(video_front_resize_input, init)
 
     if angle > 1.5 or angle < -1.5:
         init = True
     else:
         init = False
-
-    # -----------------------------------StterWheel-----------------------------------
-        # Get the shape of the original image and the steering wheel image
-        height, width, _ = img_out.shape
-        height_s, width_s, _ = rotated_image.shape
-        scale_factor = 0.25  # 50% of the original size
-
-        # Calculate new dimensions
-        new_width = int(width_s * scale_factor)
-        new_height = int(height_s * scale_factor)
-
-        # Resize the image
-        rotated_image_resized = cv2.resize(rotated_image, (new_width, new_height))
-        height_s, width_s, _ = rotated_image_resized.shape
-
-        # Position to overlay the steering wheel image at the bottom-middle of the original image
-        position = (width // 2 - width_s // 2, int(height * 0.75) - height_s // 2)
-
-        # Create a region of interest in the original image where the steering wheel will be placed
-        roi = img_out[position[1]:position[1] + height_s, position[0]:position[0] + width_s]
-
-        # Resize the rotated_image to fit the ROI
-        rotated_image_resized = cv2.resize(rotated_image, (roi.shape[1], roi.shape[0]))
-
-        # Then blend the images
-        blended = cv2.addWeighted(roi, 1, rotated_image_resized, 0.8, 0)
-
-        # Place the blended image back into the original image
-        img_out[position[1]:position[1] + height_s, position[0]:position[0] + width_s] = blended
-
-        # Display the final image with the overlay
-        cv2.imshow('camera_front_input', img_out)
-
-
-    # -----------------------------------StterWheel-----------------------------------
 
     # Original Image Transfer and processing and add to detected Vehicles Image, not directly using detected Vehicles Images
     cv2.namedWindow('camera_front_input', cv2.WINDOW_NORMAL)
@@ -1301,3 +1176,48 @@ output_front.release()
 output_rear.release()
 
 cv2.destroyAllWindows()
+
+# Function to calculate the steering angle based on lane information
+def calculate_steering_angle(lane_info):
+    left_x1, left_y1, left_x2, left_y2 = lane_info['left_lane']
+    right_x1, right_y1, right_x2, right_y2 = lane_info['right_lane']
+    
+    # Calculate slopes of the left and right lanes
+    slope_left = (left_y2 - left_y1) / (left_x2 - left_x1)
+    slope_right = (right_y2 - right_y1) / (right_x2 - right_x1)
+    
+    # Calculate the average slope
+    slope_avg = (slope_left + slope_right) / 2
+    
+    # Convert the slope to angle in degrees
+    angle = math.atan(slope_avg) * (180 / math.pi)
+    return angle
+
+# Function to get lane information based on the coordinates of the left and right lanes
+def get_lane_info(left_lane, right_lane):
+    return {'left_lane': left_lane, 'right_lane': right_lane}
+
+# Function to rotate the steering wheel image based on the calculated steering angle
+def rotate_steering_wheel(image, angle):
+    # Get image dimensions
+    (h, w) = image.shape[:2]
+    
+    # Calculate the center of the image
+    center = (w // 2, h // 2)
+    
+    # Perform the rotation
+    M = cv2.getRotationMatrix2D(center, angle, 1.0)
+    rotated = cv2.warpAffine(image, M, (w, h))
+    
+    return rotated
+
+# Example usage
+# lane_info = get_lane_info((left_x1, left_y1, left_x2, left_y2), (right_x1, right_y1, right_x2, right_y2))
+# steering_angle = calculate_steering_angle(lane_info)
+# print(f"Steering Angle: {steering_angle} degrees")
+
+# Uncomment below lines after loading your steering wheel image
+# rotated_image = rotate_steering_wheel(your_steering_wheel_image, steering_angle)
+# cv2.imshow('Rotated Steering Wheel', rotated_image)
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
