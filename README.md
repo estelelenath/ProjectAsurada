@@ -326,6 +326,19 @@ Objective : Visualisation / Real-time Data transfer (implemented Driving Assista
 Objective : Visualisation / Real-time Data transfer (implemented Driving Assistance System)
 ### Algorithm
 ### Implementation
+GeForce 4070 Ti
+CUDA 11.8
+cudnn 8.9.0
+torch              2.0.1+cu118
+torchaudio         2.0.2+cu118
+torchvision        0.15.2+cu118
+
+The error message TypeError: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first. 
+suggests that you are trying to convert a PyTorch tensor that is on the GPU (CUDA) to a NumPy array directly. 
+NumPy operates on CPU, so you'll need to move the tensor to CPU before converting it to a NumPy array.
+
+px_r = pandas.DataFrame(resbb_r).astype("float")  # all detected vehicles's list in px
+px_r = pandas.DataFrame(resbb_r.cpu().numpy()).astype("float")  # all detected vehicles's list in px
 ### Evaluation
 
 <br/>

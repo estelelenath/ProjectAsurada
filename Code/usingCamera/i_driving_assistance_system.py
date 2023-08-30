@@ -937,7 +937,7 @@ int(video_rear_raw_input.get(cv2.CAP_PROP_FRAME_WIDTH)), int(video_rear_raw_inpu
 
 ### Video Mode
 output_front = cv2.VideoWriter('video_front_output.mp4', fourcc, fps, frame_size)  # video export
-output_rear = cv2.VideoWriter('video_rear_output.mp4', fourcc, fps, frame_size)
+#output_rear = cv2.VideoWriter('video_rear_output.mp4', fourcc, fps, frame_size)                        # Video 1/3
 # output_front_test = cv2.VideoWriter('output_video_front_test.mp4', fourcc, fps, frame_size)
 # output_rear_test = cv2.VideoWriter('output_video_rear_test.mp4', fourcc, fps, frame_size)
 
@@ -1088,7 +1088,7 @@ while True:
     # Object Detect using predict from YOLO and Input Video
     result_r = model.predict(video_rear_resize_input)
     resbb_r = result_r[0].boxes.boxes
-    px_r = pandas.DataFrame(resbb_r).astype("float")  # all detected vehicles's list in px
+    px_r = pandas.DataFrame(resbb_r.cpu().numpy()).astype("float")  # all detected vehicles's list in px
 
     list_r = []  # in List, save the each frame information of detected object's x1,x2,y1,y2 value
 
@@ -1297,17 +1297,18 @@ while True:
     # cv2.imshow("camera_rear_resize_input_test", camera_rear_resize_input_test)
 
     ## Video Export
-    output_front.write(img_out)
-    output_rear.write(video_rear_resize_input)
+    output_front.write(img_out)                         # Video 2/3
+    #output_rear.write(video_rear_resize_input)
     # output_front.write(camera_front_resize_input)  # Test Video Front
     # output_rear.write(camera_rear_resize_input)    # Test Video Rear
 
     if cv2.waitKey(1) == ord('q'):
         break
 
-video_front_resize_input.release()
-video_rear_resize_input.release()
+
+video_front_raw_input.release()
+video_rear_raw_input.release()
 output_front.release()
-output_rear.release()
+#output_rear.release()          # Video 3/3
 
 cv2.destroyAllWindows()
