@@ -1,0 +1,1261 @@
+C:\Users\estel\anaconda3\python.exe D:\ProjectAsurada\ProjectAsurada\Code\usingCamera\h_intergration.py 
+
+0: 448x640 5 cars, 1 truck, 97.0ms
+Speed: 3.0ms preprocess, 97.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 66.0ms
+Speed: 1.0ms preprocess, 66.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 5 cars, 1 truck, 82.0ms
+Speed: 3.0ms preprocess, 82.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 95.0ms
+Speed: 2.0ms preprocess, 95.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 truck, 78.0ms
+Speed: 1.0ms preprocess, 78.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 64.0ms
+Speed: 2.0ms preprocess, 64.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 truck, 72.0ms
+Speed: 1.0ms preprocess, 72.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 76.0ms
+Speed: 1.0ms preprocess, 76.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 truck, 76.0ms
+Speed: 1.0ms preprocess, 76.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 12 cars, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 truck, 75.0ms
+Speed: 2.0ms preprocess, 75.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 truck, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 truck, 63.0ms
+Speed: 1.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 truck, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 56.0ms
+Speed: 1.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 57.0ms
+Speed: 1.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 62.0ms
+Speed: 1.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 64.0ms
+Speed: 2.0ms preprocess, 64.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 truck, 63.0ms
+Speed: 1.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 2 trucks, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 2 trucks, 62.0ms
+Speed: 1.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 55.0ms
+Speed: 1.0ms preprocess, 55.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 2 trucks, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 64.0ms
+Speed: 2.0ms preprocess, 64.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 2 trucks, 64.0ms
+Speed: 2.0ms preprocess, 64.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 2 trucks, 57.0ms
+Speed: 2.0ms preprocess, 57.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 5 cars, 2 trucks, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 2 trucks, 65.0ms
+Speed: 1.0ms preprocess, 65.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 2 trucks, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 5 cars, 2 trucks, 56.0ms
+Speed: 2.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 5 cars, 2 trucks, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 54.0ms
+Speed: 2.0ms preprocess, 54.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 5 cars, 2 trucks, 62.0ms
+Speed: 1.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 2 trucks, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 2 trucks, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 2 trucks, 57.0ms
+Speed: 1.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 2 trucks, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 52.0ms
+Speed: 1.0ms preprocess, 52.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 2 trucks, 57.0ms
+Speed: 1.0ms preprocess, 57.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 2 trucks, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 2 trucks, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 64.0ms
+Speed: 1.0ms preprocess, 64.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 truck, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 62.0ms
+Speed: 1.0ms preprocess, 62.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 2 trucks, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 53.0ms
+Speed: 1.0ms preprocess, 53.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 truck, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 55.0ms
+Speed: 2.0ms preprocess, 55.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 62.0ms
+Speed: 1.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 57.0ms
+Speed: 2.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 57.0ms
+Speed: 2.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 64.0ms
+Speed: 1.0ms preprocess, 64.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 55.0ms
+Speed: 1.0ms preprocess, 55.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 57.0ms
+Speed: 1.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 64.0ms
+Speed: 2.0ms preprocess, 64.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 truck, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 63.0ms
+Speed: 1.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 truck, 56.0ms
+Speed: 2.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 truck, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 56.0ms
+Speed: 2.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 57.0ms
+Speed: 1.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 57.0ms
+Speed: 1.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 bus, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 56.0ms
+Speed: 1.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 56.0ms
+Speed: 1.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 57.0ms
+Speed: 2.0ms preprocess, 57.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 55.0ms
+Speed: 2.0ms preprocess, 55.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 56.0ms
+Speed: 1.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 truck, 55.0ms
+Speed: 2.0ms preprocess, 55.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 57.0ms
+Speed: 2.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 56.0ms
+Speed: 1.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 62.0ms
+Speed: 1.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 57.0ms
+Speed: 1.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 55.0ms
+Speed: 2.0ms preprocess, 55.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 1 bus, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 57.0ms
+Speed: 2.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 55.0ms
+Speed: 2.0ms preprocess, 55.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 1 truck, 62.0ms
+Speed: 1.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 1 bus, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 64.0ms
+Speed: 1.0ms preprocess, 64.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 53.0ms
+Speed: 1.0ms preprocess, 53.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 57.0ms
+Speed: 1.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 1 bus, 1 truck, 62.0ms
+Speed: 1.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 56.0ms
+Speed: 1.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 1 bus, 1 truck, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 1 bus, 1 truck, 53.0ms
+Speed: 1.0ms preprocess, 53.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 1 truck, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 56.0ms
+Speed: 1.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 54.0ms
+Speed: 1.0ms preprocess, 54.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 56.0ms
+Speed: 2.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 57.0ms
+Speed: 2.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 57.0ms
+Speed: 2.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 57.0ms
+Speed: 1.0ms preprocess, 57.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 55.0ms
+Speed: 1.0ms preprocess, 55.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 57.0ms
+Speed: 2.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 56.0ms
+Speed: 2.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 1 truck, 64.0ms
+Speed: 1.0ms preprocess, 64.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 1 truck, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 63.0ms
+Speed: 1.0ms preprocess, 63.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 56.0ms
+Speed: 2.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 1 truck, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 56.0ms
+Speed: 2.0ms preprocess, 56.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 64.0ms
+Speed: 1.0ms preprocess, 64.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 56.0ms
+Speed: 2.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 62.0ms
+Speed: 1.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 56.0ms
+Speed: 1.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 bus, 64.0ms
+Speed: 2.0ms preprocess, 64.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 51.0ms
+Speed: 2.0ms preprocess, 51.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 57.0ms
+Speed: 2.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 54.0ms
+Speed: 1.0ms preprocess, 54.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 54.0ms
+Speed: 1.0ms preprocess, 54.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 57.0ms
+Speed: 2.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 truck, 66.0ms
+Speed: 1.0ms preprocess, 66.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 bus, 119.0ms
+Speed: 3.0ms preprocess, 119.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 66.0ms
+Speed: 1.0ms preprocess, 66.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 89.0ms
+Speed: 1.0ms preprocess, 89.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 78.0ms
+Speed: 1.0ms preprocess, 78.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 74.0ms
+Speed: 2.0ms preprocess, 74.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 74.0ms
+Speed: 2.0ms preprocess, 74.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 truck, 102.0ms
+Speed: 2.0ms preprocess, 102.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 80.0ms
+Speed: 1.0ms preprocess, 80.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 1 truck, 84.0ms
+Speed: 2.0ms preprocess, 84.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 bus, 1 truck, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 truck, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 truck, 71.0ms
+Speed: 2.0ms preprocess, 71.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 truck, 67.0ms
+Speed: 1.0ms preprocess, 67.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 truck, 65.0ms
+Speed: 2.0ms preprocess, 65.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 56.0ms
+Speed: 2.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 64.0ms
+Speed: 1.0ms preprocess, 64.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 51.0ms
+Speed: 2.0ms preprocess, 51.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 truck, 58.0ms
+Speed: 3.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 1 truck, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 56.0ms
+Speed: 1.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 1 truck, 54.0ms
+Speed: 2.0ms preprocess, 54.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 1 truck, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 53.0ms
+Speed: 1.0ms preprocess, 53.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 55.0ms
+Speed: 1.0ms preprocess, 55.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 1 bus, 1 truck, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 1 bus, 1 truck, 55.0ms
+Speed: 1.0ms preprocess, 55.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 13 cars, 55.0ms
+Speed: 2.0ms preprocess, 55.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 1 bus, 1 truck, 60.0ms
+Speed: 2.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 12 cars, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 1 truck, 55.0ms
+Speed: 2.0ms preprocess, 55.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 1 truck, 64.0ms
+Speed: 1.0ms preprocess, 64.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 54.0ms
+Speed: 2.0ms preprocess, 54.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 57.0ms
+Speed: 2.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 53.0ms
+Speed: 1.0ms preprocess, 53.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 63.0ms
+Speed: 1.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 truck, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 63.0ms
+Speed: 1.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 truck, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 1 bus, 1 truck, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 1 truck, 66.0ms
+Speed: 2.0ms preprocess, 66.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 1 bus, 1 truck, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 9 cars, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 66.0ms
+Speed: 1.0ms preprocess, 66.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 62.0ms
+Speed: 1.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 10 cars, 1 truck, 53.0ms
+Speed: 2.0ms preprocess, 53.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 1 bus, 1 truck, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 66.0ms
+Speed: 2.0ms preprocess, 66.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 57.0ms
+Speed: 1.0ms preprocess, 57.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 bus, 1 truck, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 55.0ms
+Speed: 1.0ms preprocess, 55.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 63.0ms
+Speed: 2.0ms preprocess, 63.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+[623, 130]
+[622, 130]
+
+0: 448x640 8 cars, 1 truck, 62.0ms
+Speed: 1.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 69.0ms
+Speed: 2.0ms preprocess, 69.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+[602, 130]
+
+0: 448x640 8 cars, 1 truck, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 64.0ms
+Speed: 2.0ms preprocess, 64.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 bus, 1 truck, 62.0ms
+Speed: 2.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 65.0ms
+Speed: 2.0ms preprocess, 65.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 bus, 1 truck, 56.0ms
+Speed: 1.0ms preprocess, 56.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 65.0ms
+Speed: 2.0ms preprocess, 65.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 11 cars, 1 bus, 57.0ms
+Speed: 2.0ms preprocess, 57.0ms inference, 0.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 69.0ms
+Speed: 2.0ms preprocess, 69.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+[591, 97]
+
+0: 448x640 7 cars, 1 bus, 1 truck, 61.0ms
+Speed: 2.0ms preprocess, 61.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 62.0ms
+Speed: 1.0ms preprocess, 62.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+[586, 12]
+
+0: 448x640 7 cars, 1 bus, 1 truck, 53.0ms
+Speed: 2.0ms preprocess, 53.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 65.0ms
+Speed: 1.0ms preprocess, 65.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+[586, 4]
+
+0: 448x640 7 cars, 1 truck, 55.0ms
+Speed: 1.0ms preprocess, 55.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 truck, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 2.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 68.0ms
+Speed: 2.0ms preprocess, 68.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 truck, 68.0ms
+Speed: 2.0ms preprocess, 68.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 59.0ms
+Speed: 2.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 truck, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 truck, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 truck, 59.0ms
+Speed: 1.0ms preprocess, 59.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 1 truck, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 1 truck, 58.0ms
+Speed: 1.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 6 cars, 55.0ms
+Speed: 1.0ms preprocess, 55.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+[546, 138]
+
+0: 448x640 7 cars, 1 truck, 60.0ms
+Speed: 1.0ms preprocess, 60.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 1 truck, 58.0ms
+Speed: 2.0ms preprocess, 58.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 7 cars, 55.0ms
+Speed: 2.0ms preprocess, 55.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+[546, 138]
+
+0: 448x640 6 cars, 1 truck, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+
+0: 448x640 8 cars, 61.0ms
+Speed: 1.0ms preprocess, 61.0ms inference, 1.0ms postprocess per image at shape (1, 3, 640, 640)
+WARNING  'Boxes.boxes' is deprecated. Use 'Boxes.data' instead.
+Traceback (most recent call last):
+  File "D:\ProjectAsurada\ProjectAsurada\Code\usingCamera\h_intergration.py", line 1298, in <module>
+    video_front_resize_input.release()
+AttributeError: 'numpy.ndarray' object has no attribute 'release'
