@@ -1,0 +1,42 @@
+PS D:\ProjectAsurada> nvidia-smi    
+Wed Aug 30 00:29:53 2023       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 531.68                 Driver Version: 531.68       CUDA Version: 12.1     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                      TCC/WDDM | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf            Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA GeForce RTX 4070 Ti    WDDM | 00000000:01:00.0  On |                  N/A |
+|  0%   41C    P8               14W / 285W|    658MiB / 12282MiB |      2%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|    0   N/A  N/A      7924    C+G   C:\Windows\explorer.exe                   N/A      |
+|    0   N/A  N/A      8200    C+G   ...2txyewy\StartMenuExperienceHost.exe    N/A      |
+|    0   N/A  N/A      9188    C+G   ...nt.CBS_cw5n1h2txyewy\SearchHost.exe    N/A      |
+|    0   N/A  N/A     11276    C+G   ...GeForce Experience\NVIDIA Share.exe    N/A      |
+|    0   N/A  N/A     11952    C+G   ...crosoft\Edge\Application\msedge.exe    N/A      |
+|    0   N/A  N/A     12548    C+G   ...on\116.0.1938.62\msedgewebview2.exe    N/A      |
+|    0   N/A  N/A     13420    C+G   ...CBS_cw5n1h2txyewy\TextInputHost.exe    N/A      |
+|    0   N/A  N/A     14824    C+G   ...__8wekyb3d8bbwe\Notepad\Notepad.exe    N/A      |
++---------------------------------------------------------------------------------------+
+PS D:\ProjectAsurada> nvcc --version                                             
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2023 NVIDIA Corporation
+Built on Mon_Apr__3_17:36:15_Pacific_Daylight_Time_2023
+Cuda compilation tools, release 12.1, V12.1.105
+Build cuda_12.1.r12.1/compiler.32688072_0
+PS D:\ProjectAsurada> cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
+grep : The term 'grep' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:39
++ cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
++                                       ~~~~
+    + CategoryInfo          : ObjectNotFound: (grep:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+

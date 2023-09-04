@@ -1,0 +1,25 @@
+	---------left---------					---------Right---------
+x_top_left_src = 420        #(x,y)##			x_top_left_src = 550        #(x,y)##
+y_top_left_src = 395        #				y_top_left_src = 410        #
+
+x_top_right_src = 500       ###(x,y)#			x_top_right_src = 700       ###(x,y)#
+y_top_right_src = 395               #			y_top_right_src = 410               #
+
+x_bottom_left_src = 30     #				x_bottom_left_src = 640     #
+y_bottom_left_src = 510     #(x,y)###			y_bottom_left_src = 510     #(x,y)###
+
+x_bottom_right_src = 420            #			x_bottom_right_src = 1060            #
+y_bottom_right_src = 510    ###(x,y)#			y_bottom_right_src = 510    ###(x,y)#
+
+    ### Destination Point ###
+x_top_left_dst = 55        #(x,y)##
+y_top_left_dst = 0          #
+
+x_top_right_dst = 1035       ###(x,y)#
+y_top_right_dst = 0                 #
+
+x_bottom_left_dst = 150     #
+y_bottom_left_dst = 720     #(x,y)###
+
+x_bottom_right_dst = 880            #
+y_bottom_right_dst = 720    ###(x,y)#

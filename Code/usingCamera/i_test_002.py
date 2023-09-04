@@ -1,6 +1,6 @@
 from ultralytics import YOLO
 import cv2
-#import cvzone
+# import cvzone
 import math
 import pandas
 import numpy as np
@@ -35,8 +35,8 @@ December_2
 '''
 
 # Check and change Working Directory
-#print("Current Working Directory:", os.getcwd())
-#os.chdir("d:\\ProjectAsurada\\ProjectAsurada\\Code\\usingCamera")
+# print("Current Working Directory:", os.getcwd())
+# os.chdir("d:\\ProjectAsurada\\ProjectAsurada\\Code\\usingCamera")
 
 
 # Settings
@@ -51,7 +51,6 @@ December_2
 #   | YOLO8x  |   640             |   53.9           |   479.1               |    257.8     |
 #   +---------------------------------------------------------------------------------------+
 model = YOLO('yolov8n.pt')  # load the official pretrained model (recommended for training)
-
 
 
 # model = YOLO('yolov8s.pt')    #
@@ -70,23 +69,24 @@ def cursor_Coordinate(event, x, y, flags, param):
         cursor_Coordinate = [x, y]
         print(cursor_Coordinate)
 
+
 # Cursor Coordinate of front Camera
-cv2.namedWindow('camera_front_input')                           # in ' ' should be filled by name of display window
-cv2.setMouseCallback('camera_front_input', cursor_Coordinate)   # in ' ' should be filled by name of display window
+cv2.namedWindow('camera_front_input')  # in ' ' should be filled by name of display window
+cv2.setMouseCallback('camera_front_input', cursor_Coordinate)  # in ' ' should be filled by name of display window
 # Cursor Coordinate of rear Camera
 # cv2.namedWindow('camera_rear_input')                           # in ' ' should be filled by name of display window
 # cv2.setMouseCallback('camera_rear_input', cursor_Coordinate)   # in ' ' should be filled by name of display window
 
-#----------------------------------Object Detection----------------------------------#
+# ----------------------------------Object Detection----------------------------------#
 # Based on (https://github.com/freedomwebtech/yolov8counting-trackingvehicles)
 # Based on (https://github.com/murtazahassan)
 # Make a Class Array
-#open_coco = open("D:\ProjectAsurada\ProjectAsurada\Code\usingCamera\coco.txt", "r")
+# open_coco = open("D:\ProjectAsurada\ProjectAsurada\Code\usingCamera\coco.txt", "r")
 open_coco = open("coco.txt", "r")
 read_coco = open_coco.read()
 class_list = read_coco.split("\n")
 # Check and change Working Directory
-#print("Current Working Directory:", os.getcwd())
+# print("Current Working Directory:", os.getcwd())
 os.chdir("d:\\ProjectAsurada\\ProjectAsurada\\Code\\usingCamera")
 
 ## Object Tracking
@@ -97,7 +97,7 @@ count_r = 0  # intialize for rear camera video frame count
 tracker_f = Tracker()  # Tracking class call for front camera
 tracker_r = Tracker()
 
-#----------------------------------Lane Detection----------------------------------#
+# ----------------------------------Lane Detection----------------------------------#
 '''
 Workflow of Lane Detection
 distortion_factors[distorted Lane -> undistorted Lane]
@@ -106,6 +106,7 @@ distortion_factors[distorted Lane -> undistorted Lane]
 ->ROI because extracted Lane(perspetive view), but there are noise, (e.g. name, pointer...)
 Based on (https://moon-coco.tistory.com/entry/OpenCV%EC%B0%A8%EC%84%A0-%EC%9D%B8%EC%8B%9D)
 '''
+
 
 ### Step 1: Distortion or amera Calibration ###
 # current cheap camera makes a distortion of images,
@@ -143,7 +144,7 @@ def camera_calibration():
             objpoints.append(objp)
             print(objpoints)
     ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1], None, None)
-    #Output Explain (https://foss4g.tistory.com/1665)
+    # Output Explain (https://foss4g.tistory.com/1665)
 
     ###################################
     ## checking the undistored image ##
@@ -157,6 +158,7 @@ def camera_calibration():
     #     plt.imsave(export_to, undist)
 
     return mtx, dist
+
 
 ### STEP 2: Perspective Transform from Car Camera to Bird's Eye View ___ For Front Camera###
 # Idea : View of from vertical side of street, instead of driver's view
@@ -192,32 +194,34 @@ x_bottom_right_dst = 880            #
 y_bottom_right_dst = 720    ###(x,y)#
 """
 
-    ### Rear Camera ###
-    ### Source Point ###
-x_top_left_src_f = 480        #(x,y)##
-y_top_left_src_f = 390        #
+### Rear Camera ###
+### Source Point ###
+x_top_left_src_f = 480  # (x,y)##
+y_top_left_src_f = 390  #
 
-x_top_right_src_f = 565       ###(x,y)#
-y_top_right_src_f = 390               #
+x_top_right_src_f = 565  ###(x,y)#
+y_top_right_src_f = 390  #
 
-x_bottom_left_src_f = 110     #
-y_bottom_left_src_f = 690     #(x,y)###
+x_bottom_left_src_f = 110  #
+y_bottom_left_src_f = 690  # (x,y)###
 
-x_bottom_right_src_f = 885            #
-y_bottom_right_src_f = 690    ###(x,y)#
+x_bottom_right_src_f = 885  #
+y_bottom_right_src_f = 690  ###(x,y)#
 
-    ### Destination Point ###
-x_top_left_dst_f = 55        #(x,y)##
-y_top_left_dst_f = 0          #
+### Destination Point ###
+x_top_left_dst_f = 55  # (x,y)##
+y_top_left_dst_f = 0  #
 
-x_top_right_dst_f = 1035       ###(x,y)#
-y_top_right_dst_f = 0                 #
+x_top_right_dst_f = 1035  ###(x,y)#
+y_top_right_dst_f = 0  #
 
-x_bottom_left_dst_f = 150     #
-y_bottom_left_dst_f = 720     #(x,y)###
+x_bottom_left_dst_f = 150  #
+y_bottom_left_dst_f = 720  # (x,y)###
 
-x_bottom_right_dst_f = 880            #
-y_bottom_right_dst_f = 720    ###(x,y)#
+x_bottom_right_dst_f = 880  #
+y_bottom_right_dst_f = 720  ###(x,y)#
+
+
 def wrapping_f(image):
     if image is None:
         print('Image is None, skippung this iteration')
@@ -232,21 +236,20 @@ def wrapping_f(image):
     # source = np.float32([[w // 2 - 30, h * 0.53], [w // 2 + 60, h * 0.53], [w * 0.3, h], [w, h]])
     # destination = np.float32([[0, 0], [w-350, 0], [400, h], [w-150, h]])
 
-
     source_f = np.float32(
         [
-            (x_bottom_left_src_f, y_bottom_left_src_f),     # bottom-left corner
-            (x_top_left_src_f, y_top_left_src_f),           # top-left corner
-            (x_top_right_src_f, y_top_right_src_f),         # top-right corner
-            (x_bottom_right_src_f, y_bottom_right_src_f)    # bottom-right corner
+            (x_bottom_left_src_f, y_bottom_left_src_f),  # bottom-left corner
+            (x_top_left_src_f, y_top_left_src_f),  # top-left corner
+            (x_top_right_src_f, y_top_right_src_f),  # top-right corner
+            (x_bottom_right_src_f, y_bottom_right_src_f)  # bottom-right corner
         ])
 
     destination_f = np.float32(
         [
-            (x_bottom_left_dst_f, y_bottom_left_dst_f),     # bottom-left corner
-            (x_top_left_dst_f, y_top_left_dst_f),           # top-left corner
-            (x_top_right_dst_f, y_top_right_dst_f),         # top-right corner
-            (x_bottom_right_dst_f, y_bottom_right_dst_f)    # bottom-right corner
+            (x_bottom_left_dst_f, y_bottom_left_dst_f),  # bottom-left corner
+            (x_top_left_dst_f, y_top_left_dst_f),  # top-left corner
+            (x_top_right_dst_f, y_top_right_dst_f),  # top-right corner
+            (x_bottom_right_dst_f, y_bottom_right_dst_f)  # bottom-right corner
         ])
 
     # getPerspectiveTransformation? the properties that it hold the property of linear, but not the property of parallelity
@@ -260,68 +263,69 @@ def wrapping_f(image):
 
     return _image, minv
 
+
 ### STEP 2: Perspective Transform from Car Camera to Bird's Eye View ___ For Front Camera###
 # Idea : View of from vertical side of street, instead of driver's view
 # img_width = 1280
 # img_heigt = 720
 
 
-    ### left line check Camera ###
-    ### Source Point ###
-x_top_left_src_left = 420        #(x,y)##
-y_top_left_src_left = 395        #
+### left line check Camera ###
+### Source Point ###
+x_top_left_src_left = 420  # (x,y)##
+y_top_left_src_left = 395  #
 
-x_top_right_src_left = 500       ###(x,y)#
-y_top_right_src_left = 395               #
+x_top_right_src_left = 500  ###(x,y)#
+y_top_right_src_left = 395  #
 
-x_bottom_left_src_left = 30     #
-y_bottom_left_src_left = 510     #(x,y)###
+x_bottom_left_src_left = 30  #
+y_bottom_left_src_left = 510  # (x,y)###
 
-x_bottom_right_src_left = 420            #
-y_bottom_right_src_left = 510    ###(x,y)#
+x_bottom_right_src_left = 420  #
+y_bottom_right_src_left = 510  ###(x,y)#
 
-    ### Destination Point ###
-x_top_left_dst_left = 55        #(x,y)##
-y_top_left_dst_left = 0          #
+### Destination Point ###
+x_top_left_dst_left = 55  # (x,y)##
+y_top_left_dst_left = 0  #
 
-x_top_right_dst_left = 1035       ###(x,y)#
-y_top_right_dst_left = 0                 #
+x_top_right_dst_left = 1035  ###(x,y)#
+y_top_right_dst_left = 0  #
 
-x_bottom_left_dst_left = 150     #
-y_bottom_left_dst_left = 720     #(x,y)###
+x_bottom_left_dst_left = 150  #
+y_bottom_left_dst_left = 720  # (x,y)###
 
-x_bottom_right_dst_left = 880            #
-y_bottom_right_dst_left = 720    ###(x,y)#
+x_bottom_right_dst_left = 880  #
+y_bottom_right_dst_left = 720  ###(x,y)#
 
-    ### left line check Camera ###
-    ### Source Point ###
-x_top_left_src_right = 420        #(x,y)##
-y_top_left_src_right = 395        #
+### left line check Camera ###
+### Source Point ###
+x_top_left_src_right = 420  # (x,y)##
+y_top_left_src_right = 395  #
 
-x_top_right_src_right = 500       ###(x,y)#
-y_top_right_src_right = 395               #
+x_top_right_src_right = 500  ###(x,y)#
+y_top_right_src_right = 395  #
 
-x_bottom_left_src_right = 30     #
-y_bottom_left_src_right = 510     #(x,y)###
+x_bottom_left_src_right = 30  #
+y_bottom_left_src_right = 510  # (x,y)###
 
-x_bottom_right_src_right = 420            #
-y_bottom_right_src_right = 510    ###(x,y)#
+x_bottom_right_src_right = 420  #
+y_bottom_right_src_right = 510  ###(x,y)#
 
-    ### Destination Point ###
-x_top_left_dst_right = 55        #(x,y)##
-y_top_left_dst_right = 0          #
+### Destination Point ###
+x_top_left_dst_right = 55  # (x,y)##
+y_top_left_dst_right = 0  #
 
-x_top_right_dst_right = 1035       ###(x,y)#
-y_top_right_dst_right = 0                 #
+x_top_right_dst_right = 1035  ###(x,y)#
+y_top_right_dst_right = 0  #
 
-x_bottom_left_dst_right = 150     #
-y_bottom_left_dst_right = 720     #(x,y)###
+x_bottom_left_dst_right = 150  #
+y_bottom_left_dst_right = 720  # (x,y)###
 
-x_bottom_right_dst_right = 880            #
-y_bottom_right_dst_right = 720    ###(x,y)#
+x_bottom_right_dst_right = 880  #
+y_bottom_right_dst_right = 720  ###(x,y)#
 
 
-#Warping Left Line
+# Warping Left Line
 def wrapping_line_lr(image, scanning_state):
     if image is None:
         print('Image is None, skippung this iteration')
@@ -452,8 +456,8 @@ def color_filter(image):
     # S value must be above some threshold (we want at least some saturation), e.g. within [0.35 ... 1.0]
     yellow_lower = np.array([np.round(40 / 2), np.round(0.00 * 255), np.round(0.35 * 255)])
     yellow_upper = np.array([np.round(60 / 2), np.round(1.00 * 255), np.round(1.00 * 255)])
-    #yellow_lower = np.array([np.round(40 / 2), np.round(0.75 * 255), np.round(0.00 * 255)])
-    #yellow_upper = np.array([np.round(60 / 2), np.round(1.00 * 255), np.round(0.30 * 255)])
+    # yellow_lower = np.array([np.round(40 / 2), np.round(0.75 * 255), np.round(0.00 * 255)])
+    # yellow_upper = np.array([np.round(60 / 2), np.round(1.00 * 255), np.round(0.30 * 255)])
     yellow_mask = cv2.inRange(hls, yellow_lower, yellow_upper)
 
     # Do filtering the each yellow lane and white lane,
@@ -527,27 +531,27 @@ def roi(image):
     # *** here traffic sign on the street is deleted and ignored, if you don't wanna that, modify the ROI part.
     # 한 붓 그리기
 
-                    ### R.O.I Area ###
+    ### R.O.I Area ###
 
-                    #2###3      6####7
-                    ######      ######
-                    ######      ######
-                    ######      ######
-                    ######      ######
-                    ######      ######
-                    ######      ######
-                    #####4######5#####
-                    #1#9#############8
+    # 2###3      6####7
+    ######      ######
+    ######      ######
+    ######      ######
+    ######      ######
+    ######      ######
+    ######      ######
+    #####4######5#####
+    # 1#9#############8
     _shape = np.array([
-        [int(0.05 * x), int(0.95 * y)],  #1
-        [int(0.05 * x), int(0.01 * y)],  #2
-        [int(0.45 * x), int(0.01 * y)],  #3
-        [int(0.45 * x), int(0.94 * y)],  #4
-        [int(0.60 * x), int(0.94 * y)],  #5
-        [int(0.60 * x), int(0.01 * y)],  #6
-        [int(0.95 * x), int(0.01 * y)],  #7
-        [int(0.95 * x), int(0.95 * y)],  #8
-        [int(0.11 * x), int(0.95 * y)]   #9
+        [int(0.05 * x), int(0.95 * y)],  # 1
+        [int(0.05 * x), int(0.01 * y)],  # 2
+        [int(0.45 * x), int(0.01 * y)],  # 3
+        [int(0.45 * x), int(0.94 * y)],  # 4
+        [int(0.60 * x), int(0.94 * y)],  # 5
+        [int(0.60 * x), int(0.01 * y)],  # 6
+        [int(0.95 * x), int(0.01 * y)],  # 7
+        [int(0.95 * x), int(0.95 * y)],  # 8
+        [int(0.11 * x), int(0.95 * y)]  # 9
     ])
 
     mask = np.zeros_like(image)
@@ -559,10 +563,11 @@ def roi(image):
         ignore_mask_color = 255
 
     cv2.fillPoly(mask, np.int32([_shape]), ignore_mask_color)
-    #cv2.fillPoly(mask, np.float32([_shape]), ignore_mask_color)
+    # cv2.fillPoly(mask, np.float32([_shape]), ignore_mask_color)
     masked_image = cv2.bitwise_and(image, mask)
 
     return masked_image
+
 
 # ---------------------------------------------------------------------------------------------
 
@@ -575,13 +580,13 @@ def roi(image):
 # np.concatenate : Array makes 1.Dimenstion array
 # np.trunc : throw away a decimal part
 
-#def slide_window_search(binary_warped, left_current, right_current):
+# def slide_window_search(binary_warped, left_current, right_current):
 def slide_window_search(binary_warped):
     out_img = np.dstack((binary_warped, binary_warped, binary_warped)) * 255
-    window_img = np.zeros_like(out_img) #need check for usage.
+    window_img = np.zeros_like(out_img)  # need check for usage.
 
     #
-    ret, thresh = cv2.threshold(binary_warped , 140, 195, cv2.THRESH_BINARY)
+    ret, thresh = cv2.threshold(binary_warped, 140, 195, cv2.THRESH_BINARY)
 
     # ---Histogram---
     # it is not histogram of opencv
@@ -601,9 +606,8 @@ def slide_window_search(binary_warped):
     # case for nwindows = 9
     nwindows = 9
 
-
     # case for nwindows = 4
-    #nwindows = 4
+    # nwindows = 4
 
     # Set the width of the windows +/- margin
     # margin = int(1080 * (50 / 1920))
@@ -612,7 +616,7 @@ def slide_window_search(binary_warped):
     # Set minimum number of pixels found to recenter window
     # minpix = int(1080 * (20 / 1920))
     # minpix = int(1080 * 0.01)
-    minpix = 50 # or 10
+    minpix = 50  # or 10
     # Set height of windows - based on nwindows above and image shape
     window_height = np.int64(binary_warped.shape[0] / nwindows)
 
@@ -646,9 +650,9 @@ def slide_window_search(binary_warped):
         # window 안에 있는 부분만을 저장
         # Identify the nonzero pixels in x and y within the window #
         good_left = ((nonzero_y >= win_y_low) & (nonzero_y < win_y_high) & (nonzero_x >= win_xleft_low) & (
-                    nonzero_x < win_xleft_high)).nonzero()[0]
+                nonzero_x < win_xleft_high)).nonzero()[0]
         good_right = ((nonzero_y >= win_y_low) & (nonzero_y < win_y_high) & (nonzero_x >= win_xright_low) & (
-                    nonzero_x < win_xright_high)).nonzero()[0]
+                nonzero_x < win_xright_high)).nonzero()[0]
         left_lane.append(good_left)
         right_lane.append(good_right)
         # cv2.imshow("oo", out_img)
@@ -666,8 +670,8 @@ def slide_window_search(binary_warped):
         # plt.show
 
     # Concatenate the arrays of indices (previously was a list of lists of pixels)
-    #left_lane = np.concatenate(left_lane)  # np.concatenate() -> array를 1차원으로 합침 (array를 1차원 배열로 만들어줌)
-    #right_lane = np.concatenate(right_lane)
+    # left_lane = np.concatenate(left_lane)  # np.concatenate() -> array를 1차원으로 합침 (array를 1차원 배열로 만들어줌)
+    # right_lane = np.concatenate(right_lane)
     try:
         # For subsequent processing, it's easier to work with a single 1D array of indices rather than a list of arrays. That's why np.concatenate is used.
         left_lane = np.concatenate(left_lane)  # np.concatenate() -> array를 1차원으로 합침 (array를 1차원 배열로 만들어줌)
@@ -710,8 +714,8 @@ def fit_poly(binary_warped, leftx, lefty, rightx, righty):
 
     # Generate x and y values for plotting
     ploty = np.linspace(0, binary_warped.shape[0] - 1, binary_warped.shape[0])
-    #left_fitx = left_fit[0] * ploty ** 2 + left_fit[1] * ploty + left_fit[2]
-    #right_fitx = right_fit[0] * ploty ** 2 + right_fit[1] * ploty + right_fit[2]
+    # left_fitx = left_fit[0] * ploty ** 2 + left_fit[1] * ploty + left_fit[2]
+    # right_fitx = right_fit[0] * ploty ** 2 + right_fit[1] * ploty + right_fit[2]
     try:
         left_fitx = left_fit[0] * ploty ** 2 + left_fit[1] * ploty + left_fit[2]
         right_fitx = right_fit[0] * ploty ** 2 + right_fit[1] * ploty + right_fit[2]
@@ -728,7 +732,6 @@ def fit_poly(binary_warped, leftx, lefty, rightx, righty):
     return left_fit, right_fit, left_fitx, right_fitx, ploty
 
 
-
 # ---------------------------------------------------------------------------------------------
 
 # -------------------------------------Draw Line--------------------------------------------------------
@@ -740,24 +743,25 @@ dynamic_lines_y = []
 dynamic_lines_y_left = []
 dynamic_lines_y_right = []
 
+
 # with fillPoly function draw a polygon including left and right lane
 # through the pts_mean, we could know the degree of curvature between the lane and lane
 # from the function warpping, using the value minb, to the perspectived image, with addWeighted function, finish the work by combining the color of polygon lightly.
-#def draw_lane_lines(original_image, warped_image, Minv, draw_info):
-#def draw_lane_lines(original_image, warped_image, Minv, left_fitx, right_fitx, ploty):
+# def draw_lane_lines(original_image, warped_image, Minv, draw_info):
+# def draw_lane_lines(original_image, warped_image, Minv, left_fitx, right_fitx, ploty):
 def draw_lane_lines(binary_warped, left_fitx, right_fitx, ploty):
     global dynamic_lines_y  # Declare dynamic_lines_y as global within the function
 
-    #left_fitx = draw_info['left_fitx']
-    #right_fitx = draw_info['right_fitx']
-    #ploty = draw_info['ploty']
+    # left_fitx = draw_info['left_fitx']
+    # right_fitx = draw_info['right_fitx']
+    # ploty = draw_info['ploty']
 
     # Create an image to draw on and an image to show the selection window
     out_img = np.dstack((binary_warped, binary_warped, binary_warped)) * 255
     window_img = np.zeros_like(out_img)
 
     # margin = int(1080 * (100 / 1920))
-    #margin = int(1080 * 0.01)
+    # margin = int(1080 * 0.01)
     margin = 50  # Margin for the lane lines
 
     # Generate polygons to illustrate the search window area for left and right lanes
@@ -801,13 +805,14 @@ def draw_lane_lines(binary_warped, left_fitx, right_fitx, ploty):
 
     return pts_mean, result
 
+
 ### STEP 5: Detection of Lane Lines Based on Previous Step ###
 def find_lane_pixels_using_prev_poly(binary_warped):
     # global prev_left_fit
     # global prev_right_fit
 
     # width of the margin around the previous polynomial to search
-    #margin = int(1080 * 0.01)
+    # margin = int(1080 * 0.01)
     margin = 50
     # Grab activated pixels
     nonzero = binary_warped.nonzero()
@@ -831,6 +836,7 @@ def find_lane_pixels_using_prev_poly(binary_warped):
     righty = nonzeroy[right_lane_inds]
 
     return leftx, lefty, rightx, righty
+
 
 ### STEP 6: Calculate Vehicle Position and Curve Radius ###
 
@@ -858,7 +864,7 @@ def measure_curvature_meters(binary_warped, left_fitx, right_fitx, ploty):
 
 def measure_position_meters(binary_warped, left_fit, right_fit):
     # Define conversion in x from pixels space to meters
-    #xm_per_pix = 3.7 / 1920 * (1080 / 1920)  # meters per pixel in x dimension
+    # xm_per_pix = 3.7 / 1920 * (1080 / 1920)  # meters per pixel in x dimension
     xm_per_pix = 3.7 / 1080 * (720 / 1080)  # meters per pixel in x dimension
     # Choose the y value corresponding to the bottom of the image
     y_max = binary_warped.shape[0]
@@ -876,6 +882,7 @@ def measure_position_meters(binary_warped, left_fit, right_fit):
 
 # To store the previous N steering angles
 previous_angles = []
+
 
 # This function now keeps track of the last num_prev_angles (default is 5) steering angles and averages them to determine the current steering angle.
 # It also divides the calculated angle by a sensitivity factor (default is 4) to make it less sensitive.
@@ -913,7 +920,10 @@ def calculate_steering_angle(left_lane_points, right_lane_points, num_prev_angle
 def get_lane_info(left_lane, right_lane):
     return {'left_lane': left_lane, 'right_lane': right_lane}
 
+
 steering_wheel_image = cv2.imread('D:\ProjectAsurada\ProjectAsurada\pic\SteerWheel.png')
+
+
 # Function to rotate the steering wheel image based on the calculated steering angle
 def rotate_steering_wheel(image, angle):
     # Get image dimensions
@@ -929,8 +939,6 @@ def rotate_steering_wheel(image, angle):
     return rotated
 
 
-
-
 ### STEP 7: Project Lane Delimitations Back on Image Plane and Add Text for Lane Info ###
 
 def project_lane_info(img, binary_warped, ploty, left_fitx, right_fitx, M_inv, left_curverad, right_curverad, veh_pos):
@@ -939,7 +947,7 @@ def project_lane_info(img, binary_warped, ploty, left_fitx, right_fitx, M_inv, l
     color_warp = np.dstack((warp_zero, warp_zero, warp_zero))
 
     # Center Line modified
-    #margin = 400 * (1080 / 1920)
+    # margin = 400 * (1080 / 1920)
     # margin = 400 * 0.1
     margin = 30
     # Recast the x and y points into usable format for cv2.fillPoly()
@@ -951,9 +959,9 @@ def project_lane_info(img, binary_warped, ploty, left_fitx, right_fitx, M_inv, l
     pts = np.hstack((pts_left_c, pts_right_c))
 
     # margin value test...
-    #pts_left_i = np.array([np.transpose(np.vstack([left_fitx + margin + 150, ploty]))])
+    # pts_left_i = np.array([np.transpose(np.vstack([left_fitx + margin + 150, ploty]))])
     pts_left_i = np.array([np.transpose(np.vstack([left_fitx + margin + 10, ploty]))])
-    #pts_right_i = np.array([np.flipud(np.transpose(np.vstack([right_fitx - margin - 150, ploty])))])
+    # pts_right_i = np.array([np.flipud(np.transpose(np.vstack([right_fitx - margin - 150, ploty])))])
     pts_right_i = np.array([np.flipud(np.transpose(np.vstack([right_fitx - margin - 10, ploty])))])
     pts_i = np.hstack((pts_left_i, pts_right_i))
 
@@ -979,8 +987,8 @@ def project_lane_info(img, binary_warped, ploty, left_fitx, right_fitx, M_inv, l
 
 ### STEP 8: Lane Finding Pipeline on Video ###
 
-#def lane_finding_pipeline(img, init, mts, dist):
-def lane_finding_pipeline(img_lane, img_veh, camera_type,init):
+# def lane_finding_pipeline(img, init, mts, dist):
+def lane_finding_pipeline(img_lane, img_veh, camera_type, init):
     global left_fit_hist
     global right_fit_hist
     global prev_left_fit
@@ -995,17 +1003,17 @@ def lane_finding_pipeline(img_lane, img_veh, camera_type,init):
     # first warpping? then binary color change? -> ii), first color change and then warp? -> i) check!
     # i)
     binary_thresh = color_filter(img_lane)
-    #if calibration is adjusted below, if without camera calibration, then below below
-    #binary_warped, M_inv, _ = wrapping(binary_thresh, mts, dist)
+    # if calibration is adjusted below, if without camera calibration, then below below
+    # binary_warped, M_inv, _ = wrapping(binary_thresh, mts, dist)
 
     if camera_type == "front":
         binary_warped, M_inv = wrapping_f(binary_thresh)
     else:
         print("give the line (front/left/right)")
-        #binary_warped, M_inv = wrapping_r(binary_thresh)
+        # binary_warped, M_inv = wrapping_r(binary_thresh)
     # ii)
-    #binary_warped, M_inv = wrapping(lane_img)
-    #binary_thresh = color_filter(binary_warped)
+    # binary_warped, M_inv = wrapping(lane_img)
+    # binary_thresh = color_filter(binary_warped)
 
     ## checking ###
     binary_thresh_s = np.dstack((binary_thresh, binary_thresh, binary_thresh)) * 255
@@ -1028,13 +1036,14 @@ def lane_finding_pipeline(img_lane, img_veh, camera_type,init):
         # right_x1 = right_fitx[0], right_y1 = ploty[0], right_x2 = right_fitx[-1], right_y2 = ploty[-1]
         # lane_info = get_lane_info((left_x1, left_y1, left_x2, left_y2), (right_x1, right_y1, right_x2, right_y2))
         # lane_info = get_lane_info((left_fitx[0], ploty[0], left_fitx[-1], ploty[-1]), (right_fitx[0], ploty[0], right_fitx[-1], ploty[-1]))
-        #left_lane_points = [(left_x1, left_y1), (left_x2, left_y2)]
-        #right_lane_points = [(right_x1, right_y1), (right_x2, right_y2)]
+        # left_lane_points = [(left_x1, left_y1), (left_x2, left_y2)]
+        # right_lane_points = [(right_x1, right_y1), (right_x2, right_y2)]
 
         left_lane_points = [(left_fitx[0], ploty[0]), (left_fitx[-1], ploty[-1])]
         right_lane_points = [(right_fitx[0], ploty[0]), (right_fitx[-1], ploty[-1])]
-        steering_angle = calculate_steering_angle(left_lane_points, right_lane_points, num_prev_angles=5, sensitivity=20)
-        #print(f"Steering Angle: {steering_angle} degrees")
+        steering_angle = calculate_steering_angle(left_lane_points, right_lane_points, num_prev_angles=5,
+                                                  sensitivity=20)
+        # print(f"Steering Angle: {steering_angle} degrees")
         rotated_image = rotate_steering_wheel(steering_wheel_image, steering_angle)
 
 
@@ -1062,8 +1071,9 @@ def lane_finding_pipeline(img_lane, img_veh, camera_type,init):
 
         left_lane_points = [(left_fitx[0], ploty[0]), (left_fitx[-1], ploty[-1])]
         right_lane_points = [(right_fitx[0], ploty[0]), (right_fitx[-1], ploty[-1])]
-        steering_angle = calculate_steering_angle(left_lane_points, right_lane_points, num_prev_angles=5, sensitivity=20)
-        #print(f"Steering Angle: {steering_angle} degrees")
+        steering_angle = calculate_steering_angle(left_lane_points, right_lane_points, num_prev_angles=5,
+                                                  sensitivity=20)
+        # print(f"Steering Angle: {steering_angle} degrees")
         rotated_image = rotate_steering_wheel(steering_wheel_image, steering_angle)
 
         # Remove old values from history
@@ -1085,11 +1095,14 @@ def lane_finding_pipeline(img_lane, img_veh, camera_type,init):
                                                         left_curverad, right_curverad, veh_pos)
 
     # SteerWheel Control
-    #cv2.imshow('Rotated Steering Wheel', rotated_image)
+    # cv2.imshow('Rotated Steering Wheel', rotated_image)
 
     return front_out_combined, veh_pos, colorwarp_img, draw_poly_img, rotated_image
 
+
 scanning_state = 'none'
+
+
 def lane_finding_pipeline_lr(img_lane, img_veh, scanning_state, init):
     global left_fit_hist_lr
     global right_fit_hist_lr
@@ -1105,8 +1118,8 @@ def lane_finding_pipeline_lr(img_lane, img_veh, scanning_state, init):
     # first warpping? then binary color change? -> ii), first color change and then warp? -> i) check!
     # i)
     binary_thresh = color_filter(img_lane)
-    #if calibration is adjusted below, if without camera calibration, then below below
-    #binary_warped, M_inv, _ = wrapping(binary_thresh, mts, dist)
+    # if calibration is adjusted below, if without camera calibration, then below below
+    # binary_warped, M_inv, _ = wrapping(binary_thresh, mts, dist)
 
     if scanning_state == 'left':
         binary_warped, M_inv = wrapping_line_lr(binary_thresh, scanning_state)
@@ -1115,10 +1128,10 @@ def lane_finding_pipeline_lr(img_lane, img_veh, scanning_state, init):
     else:
         print("not selected...")
 
-        #binary_warped, M_inv = wrapping_r(binary_thresh)
+        # binary_warped, M_inv = wrapping_r(binary_thresh)
     # ii)
-    #binary_warped, M_inv = wrapping(lane_img)
-    #binary_thresh = color_filter(binary_warped)
+    # binary_warped, M_inv = wrapping(lane_img)
+    # binary_thresh = color_filter(binary_warped)
 
     ## checking ###
     binary_thresh_s = np.dstack((binary_thresh, binary_thresh, binary_thresh)) * 255
@@ -1141,19 +1154,22 @@ def lane_finding_pipeline_lr(img_lane, img_veh, scanning_state, init):
         # right_x1 = right_fitx[0], right_y1 = ploty[0], right_x2 = right_fitx[-1], right_y2 = ploty[-1]
         # lane_info = get_lane_info((left_x1, left_y1, left_x2, left_y2), (right_x1, right_y1, right_x2, right_y2))
         # lane_info = get_lane_info((left_fitx[0], ploty[0], left_fitx[-1], ploty[-1]), (right_fitx[0], ploty[0], right_fitx[-1], ploty[-1]))
-        #left_lane_points = [(left_x1, left_y1), (left_x2, left_y2)]
-        #right_lane_points = [(right_x1, right_y1), (right_x2, right_y2)]
+        # left_lane_points = [(left_x1, left_y1), (left_x2, left_y2)]
+        # right_lane_points = [(right_x1, right_y1), (right_x2, right_y2)]
 
         left_lane_points = [(left_fitx[0], ploty[0]), (left_fitx[-1], ploty[-1])]
         right_lane_points = [(right_fitx[0], ploty[0]), (right_fitx[-1], ploty[-1])]
-        steering_angle = calculate_steering_angle(left_lane_points, right_lane_points, num_prev_angles=5, sensitivity=20)
-        #print(f"Steering Angle: {steering_angle} degrees")
+        steering_angle = calculate_steering_angle(left_lane_points, right_lane_points, num_prev_angles=5,
+                                                  sensitivity=20)
+        # print(f"Steering Angle: {steering_angle} degrees")
         rotated_image = rotate_steering_wheel(steering_wheel_image, steering_angle)
 
 
     else:
-        prev_left_fit_lr = [np.mean(left_fit_hist_lr[:, 0]), np.mean(left_fit_hist_lr[:, 1]), np.mean(left_fit_hist_lr[:, 2])]
-        prev_right_fit_lr = [np.mean(right_fit_hist_lr[:, 0]), np.mean(right_fit_hist_lr[:, 1]), np.mean(right_fit_hist_lr[:, 2])]
+        prev_left_fit_lr = [np.mean(left_fit_hist_lr[:, 0]), np.mean(left_fit_hist_lr[:, 1]),
+                            np.mean(left_fit_hist_lr[:, 2])]
+        prev_right_fit_lr = [np.mean(right_fit_hist_lr[:, 0]), np.mean(right_fit_hist_lr[:, 1]),
+                             np.mean(right_fit_hist_lr[:, 2])]
         leftx, lefty, rightx, righty = find_lane_pixels_using_prev_poly(binary_warped)
         if (len(lefty) == 0 or len(righty) == 0):
             leftx, lefty, rightx, righty = slide_window_search(binary_warped)
@@ -1175,8 +1191,9 @@ def lane_finding_pipeline_lr(img_lane, img_veh, scanning_state, init):
 
         left_lane_points = [(left_fitx[0], ploty[0]), (left_fitx[-1], ploty[-1])]
         right_lane_points = [(right_fitx[0], ploty[0]), (right_fitx[-1], ploty[-1])]
-        steering_angle = calculate_steering_angle(left_lane_points, right_lane_points, num_prev_angles=5, sensitivity=20)
-        #print(f"Steering Angle: {steering_angle} degrees")
+        steering_angle = calculate_steering_angle(left_lane_points, right_lane_points, num_prev_angles=5,
+                                                  sensitivity=20)
+        # print(f"Steering Angle: {steering_angle} degrees")
         rotated_image = rotate_steering_wheel(steering_wheel_image, steering_angle)
 
         # Remove old values from history
@@ -1198,30 +1215,12 @@ def lane_finding_pipeline_lr(img_lane, img_veh, scanning_state, init):
                                                         left_curverad, right_curverad, veh_pos)
 
     # SteerWheel Control
-    #cv2.imshow('Rotated Steering Wheel', rotated_image)
+    # cv2.imshow('Rotated Steering Wheel', rotated_image)
     scanning_state = 'none'
     return front_out_combined_lr, veh_pos, colorwarp_img, draw_poly_img_lr, rotated_image
 
+
 # ---------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # Video Settings
@@ -1232,7 +1231,6 @@ Font = cv2.FONT_HERSHEY_COMPLEX
 FontSize = 0.3
 
 start_time = time.time()
-
 
 ## Video Input Part
 ### Webcam Mode
@@ -1249,14 +1247,14 @@ start_time = time.time()
 video_front_raw_input = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\Front_driving.mp4")
 # Video Frame Size(Front)
 frame_size_raw_front = (
-int(video_front_raw_input.get(cv2.CAP_PROP_FRAME_WIDTH)), int(video_front_raw_input.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+    int(video_front_raw_input.get(cv2.CAP_PROP_FRAME_WIDTH)), int(video_front_raw_input.get(cv2.CAP_PROP_FRAME_HEIGHT)))
 # fps_video_front_raw_input = video_front_raw_input.get(cv2.CAP_PROP_FPS)    # Input video FPS Check
 
 # rear camera capture
 video_rear_raw_input = cv2.VideoCapture("D:\ProjectAsurada\ProjectAsurada\VideoSample\Rear-driving.mp4")
 # Video Frame Size(Rear)
 frame_size_rear = (
-int(video_rear_raw_input.get(cv2.CAP_PROP_FRAME_WIDTH)), int(video_rear_raw_input.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+    int(video_rear_raw_input.get(cv2.CAP_PROP_FRAME_WIDTH)), int(video_rear_raw_input.get(cv2.CAP_PROP_FRAME_HEIGHT)))
 # fps_video_rear_raw_input = video_rear_raw_input.get(cv2.CAP_PROP_FPS)
 ####################################################
 
@@ -1265,14 +1263,14 @@ int(video_rear_raw_input.get(cv2.CAP_PROP_FRAME_WIDTH)), int(video_rear_raw_inpu
 
 ### Video Mode
 output_front = cv2.VideoWriter('video_front_output.mp4', fourcc, fps, frame_size)  # video export
-output_rear = cv2.VideoWriter('video_rear_output.mp4', fourcc, fps, frame_size)                        # Video 1/3
+output_rear = cv2.VideoWriter('video_rear_output.mp4', fourcc, fps, frame_size)  # Video 1/3
 # output_front_test = cv2.VideoWriter('output_video_front_test.mp4', fourcc, fps, frame_size)
 # output_rear_test = cv2.VideoWriter('output_video_rear_test.mp4', fourcc, fps, frame_size)
 
 init_f = True
 init_lr = True
 
-#mtx, dist = camera_calibration()
+# mtx, dist = camera_calibration()
 
 while True:
     # Video Input Read (Front)
@@ -1314,14 +1312,13 @@ while True:
             scanning_state = 'right'
         print(f"scanning_state: {scanning_state}")
 
-
     ##########################Front Camera_Start########################
     # result_f = model.predict(video_front_resize_input, stream=True)
     # Object Detect using predict from YOLO and Input Video
     result_f = model.predict(video_front_resize_input)
     resbb_f = result_f[0].boxes.boxes
     px_f = pandas.DataFrame(resbb_f.cpu().detach().numpy()).astype("float")
-    #px_f = pandas.DataFrame(resbb_f).astype("float")  # all detected vehicles's list in px
+    # px_f = pandas.DataFrame(resbb_f).astype("float")  # all detected vehicles's list in px
 
     list_f = []  # in List, save the each frame information of detected object's x1,x2,y1,y2 value
 
@@ -1353,13 +1350,12 @@ while True:
         cy = int(y3 + y4) // 2
 
         distance = float(format(math.sqrt(math.pow((540 - cx), 2) + math.pow((720 - cy), 2)), ".3f"))
-        if dd ==0:
+        if dd == 0:
             collision_time = 2
         else:
-            collision_time = distance / (abs(dd)*fps)
+            collision_time = distance / (abs(dd) * fps)
 
-        #print("x3",x3,"y3",y3,"x4",x4,"y4",y4,"sd",sd,"dd",dd,"id",id,"nr",nr,"distance",distance,"collision_time",collision_time, "fps", fps)
-
+        # print("x3",x3,"y3",y3,"x4",x4,"y4",y4,"sd",sd,"dd",dd,"id",id,"nr",nr,"distance",distance,"collision_time",collision_time, "fps", fps)
 
         ###########################
         #  Type : Car (Vehicle ID)#
@@ -1375,10 +1371,10 @@ while True:
         """
         # sd : space difference             if sd minus  then further, if sd plus closer
         # dd : distance difference          if dd minus then closer, if dd plus further
-        
+
         # estimated collision time
         # t = D/relative speed = distance / delta dd * T = distance / delta_dd * (1/fps) = distance / (delta_dd * fps) < 1 s
-        
+
         # low 	 Risk : sd is minus or dd is plus, then the object is moving away or is stationary.
         # medium Risk : sd is plus and dd is plus, then the object is getting closer but not directly towards your vehicle.
         # high 	 Risk : sd is plus and dd is minus, then the object is getting closer and is near the line of motion of your vehicle.
@@ -1388,41 +1384,54 @@ while True:
 
         if sd < 0 and dd > 0:
             # low Risk : sd is minus or dd is plus, then the object is moving away or is stationary.
-            cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10), Font, FontSize, (0, 255, 255), 1)
-            cv2.putText(video_front_resize_input, f'{distance}{"further"}', (x3 + 5, y3 + 25), Font, FontSize, (0, 255, 255), 1)
-            cv2.putText(video_front_resize_input, f'{"low risk"}', (x3+5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
+            cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10),
+                        Font, FontSize, (0, 255, 255), 1)
+            cv2.putText(video_front_resize_input, f'{distance}{"further"}', (x3 + 5, y3 + 25), Font, FontSize,
+                        (0, 255, 255), 1)
+            cv2.putText(video_front_resize_input, f'{"low risk"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
             cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
-            #cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
+            # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
         elif sd >= 0 and dd > 0:
             # medium Risk : sd is plus and dd is plus, then the object is getting closer but not directly towards your vehicle.
-            cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10), Font, FontSize, (0, 255, 255), 1)
-            cv2.putText(video_front_resize_input, f'{distance}{"closer"}', (x3 + 5, y3 + 25), Font, FontSize, (0, 255, 255), 1)
-            cv2.putText(video_front_resize_input, f'{"medium risk"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
+            cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10),
+                        Font, FontSize, (0, 255, 255), 1)
+            cv2.putText(video_front_resize_input, f'{distance}{"closer"}', (x3 + 5, y3 + 25), Font, FontSize,
+                        (0, 255, 255), 1)
+            cv2.putText(video_front_resize_input, f'{"medium risk"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255),
+                        1)
             cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
-            #cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
+            # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
         elif sd >= 0 and dd <= 0:
             if collision_time >= 1.5:
                 # high 	 Risk : sd is plus and dd is minus, then the object is getting closer and is near the line of motion of your vehicle.
-                cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10), Font, FontSize, (0, 255, 255), 1)
-                cv2.putText(video_front_resize_input, f'{distance}{"closer"}', (x3 + 5, y3 + 25), Font, FontSize, (0, 255, 255), 1)
-                cv2.putText(video_front_resize_input, f'{"medium risk"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
+                cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10),
+                            Font, FontSize, (0, 255, 255), 1)
+                cv2.putText(video_front_resize_input, f'{distance}{"closer"}', (x3 + 5, y3 + 25), Font, FontSize,
+                            (0, 255, 255), 1)
+                cv2.putText(video_front_resize_input, f'{"medium risk"}', (x3 + 5, y3 + 40), Font, FontSize,
+                            (0, 255, 255), 1)
                 cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
-                #cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
+                # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
             else:
                 # dangerous   : sd is plus and dd is minus and t < 1, then the object is getting closer and is near the line of motion of your vehicle
                 # and also having a dangerous potential in 1 second approachable.
-                cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10), Font, FontSize, (0, 255, 255), 1)
-                cv2.putText(video_front_resize_input, f'{distance}{"closer"}', (x3 + 5, y3 + 25), Font, FontSize, (0, 255, 255), 1)
-                cv2.putText(video_front_resize_input, f'{"high risk"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
+                cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10),
+                            Font, FontSize, (0, 255, 255), 1)
+                cv2.putText(video_front_resize_input, f'{distance}{"closer"}', (x3 + 5, y3 + 25), Font, FontSize,
+                            (0, 255, 255), 1)
+                cv2.putText(video_front_resize_input, f'{"high risk"}', (x3 + 5, y3 + 40), Font, FontSize,
+                            (0, 255, 255), 1)
                 cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
-                #cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
+                # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
         else:
             # unknown ( #if sd < 0 and dd < 0: )
-            cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10), Font, FontSize, (0, 255, 255), 1)
-            cv2.putText(video_front_resize_input, f'{distance}{"calculating..."}', (x3 + 5, y3 + 25), Font, FontSize, (0, 255, 255), 1)
+            cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10),
+                        Font, FontSize, (0, 255, 255), 1)
+            cv2.putText(video_front_resize_input, f'{distance}{"calculating..."}', (x3 + 5, y3 + 25), Font, FontSize,
+                        (0, 255, 255), 1)
             cv2.putText(video_front_resize_input, f'{"unknown"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
             cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
-            #cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
+            # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
 
     ##########################Front Camera_End##########################
 
@@ -1551,7 +1560,6 @@ while True:
 
     ##########################Front Camera_End##########################
 
-
     ##########################Front_Lane_Finding_Start###########################
     # Wrapping (Bird Eye View)
     """    
@@ -1570,12 +1578,11 @@ while True:
     x = 720
     y = 1080
     """
-    #cv2.line(video_front_resize_input, (x_bottom_left_src, y_bottom_left_src), (x_top_left_src, y_top_left_src), (0, 0, 255), 2)
-    #cv2.line(video_front_resize_input, (x_top_right_src, y_top_right_src), (x_bottom_right_src, y_bottom_right_src), (0, 0, 255), 2)
+    # cv2.line(video_front_resize_input, (x_bottom_left_src, y_bottom_left_src), (x_top_left_src, y_top_left_src), (0, 0, 255), 2)
+    # cv2.line(video_front_resize_input, (x_top_right_src, y_top_right_src), (x_bottom_right_src, y_bottom_right_src), (0, 0, 255), 2)
 
-    #cv2.line(wrapped_img, (x_bottom_left_dst, y_bottom_left_dst), (x_top_left_dst, y_top_left_dst), (0,255,255), 2)
-    #cv2.line(wrapped_img, (x_top_right_dst, y_top_right_dst), (x_bottom_right_dst, y_bottom_right_dst), (0, 255, 255), 2)
-
+    # cv2.line(wrapped_img, (x_bottom_left_dst, y_bottom_left_dst), (x_top_left_dst, y_top_left_dst), (0,255,255), 2)
+    # cv2.line(wrapped_img, (x_top_right_dst, y_top_right_dst), (x_bottom_right_dst, y_bottom_right_dst), (0, 255, 255), 2)
 
     """
     #
@@ -1614,8 +1621,8 @@ while True:
         front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline_lr(
             video_front_resize_input_l, video_front_resize_input, 'right', init_lr)
     else:
-        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline(video_front_resize_input_l, video_front_resize_input, "front", init_f)
-
+        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline(
+            video_front_resize_input_l, video_front_resize_input, "front", init_f)
 
     if angle_f > 1.5 or angle_f < -1.5:
         init_f = True
@@ -1630,7 +1637,6 @@ while True:
         scanning_state = 'center'
         # Execute your code here
         start_time = time.time()  # Reset the timer
-
 
     # -----------------------------------StterWheel-----------------------------------
     # Get the shape of the original image and the steering wheel image
@@ -1664,18 +1670,17 @@ while True:
     # Display the final image with the overlay
     cv2.imshow('camera_front_input', front_out)
 
-
     # -----------------------------------StterWheel-----------------------------------
 
     # Original Image Transfer and processing and add to detected Vehicles Image, not directly using detected Vehicles Images
-    #cv2.namedWindow('camera_front_input', cv2.WINDOW_NORMAL)
-    #cv2.imshow('camera_front_input', img_out)
+    # cv2.namedWindow('camera_front_input', cv2.WINDOW_NORMAL)
+    # cv2.imshow('camera_front_input', img_out)
 
-    #cv2.namedWindow('colorwarp_f', cv2.WINDOW_NORMAL)
-    #cv2.imshow('colorwarp_f', colorwarp_f)
-    #cv2.namedWindow('draw_poly_f', cv2.WINDOW_NORMAL)
+    # cv2.namedWindow('colorwarp_f', cv2.WINDOW_NORMAL)
+    # cv2.imshow('colorwarp_f', colorwarp_f)
+    # cv2.namedWindow('draw_poly_f', cv2.WINDOW_NORMAL)
     # to draw the detected lane lines on a "bird's-eye view" image.
-    #cv2.imshow('draw_poly_f', draw_poly_img_f)
+    # cv2.imshow('draw_poly_f', draw_poly_img_f)
 
     ##########################Front_Lane_Finding_End###########################
 
@@ -1685,15 +1690,15 @@ while True:
     wrapped_img, minverse = wrapping(video_front_resize_input)
     """
 
-    #cv2.circle(video_front_resize_input, (x_bottom_left_src, y_bottom_left_src), 4, (0, 0, 255), -1)
-    #cv2.circle(video_front_resize_input, (x_top_left_src, y_top_left_src), 4, (0, 0, 255), -1)
-    #cv2.circle(video_front_resize_input, (x_top_right_src, y_top_right_src), 4, (0, 0, 255), -1)
-    #cv2.circle(video_front_resize_input, (x_bottom_right_src, y_bottom_right_src), 4, (0, 0, 255), -1)
+    # cv2.circle(video_front_resize_input, (x_bottom_left_src, y_bottom_left_src), 4, (0, 0, 255), -1)
+    # cv2.circle(video_front_resize_input, (x_top_left_src, y_top_left_src), 4, (0, 0, 255), -1)
+    # cv2.circle(video_front_resize_input, (x_top_right_src, y_top_right_src), 4, (0, 0, 255), -1)
+    # cv2.circle(video_front_resize_input, (x_bottom_right_src, y_bottom_right_src), 4, (0, 0, 255), -1)
 
-    #cv2.circle(wrapped_img, (x_bottom_left_dst, y_bottom_left_dst), 4, (0, 255, 255), -1)
-    #cv2.circle(wrapped_img, (x_top_left_dst, y_top_left_dst), 4, (0, 255, 255), -1)
-    #cv2.circle(wrapped_img, (x_top_right_dst, y_top_right_dst), 4, (0, 255, 255), -1)
-    #cv2.circle(wrapped_img, (x_bottom_right_dst, y_bottom_right_dst), 4, (0, 255, 255), -1)
+    # cv2.circle(wrapped_img, (x_bottom_left_dst, y_bottom_left_dst), 4, (0, 255, 255), -1)
+    # cv2.circle(wrapped_img, (x_top_left_dst, y_top_left_dst), 4, (0, 255, 255), -1)
+    # cv2.circle(wrapped_img, (x_top_right_dst, y_top_right_dst), 4, (0, 255, 255), -1)
+    # cv2.circle(wrapped_img, (x_bottom_right_dst, y_bottom_right_dst), 4, (0, 255, 255), -1)
 
     x = 720
     y = 1080
@@ -1705,7 +1710,7 @@ while True:
     #cv2.line(wrapped_img, (x_top_right_dst, y_top_right_dst), (x_bottom_right_dst, y_bottom_right_dst), (0, 255, 255), 2)
 
 
-    
+
     #
     w_f_img = color_filter(wrapped_img)
     roi_result = roi(w_f_img)
@@ -1744,7 +1749,7 @@ while True:
     cv2.circle(rear_out, (x_top_right_src_r, y_top_right_src_r), 4, (0, 0, 255), -1)
     cv2.circle(rear_out, (x_bottom_right_src_r, y_bottom_right_src_r), 4, (0, 0, 255), -1)
 
-    
+
     # Original Image Transfer and processing and add to detected Vehicles Image, not directly using detected Vehicles Images
     #cv2.namedWindow('camera_front_input', cv2.WINDOW_NORMAL)
     #cv2.imshow('camera_front_input', img_out)
@@ -1754,25 +1759,24 @@ while True:
     # to draw the detected lane lines on a "bird's-eye view" image.
     cv2.imshow('draw_poly_r', draw_poly_img_r)
     """
-    #cv2.imshow('camera_rear_input', video_rear_resize_input)
+    # cv2.imshow('camera_rear_input', video_rear_resize_input)
     ##########################Front_Lane_Finding_End###########################
-
 
     # Output Video
     ## Original Video(just resize)
-    #cv2.imshow("camera_front_input", video_front_resize_input)
-    #cv2.imshow("wrapped_img", wrapped_img)
-    #cv2.imshow("w_f_img", w_f_img)
-    #cv2.imshow('_gray', _gray)
-    #cv2.imshow('threshold', thresh)
-    #print("leftbase", leftbase)
-    #print("rightbase", rightbase)
-    #cv2.imshow("camera_rear_input", video_rear_resize_input)
+    # cv2.imshow("camera_front_input", video_front_resize_input)
+    # cv2.imshow("wrapped_img", wrapped_img)
+    # cv2.imshow("w_f_img", w_f_img)
+    # cv2.imshow('_gray', _gray)
+    # cv2.imshow('threshold', thresh)
+    # print("leftbase", leftbase)
+    # print("rightbase", rightbase)
+    # cv2.imshow("camera_rear_input", video_rear_resize_input)
     # cv2.imshow("camera_front_resize_input_test", camera_front_resize_input_test)
     # cv2.imshow("camera_rear_resize_input_test", camera_rear_resize_input_test)
 
     ## Video Export
-    output_front.write(front_out)                         # Video 2/3
+    output_front.write(front_out)  # Video 2/3
     output_rear.write(video_rear_resize_input)
     # output_front.write(camera_front_resize_input)  # Test Video Front
     # output_rear.write(camera_rear_resize_input)    # Test Video Rear
@@ -1780,10 +1784,9 @@ while True:
     if cv2.waitKey(1) == ord('q'):
         break
 
-
 video_front_raw_input.release()
 video_rear_raw_input.release()
 output_front.release()
-output_rear.release()          # Video 3/3
+output_rear.release()  # Video 3/3
 
 cv2.destroyAllWindows()
