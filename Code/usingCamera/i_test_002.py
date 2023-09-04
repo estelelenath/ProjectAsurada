@@ -15,7 +15,7 @@ from tracking_function import *
 August
 #ToDo: 1) Risk judgement Algorithm_(X), 2) Bounding Box Interface_(X), 3) curve and object acceleration control. (Steering)_(X), ( 4) using two camera_(X), 5) Output Image Process Update_(X)
 September_1
-#ToDo: 6) Multiple Lane Detection 7) Traffic Signal 8) CUDA_(X) 9) M.A.P,(Canny Mask? or white and yellow color) 10) Driving Support System with lane suggestion, 11) Camera Calibration of Lane Finding
+#ToDo: 6) Multiple Lane Detection_(X) 7) Traffic Signal 8) CUDA_(X) 9) M.A.P,(Canny Mask? or white and yellow color) 10) Driving Support System with lane suggestion, 11) Camera Calibration of Lane Finding
 September_2
 #ToDo: 11) Advanced Lane Detection, 12) Lane Poly gradation(main lane) and Lane Poly gradation(searching lane)[Dynamic Scanning Lines / Futuristic Rectangles]
 September_3
@@ -297,18 +297,18 @@ y_bottom_left_dst_left = 720  # (x,y)###
 x_bottom_right_dst_left = 880  #
 y_bottom_right_dst_left = 720  ###(x,y)#
 
-### left line check Camera ###
+### right line check Camera ###
 ### Source Point ###
-x_top_left_src_right = 420  # (x,y)##
-y_top_left_src_right = 395  #
+x_top_left_src_right = 550  # (x,y)##
+y_top_left_src_right = 410  #
 
-x_top_right_src_right = 500  ###(x,y)#
-y_top_right_src_right = 395  #
+x_top_right_src_right = 700  ###(x,y)#
+y_top_right_src_right = 410  #
 
-x_bottom_left_src_right = 30  #
+x_bottom_left_src_right = 640  #
 y_bottom_left_src_right = 510  # (x,y)###
 
-x_bottom_right_src_right = 420  #
+x_bottom_right_src_right = 1060  #
 y_bottom_right_src_right = 510  ###(x,y)#
 
 ### Destination Point ###
@@ -1091,13 +1091,13 @@ def lane_finding_pipeline(img_lane, img_veh, camera_type, init):
     left_curverad, right_curverad = measure_curvature_meters(binary_warped, left_fitx, right_fitx, ploty)
     # measure_curvature_meters(binary_warped, left_fitx, right_fitx, ploty)
     veh_pos = measure_position_meters(binary_warped, left_fit, right_fit)
-    out_img, colorwarp_img, newwarp = project_lane_info(img_veh, binary_warped, ploty, left_fitx, right_fitx, M_inv,
+    out_img, colorwarp_img, newwarp = project_lane_info(front_out_combined, binary_warped, ploty, left_fitx, right_fitx, M_inv,
                                                         left_curverad, right_curverad, veh_pos)
 
     # SteerWheel Control
     # cv2.imshow('Rotated Steering Wheel', rotated_image)
 
-    return front_out_combined, veh_pos, colorwarp_img, draw_poly_img, rotated_image
+    return out_img, veh_pos, colorwarp_img, draw_poly_img, rotated_image
 
 
 scanning_state = 'none'
@@ -1206,17 +1206,18 @@ def lane_finding_pipeline_lr(img_lane, img_veh, scanning_state, init):
     pts_mean_lr, draw_poly_img_lr = draw_lane_lines(binary_warped, left_fitx, right_fitx, ploty)
     draw_poly_img_unwarped = cv2.warpPerspective(draw_poly_img_lr, M_inv,
                                                  (video_front_resize_input.shape[1], video_front_resize_input.shape[0]))
-    front_out_combined_lr = cv2.addWeighted(video_front_resize_input, 1, draw_poly_img_unwarped, 0.7, 0)
+    front_out_combined_lr = cv2.addWeighted(img_veh, 1, draw_poly_img_unwarped, 0.7, 0)        # dynamic scanning
 
     left_curverad, right_curverad = measure_curvature_meters(binary_warped, left_fitx, right_fitx, ploty)
     # measure_curvature_meters(binary_warped, left_fitx, right_fitx, ploty)
     veh_pos = measure_position_meters(binary_warped, left_fit, right_fit)
-    out_img, colorwarp_img, newwarp = project_lane_info(img_veh, binary_warped, ploty, left_fitx, right_fitx, M_inv,
+    out_img, colorwarp_img, newwarp = project_lane_info(img_veh, binary_warped, ploty, left_fitx, right_fitx, M_inv,            # normal poly scanning
                                                         left_curverad, right_curverad, veh_pos)
 
     # SteerWheel Control
-    # cv2.imshow('Rotated Steering Wheel', rotated_image)
-    scanning_state = 'none'
+    #cv2.imshow('front_out_combined_lr', front_out_combined_lr)
+    #cv2.imshow('out_img', out_img)
+    #scanning_state = 'none'
     return front_out_combined_lr, veh_pos, colorwarp_img, draw_poly_img_lr, rotated_image
 
 
@@ -1303,14 +1304,14 @@ while True:
     ####################################################################
 
     key = cv2.waitKey(1)
-    print(f"Captured Key: {key}")
+
 
     if key != -1:
         if key == ord('a'):  # Left arrow key
             scanning_state = 'left'
         elif key == ord('d'):  # Right arrow key
             scanning_state = 'right'
-        print(f"scanning_state: {scanning_state}")
+        #print(f"scanning_state: {scanning_state}")
 
     ##########################Front Camera_Start########################
     # result_f = model.predict(video_front_resize_input, stream=True)
@@ -1611,18 +1612,18 @@ while True:
     meanPts, video_front_resize_input = draw_lane_lines(video_front_resize_input, thresh, minverse, left_fitx, right_fitx, ploty)
     """
     if scanning_state == 'left':
-        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline(
-            video_front_resize_input_l, video_front_resize_input, "front", init_f)
-        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline_lr(
-            video_front_resize_input_l, video_front_resize_input, 'left', init_lr)
+        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline(video_front_resize_input_l, video_front_resize_input, "front", init_f)
+        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline_lr(video_front_resize_input_l, front_out, 'left', init_lr)
+        #cv2.imshow('1', front_out)
     elif scanning_state == 'right':
-        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline(
-            video_front_resize_input_l, video_front_resize_input, "front", init_f)
-        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline_lr(
-            video_front_resize_input_l, video_front_resize_input, 'right', init_lr)
+        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline(video_front_resize_input_l, video_front_resize_input, "front", init_f)
+        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline_lr(video_front_resize_input_l, front_out, 'right', init_lr)
+        #cv2.imshow('2', front_out)
     else:
-        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline(
-            video_front_resize_input_l, video_front_resize_input, "front", init_f)
+        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline(video_front_resize_input_l, video_front_resize_input, "front", init_f)
+        #cv2.imshow('3', front_out)
+
+    #cv2.imshow('4', front_out)
 
     if angle_f > 1.5 or angle_f < -1.5:
         init_f = True
@@ -1632,7 +1633,7 @@ while True:
 
     elapsed_time = time.time() - start_time
 
-    if elapsed_time >= 3:  # 3 seconds
+    if elapsed_time >= 5:  # 3 seconds
         print("3 seconds have passed!")
         scanning_state = 'center'
         # Execute your code here
