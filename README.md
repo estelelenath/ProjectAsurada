@@ -47,7 +47,7 @@
 <br/>
 
 <p align="center">
-    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_007.jpg?raw=true" width="957" height="538"></center>
+    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_008.png?raw=true" width="957" height="538"></center>
 </p>
 
 <br/>
