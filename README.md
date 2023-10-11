@@ -103,35 +103,35 @@ There is direct comparison data for Faster R-CNN and YOLO, so I quote it.
         <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/fasterrcnnyolo_benchmark.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> Comparison of YOLO and Faster R-CNN left: YOLO / right: Faster R-CNN</figcaption>
-     <figcaption align="center"> source) https://github.com/alen-smajic/Real-time-Object-Detection-for-Autonomous-Driving-using-Deep-Learning</figcaption>
+    <figcaption align="center"> source) https://github.com/alen-smajic/Real-time-Object-Detection-for-Autonomous-Driving-using-Deep-Learning</figcaption>
 </figure>
 
 <br/>
-
-                                                        
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-+-------------------------+--------------------------+
-|       ``benchmark of YOLO and Faster R-CNN``       |
-+-------------------------+--------------------------+
-|       Architecture      |    mAP %   |     FPS     |
-+=========================+============+=============+
-|          ``YOLO``       |    18,6    |    212,4    |
-+-------------------------+------------+-------------+
-|      ``Faster R-CNN``   |    41,8    |     17,1    |
-+-------------------------+------------+-------------+
-    **Legend:**
-      * **mAP %**  : Mean Average Precision.
-      * **FPS**    : Frames per second.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
 
 <figure>
     <p align="center">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/yoloFasterRCnn.jpg?raw=true" width="400" height="225">
         <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/yolo-comparison-plots.png?raw=true" width="400" height="225">
     </p>
+    <figcaption align="center"> Comparison of YOLO and Faster R-CNN (mAP%: Mean Average Precision. FPS: Frames per second.) </figcaption>
     <figcaption align="center"> benchmark of YOLO performance by version) (https://github.com/ultralytics/ultralytics</figcaption>)
 </figure>
 
 <br/>
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+YOLO (https://github.com/alanzhichen/yolo8-ultralytics)
+  +---------------------------------------------------------------------------------------+
+  | Model   |   Size(pixels)    |   mAP^val 50-95  |   Speed CPU ONNX(ms)  |    FLOPs     |
+  +=========+===================+==================+=======================+==============+
+  | YOLO8n  |   640             |   37.3           |   80.4                |    8.7       |
+  | YOLO8s  |   640             |   44.9           |   128.4               |    28.6      |
+  | YOLO8m  |   640             |   50.2           |   234.7               |    78.9      |
+  | YOLO8l  |   640             |   52.9           |   375.2               |    165.2     |
+  | YOLO8x  |   640             |   53.9           |   479.1               |    257.8     |
+  +---------------------------------------------------------------------------------------+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the table above, you can consider mAP % as accuracy and FPS as processing speed.
 As can be seen from the table, in terms of accuracy, Faster R-CNN has better values and YOLO processes data faster.
@@ -160,6 +160,15 @@ Code
 Objective : Similar to previously implemented vehicle detection algorithm models, lane detection in the autonomous driving is implemented with particular emphasis on accuracy and fast processing speed. 
 Likewise, a certain level of reliability must be secured in various weather environments and external factors.
 ### Algorithm
+
+Workflow of Lane Detection
+Preprocessing(distortion) -> Wrapping [Bird-Eye Effect] -> Filter -> Search the Lane-> Re-Wrapping 
+
+Step 1: Distortion and Camera Calibration
+
+current cheap camera makes a distortion of images,
+main distortions are radial- / tangential - distortion.
+
 The lane recognition algorithm can be divided into a traditional method and a method that utilizes Deep Learning. 
 The traditional Hough Transform or Sobel Operator have heavy functions, lacks curve recognition, or is vulnerable to external change factors.
 However, since the use of CUDA using a graphics card was strongly recommended in the lane recognition model using deep learning, the lane recognition model using histogram was implemented by itself as a basic method in this chapter by separating the white and yellow lanes with a filter, and later In the expanded function, we will implement an advanced lane recognition model based on deep learning.

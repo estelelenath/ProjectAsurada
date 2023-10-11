@@ -1,129 +1,114 @@
 from ultralytics import YOLO
 import cv2
-# import cvzone
-import math
 import pandas
 import numpy as np
-import glob
 import os
+
+from tracking_function import *
+
+import math
+import glob
 import sys
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-from tracking_function import *
+
 
 '''
-August
-#ToDo: 1) Risk judgement Algorithm_(X), 2) Bounding Box Interface_(X), 3) curve and object acceleration control. (Steering)_(X), ( 4) using two camera_(X), 5) Output Image Process Update_(X)
 September_1
-#ToDo: 6) Multiple Lane Detection_(X) 7) Traffic Signal 8) CUDA_(X) 9) M.A.P,(Canny Mask? or white and yellow color) 10) Driving Support System with lane suggestion_(X), 11) Camera Calibration of Lane Finding
+#ToDo: 1) Traffic Signal 2) M.A.P,(Canny Mask? or white and yellow color) 3) Camera Calibration of Lane Finding
 September_2
-#ToDo: 12) Advanced Lane Detection, 13) Lane Poly gradation(main lane) and 14) Lane Poly gradation(searching lane)[14)Dynamic Scanning Lines_(X) / 15)Futuristic Rectangles], 16) Code Integration 
+#ToDo: 4) Advanced Lane Detection 5)Futuristic Rectangles] 6) Code Integration 
 September_3
-#ToDo: 17) Unity Simulation 18) ROS Simulation
+#ToDo: 7) Unity Simulation 8) ROS Simulation
 September_4
-#ToDo: 19) Unity Controllable Simulation
+#ToDo: 9) Unity Controllable Simulation
 October_1
-#ToDo: 20) Data Transfer with Unity 20) Data Transfer with ROS
+#ToDo: 10) Data Transfer with Unity 11) Data Transfer with ROS
 November_3
-#ToDo: 22) VR Environment Setting
+#ToDo: 12) Unity Simulation with VR
 November_4
-#ToDo: 23) Unity Simulation with VR
+#ToDo: 13) ROS Simulation with VR
 December_1
-#ToDo: 24) Jetson Environment Setting and Testing
+#ToDo: 14) Jetson Environment Setting and Testing
 December_2
-#ToDo: 25) Making a Film
+#ToDo: 15) Making a Film
 '''
 
 # Check and change Working Directory
 # print("Current Working Directory:", os.getcwd())
-# os.chdir("d:\\ProjectAsurada\\ProjectAsurada\\Code\\usingCamera")
+os.chdir("d:\\ProjectAsurada\\ProjectAsurada\\Code\\usingCamera")
 
+################################################################################################
+# ------------------------------------------Settings------------------------------------------ #
+################################################################################################
+# --------------------------------------Object Detection-------------------------------------- #
 
-# Settings
-# # Object Detection
 # YOLO (https://github.com/alanzhichen/yolo8-ultralytics)
-#   +---------------------------------------------------------------------------------------+
-#   | Model   |   Size(pixels)    |   mAP^val 50-95  |   Speed CPU ONNX(ms)  |    FLOPs     |
-#   | YOLO8n  |   640             |   37.3           |   80.4                |    8.7       |
-#   | YOLO8s  |   640             |   44.9           |   128.4               |    28.6      |
-#   | YOLO8m  |   640             |   50.2           |   234.7               |    78.9      |
-#   | YOLO8l  |   640             |   52.9           |   375.2               |    165.2     |
-#   | YOLO8x  |   640             |   53.9           |   479.1               |    257.8     |
-#   +---------------------------------------------------------------------------------------+
 model = YOLO('yolov8n.pt')  # load the official pretrained model (recommended for training)
+# model = YOLO('yolov8s.pt')
+# model = YOLO('yolov8m.pt')
+# model = YOLO('yolov8l.pt')
+# model = YOLO('yolov8x.pt')
 
-
-# model = YOLO('yolov8s.pt')    #
-# model = YOLO('yolov8m.pt')    #
-# model = YOLO('yolov8l.pt')    #
-# model = YOLO('yolov8x.pt')    #
-
-# Functions
-## Test Functions
-## Mouse Cursor Coordinate
-# : show the current mouse cursor coordinate in the window.
-#   normally it should be deactive, but in the test or must be checked the coordinate of window
-#   , then should be active to below cv2.nameWindow and cv2.setMouseCallback
-def cursor_Coordinate(event, x, y, flags, param):
-    if event == cv2.EVENT_MOUSEMOVE:
-        cursor_Coordinate = [x, y]
-        print(cursor_Coordinate)
-
-
-# Cursor Coordinate of front Camera
-cv2.namedWindow('camera_front_input')  # in ' ' should be filled by name of display window
-cv2.setMouseCallback('camera_front_input', cursor_Coordinate)  # in ' ' should be filled by name of display window
-# Cursor Coordinate of rear Camera
-# cv2.namedWindow('camera_rear_input')                           # in ' ' should be filled by name of display window
-# cv2.setMouseCallback('camera_rear_input', cursor_Coordinate)   # in ' ' should be filled by name of display window
-
-# ----------------------------------Object Detection----------------------------------#
-# Based on (https://github.com/freedomwebtech/yolov8counting-trackingvehicles)
-# Based on (https://github.com/murtazahassan)
-# Make a Class Array
 # open_coco = open("D:\ProjectAsurada\ProjectAsurada\Code\usingCamera\coco.txt", "r")
 open_coco = open("coco.txt", "r")
 read_coco = open_coco.read()
 class_list = read_coco.split("\n")
 # Check and change Working Directory
 # print("Current Working Directory:", os.getcwd())
-os.chdir("d:\\ProjectAsurada\\ProjectAsurada\\Code\\usingCamera")
 
-## Object Tracking
+# --------------------------------------Object Tracking-------------------------------------- #
+
 # Initialize count frame
 count_f = 0  # intialize for front camera video frame count
 count_r = 0  # intialize for rear camera video frame count
 # Call the class for tracking of front and rear video
 tracker_f = Tracker()  # Tracking class call for front camera
-tracker_r = Tracker()
+tracker_r = Tracker()  # Tracking class call for rear camera
 
-# ----------------------------------Lane Detection----------------------------------#
-'''
-Workflow of Lane Detection
-distortion_factors[distorted Lane -> undistorted Lane]
--> Wrapping [Bird-Eye Effect]
--> Color Filter
-->ROI because extracted Lane(perspetive view), but there are noise, (e.g. name, pointer...)
-Based on (https://moon-coco.tistory.com/entry/OpenCV%EC%B0%A8%EC%84%A0-%EC%9D%B8%EC%8B%9D)
-'''
+################################################################################################
+# ------------------------------------------Function------------------------------------------ #
+# ============================================================================================ #
+# ---------------------------------------Test Functions--------------------------------------- #
+# ============================================================================================ #
 
+# Mouse Cursor Coordinate
+# :show the current mouse cursor coordinate in the window.
+#  normally it should be deactive, but in the test or must be checked the coordinate of window
+#  , then should be active to below cv2.nameWindow and cv2.setMouseCallback
 
-### Step 1: Distortion or amera Calibration ###
-# current cheap camera makes a distortion of images,
-# main distortions are radial- / tangential - distortion.
+"""
+def cursor_Coordinate(event, x, y, flags, param):
+    if event == cv2.EVENT_MOUSEMOVE:
+        cursor_Coordinate = [x, y]
+        print(cursor_Coordinate)
+
+cv2.namedWindow('camera_front_input')      # in ' ' should be filled by name of display window
+cv2.setMouseCallback('camera_front_input', cursor_Coordinate)
+"""
+
+# ============================================================================================ #
+# ---------------------------------------Lane Detection--------------------------------------- #
+# ============================================================================================ #
+
+# https://docs.opencv.org/3.4.3/dc/dbb/tutorial_py_calibration.html
+# https://foss4g.tistory.com/1665
+# Step 1: Distortion and Camera Calibration
 def camera_calibration():
-    # Prepare object points
-    # From the provided calibration images, 9*6 corners are identified
-    nx = 11  # 9 , 11, number of chessboard's horizontal pattern -1
-    ny = 8  # 6 , 8, number of chessboard's vertical pattern -1
+    nx = 11         # 9 , 11, number of chessboard's horizontal pattern -1
+    ny = 8          # 6 , 8, number of chessboard's vertical pattern -1
+
+    # termination criteria
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
+
     objpoints = []  # Object points are real world points, here a 3D coordinates matrix is generated
     imgpoints = []  # image points are xy plane points, here a 2D coordinates matrix is generated (z = 0, chessboard)
-    objp = np.zeros((8 * 11, 3), np.float32)
+
+    # prepare object points, like (0,0,0), (1,0,0), (2,0,0) ....,(8,9,0)
+    objp = np.zeros((ny * nx, 3), np.float32)
     objp[:, :2] = np.mgrid[0:11, 0:8].T.reshape(-1, 2)
 
     # Make a list of calibration images
-    os.listdir("camera_cal/")
     cal_img_list = os.listdir("camera_cal/")
 
     # Imagepoints are the coresspondant object points with their coordinates in the distorted image
@@ -143,8 +128,9 @@ def camera_calibration():
             imgpoints.append(corners2)
             objpoints.append(objp)
             print(objpoints)
+
+    # cv.calibrateCamera() which returns the camera matrix, distortion coefficients, rotation and translation vectors etc.
     ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1], None, None)
-    # Output Explain (https://foss4g.tistory.com/1665)
 
     ###################################
     ## checking the undistored image ##
@@ -160,82 +146,55 @@ def camera_calibration():
     return mtx, dist
 
 
-### STEP 2: Perspective Transform from Car Camera to Bird's Eye View ___ For Front Camera###
-# Idea : View of from vertical side of street, instead of driver's view
+# STEP 2: Perspective Transform from driver's view to Bird's Eye View _ For Front Camera
 # img_width = 1280
 # img_heigt = 720
 
-"""
-    ### Front Camera ###
-    ### Source Point ###
-x_top_left_src = 480        #(x,y)##
-y_top_left_src = 390        #
+# Source Point of front Camera          #top_left(1)                         #top_right(2)
+# (1)                                       #(x,y)###########################(x,y)#
+x_top_left_src_f        = 480               #                                     #
+y_top_left_src_f        = 390               #                                     #
+# (2)                                       #                                     #
+x_top_right_src_f       = 565               #                                     #
+y_top_right_src_f       = 390               #                                     #
+# (3)                                       #                                     #
+x_bottom_left_src_f     = 110               #(x,y)###########################(x,y)#
+y_bottom_left_src_f     = 690           # bottom_left(3)                   # bottom_right(4)
+# (4)
+x_bottom_right_src_f    = 885
+y_bottom_right_src_f    = 690
 
-x_top_right_src = 565       ###(x,y)#
-y_top_right_src = 390               #
-
-x_bottom_left_src = 110     #
-y_bottom_left_src = 690     #(x,y)###
-
-x_bottom_right_src = 885            #
-y_bottom_right_src = 690    ###(x,y)#
-
-    ### Destination Point ###
-x_top_left_dst = 55        #(x,y)##
-y_top_left_dst = 0          #
-
-x_top_right_dst = 1035       ###(x,y)#
-y_top_right_dst = 0                 #
-
-x_bottom_left_dst = 150     #
-y_bottom_left_dst = 720     #(x,y)###
-
-x_bottom_right_dst = 880            #
-y_bottom_right_dst = 720    ###(x,y)#
-"""
-
-### Rear Camera ###
-### Source Point ###
-x_top_left_src_f = 480  # (x,y)##
-y_top_left_src_f = 390  #
-
-x_top_right_src_f = 565  ###(x,y)#
-y_top_right_src_f = 390  #
-
-x_bottom_left_src_f = 110  #
-y_bottom_left_src_f = 690  # (x,y)###
-
-x_bottom_right_src_f = 885  #
-y_bottom_right_src_f = 690  ###(x,y)#
-
-### Destination Point ###
-x_top_left_dst_f = 55  # (x,y)##
-y_top_left_dst_f = 0  #
-
-x_top_right_dst_f = 1035  ###(x,y)#
-y_top_right_dst_f = 0  #
-
-x_bottom_left_dst_f = 150  #
-y_bottom_left_dst_f = 720  # (x,y)###
-
-x_bottom_right_dst_f = 880  #
-y_bottom_right_dst_f = 720  ###(x,y)#
+# Destination Point of front Camera
+# (1)
+x_top_left_dst_f        = 55
+y_top_left_dst_f        = 0
+# (2)
+x_top_right_dst_f       = 1035
+y_top_right_dst_f       = 0
+# (3)
+x_bottom_left_dst_f     = 150
+y_bottom_left_dst_f     = 720
+# (4)
+x_bottom_right_dst_f    = 880
+y_bottom_right_dst_f    = 720
 
 
-def wrapping_f(image):
-    if image is None:
+def wrapping_f(img):
+    if img is None:
         print('Image is None, skippung this iteration')
         return None, None
 
-    h = image.shape[0]
-    w = image.shape[1]
+    h = img.shape[0]              # height of input image
+    w = img.shape[1]              # width of input image
     img_size = (w, h)
-    # print(img_size)
     offset = 150
 
+    # Set the wrapping area
+    # Method 1. Set the image size, proportional to input image size
     # source = np.float32([[w // 2 - 30, h * 0.53], [w // 2 + 60, h * 0.53], [w * 0.3, h], [w, h]])
     # destination = np.float32([[0, 0], [w-350, 0], [400, h], [w-150, h]])
 
+    # Method 2. Set image size to set value
     source_f = np.float32(
         [
             (x_bottom_left_src_f, y_bottom_left_src_f),  # bottom-left corner
@@ -253,189 +212,131 @@ def wrapping_f(image):
         ])
 
     # getPerspectiveTransformation? the properties that it hold the property of linear, but not the property of parallelity
-    # for example, train lanes are parallel but through the perspective transformation, it looks like they are meeing at the end of point
+    # for example, train lanes are parallel but through the perspective transformation, it looks like they are meeting at the end of point
     # we need 4 point of input and moving point of output
-    # for the transformation matrix we need, through the cv2.getPerspectiveTransform() function and adjust our transformation matrix to cv2.warpPerspective() function, we could have a final image
-    #
     transform_matrix = cv2.getPerspectiveTransform(source_f, destination_f)
+    # * minv: In the final process, we need to use the inverse function again to change from bird's eye view to driver view.
     minv = cv2.getPerspectiveTransform(destination_f, source_f)
-    _image = cv2.warpPerspective(image, transform_matrix, (image.shape[1], image.shape[0]))
+    _img = cv2.warpPerspective(img, transform_matrix, (img.shape[1], img.shape[0]))
 
-    return _image, minv
-
-
-### STEP 2: Perspective Transform from Car Camera to Bird's Eye View ___ For Front Camera###
-# Idea : View of from vertical side of street, instead of driver's view
-# img_width = 1280
-# img_heigt = 720
+    return _img, minv
 
 
-### left line check Camera ###
-### Source Point ###
-x_top_left_src_left = 420  # (x,y)##
-y_top_left_src_left = 395  #
+# STEP 2.1: Perspective Transform from driver's view to Bird's Eye View _ For Left/Right Lane Check
+# Left line check Camera
+# Source Point of left Camera
+# (1)
+x_top_left_src_left     = 420
+y_top_left_src_left     = 395
+# (2)
+x_top_right_src_left    = 500
+y_top_right_src_left    = 395
+# (3)
+x_bottom_left_src_left  = 30
+y_bottom_left_src_left  = 510
+# (4)
+x_bottom_right_src_left = 420
+y_bottom_right_src_left = 510
 
-x_top_right_src_left = 500  ###(x,y)#
-y_top_right_src_left = 395  #
+# Destination Point of rear Camera
+# (1)
+x_top_left_dst_left     = 55
+y_top_left_dst_left     = 0
+# (2)
+x_top_right_dst_left    = 1035
+y_top_right_dst_left    = 0
+# (3)
+x_bottom_left_dst_left  = 150
+y_bottom_left_dst_left  = 720
+# (4)
+x_bottom_right_dst_left = 880
+y_bottom_right_dst_left = 720
 
-x_bottom_left_src_left = 30  #
-y_bottom_left_src_left = 510  # (x,y)###
+# Right line check Camera
+# Source Point of right Camera
+# (1)
+x_top_left_src_right     = 550
+y_top_left_src_right     = 410
+# (2)
+x_top_right_src_right    = 700
+y_top_right_src_right    = 410
+# (3)
+x_bottom_left_src_right  = 640
+y_bottom_left_src_right  = 510
+# (4)
+x_bottom_right_src_right = 1060
+y_bottom_right_src_right = 510
 
-x_bottom_right_src_left = 420  #
-y_bottom_right_src_left = 510  ###(x,y)#
-
-### Destination Point ###
-x_top_left_dst_left = 55  # (x,y)##
-y_top_left_dst_left = 0  #
-
-x_top_right_dst_left = 1035  ###(x,y)#
-y_top_right_dst_left = 0  #
-
-x_bottom_left_dst_left = 150  #
-y_bottom_left_dst_left = 720  # (x,y)###
-
-x_bottom_right_dst_left = 880  #
-y_bottom_right_dst_left = 720  ###(x,y)#
-
-### right line check Camera ###
-### Source Point ###
-x_top_left_src_right = 550  # (x,y)##
-y_top_left_src_right = 410  #
-
-x_top_right_src_right = 700  ###(x,y)#
-y_top_right_src_right = 410  #
-
-x_bottom_left_src_right = 640  #
-y_bottom_left_src_right = 510  # (x,y)###
-
-x_bottom_right_src_right = 1060  #
-y_bottom_right_src_right = 510  ###(x,y)#
-
-### Destination Point ###
-x_top_left_dst_right = 55  # (x,y)##
-y_top_left_dst_right = 0  #
-
-x_top_right_dst_right = 1035  ###(x,y)#
-y_top_right_dst_right = 0  #
-
-x_bottom_left_dst_right = 150  #
-y_bottom_left_dst_right = 720  # (x,y)###
-
-x_bottom_right_dst_right = 880  #
-y_bottom_right_dst_right = 720  ###(x,y)#
+# Destination Point of right Camera
+# (1)
+x_top_left_dst_right     = 55
+y_top_left_dst_right     = 0
+# (2)
+x_top_right_dst_right    = 1035
+y_top_right_dst_right    = 0
+# (3)
+x_bottom_left_dst_right  = 150
+y_bottom_left_dst_right  = 720
+# (4)
+x_bottom_right_dst_right = 880
+y_bottom_right_dst_right = 720
 
 
-# Warping Left Line
-def wrapping_line_lr(image, scanning_state):
-    if image is None:
+# Warping Left/Right Lane for lane checking(if you want to check "left lane", scanning state should be "left")
+def wrapping_line_lr(img, scanning_state):
+    if img is None:
         print('Image is None, skippung this iteration')
         return None, None
 
-    h = image.shape[0]
-    w = image.shape[1]
+    h = img.shape[0]
+    w = img.shape[1]
     img_size = (w, h)
-    # print(img_size)
-    offset = 150
-
-    # source = np.float32([[w // 2 - 30, h * 0.53], [w // 2 + 60, h * 0.53], [w * 0.3, h], [w, h]])
-    # destination = np.float32([[0, 0], [w-350, 0], [400, h], [w-150, h]])
 
     if scanning_state == 'left':
         source_lr = np.float32(
             [
-                (x_bottom_left_src_left, y_bottom_left_src_left),  # bottom-left corner
-                (x_top_left_src_left, y_top_left_src_left),  # top-left corner
-                (x_top_right_src_left, y_top_right_src_left),  # top-right corner
+                (x_bottom_left_src_left, y_bottom_left_src_left),   # bottom-left corner
+                (x_top_left_src_left, y_top_left_src_left),         # top-left corner
+                (x_top_right_src_left, y_top_right_src_left),       # top-right corner
                 (x_bottom_right_src_left, y_bottom_right_src_left)  # bottom-right corner
             ])
 
         destination_lr = np.float32(
             [
-                (x_bottom_left_dst_left, y_bottom_left_dst_left),  # bottom-left corner
-                (x_top_left_dst_left, y_top_left_dst_left),  # top-left corner
-                (x_top_right_dst_left, y_top_right_dst_left),  # top-right corner
+                (x_bottom_left_dst_left, y_bottom_left_dst_left),   # bottom-left corner
+                (x_top_left_dst_left, y_top_left_dst_left),         # top-left corner
+                (x_top_right_dst_left, y_top_right_dst_left),       # top-right corner
                 (x_bottom_right_dst_left, y_bottom_right_dst_left)  # bottom-right corner
             ])
     else:
         source_lr = np.float32(
             [
-                (x_bottom_left_src_right, y_bottom_left_src_right),  # bottom-left corner
-                (x_top_left_src_right, y_top_left_src_right),  # top-left corner
-                (x_top_right_src_right, y_top_right_src_right),  # top-right corner
+                (x_bottom_left_src_right, y_bottom_left_src_right),   # bottom-left corner
+                (x_top_left_src_right, y_top_left_src_right),         # top-left corner
+                (x_top_right_src_right, y_top_right_src_right),       # top-right corner
                 (x_bottom_right_src_right, y_bottom_right_src_right)  # bottom-right corner
             ])
         destination_lr = np.float32(
             [
-                (x_bottom_left_dst_right, y_bottom_left_dst_right),  # bottom-left corner
-                (x_top_left_dst_right, y_top_left_dst_right),  # top-left corner
-                (x_top_right_dst_right, y_top_right_dst_right),  # top-right corner
+                (x_bottom_left_dst_right, y_bottom_left_dst_right),   # bottom-left corner
+                (x_top_left_dst_right, y_top_left_dst_right),         # top-left corner
+                (x_top_right_dst_right, y_top_right_dst_right),       # top-right corner
                 (x_bottom_right_dst_right, y_bottom_right_dst_right)  # bottom-right corner
             ])
 
-    # getPerspectiveTransformation? the properties that it hold the property of linear, but not the property of parallelity
-    # for example, train lanes are parallel but through the perspective transformation, it looks like they are meeing at the end of point
-    # we need 4 point of input and moving point of output
-    # for the transformation matrix we need, through the cv2.getPerspectiveTransform() function and adjust our transformation matrix to cv2.warpPerspective() function, we could have a final image
-    #
     transform_matrix = cv2.getPerspectiveTransform(source_lr, destination_lr)
     minv = cv2.getPerspectiveTransform(destination_lr, source_lr)
-    _image = cv2.warpPerspective(image, transform_matrix, (image.shape[1], image.shape[0]))
+    _img = cv2.warpPerspective(img, transform_matrix, (img.shape[1], img.shape[0]))
 
-    return _image, minv
+    return _img, minv
 
-
-"""
-#Warping Right Line
-def wrapping_right_line(image):
-    if image is None:
-        print('Image is None, skippung this iteration')
-        return None, None
-
-    h = image.shape[0]
-    w = image.shape[1]
-    img_size = (w, h)
-    # print(img_size)
-    offset = 150
-
-    # source = np.float32([[w // 2 - 30, h * 0.53], [w // 2 + 60, h * 0.53], [w * 0.3, h], [w, h]])
-    # destination = np.float32([[0, 0], [w-350, 0], [400, h], [w-150, h]])
-
-
-    source_right = np.float32(
-        [
-            (x_bottom_left_src_right, y_bottom_left_src_right),     # bottom-left corner
-            (x_top_left_src_right, y_top_left_src_right),           # top-left corner
-            (x_top_right_src_right, y_top_right_src_right),         # top-right corner
-            (x_bottom_right_src_right, y_bottom_right_src_right)    # bottom-right corner
-        ])
-    destination_right = np.float32(
-        [
-            (x_bottom_left_dst_right, y_bottom_left_dst_right),     # bottom-left corner
-            (x_top_left_dst_right, y_top_left_dst_right),           # top-left corner
-            (x_top_right_dst_right, y_top_right_dst_right),         # top-right corner
-            (x_bottom_right_dst_right, y_bottom_right_dst_right)    # bottom-right corner
-        ])
-
-    # getPerspectiveTransformation? the properties that it hold the property of linear, but not the property of parallelity
-    # for example, train lanes are parallel but through the perspective transformation, it looks like they are meeing at the end of point
-    # we need 4 point of input and moving point of output
-    # for the transformation matrix we need, through the cv2.getPerspectiveTransform() function and adjust our transformation matrix to cv2.warpPerspective() function, we could have a final image
-    #
-    transform_matrix = cv2.getPerspectiveTransform(source_right, destination_right)
-    minv = cv2.getPerspectiveTransform(destination_right, source_right)
-    _image = cv2.warpPerspective(image, transform_matrix, (image.shape[1], image.shape[0]))
-
-    return _image, minv
-"""
-
-
-# -------------------------------------Color Filter (using HLS)--------------------------------------------------------
+# STEP 3.1: Filtering the warped image for white and yellow lane to check (using HLS)
+# https://stackoverflow.com/questions/55822409/hsl-range-for-yellow-lane-lines
 # HLS(Hue, Luminanse, Saturation) :
 # lower = ([minimum_blue, m_green, m_red])
 # upper = ([Maximum_blue, M_green, M_red])
-def color_filter(image):
-    hls = cv2.cvtColor(image, cv2.COLOR_BGR2HLS)
-    # https://stackoverflow.com/questions/55822409/hsl-range-for-yellow-lane-lines
+def color_filter(img):
+    hls = cv2.cvtColor(img, cv2.COLOR_BGR2HLS)
     # White Filter
     # white_lower = np.array([20, 150, 20])
     # white_upper = np.array([255, 255, 255])
@@ -463,20 +364,13 @@ def color_filter(image):
     # Do filtering the each yellow lane and white lane,
     # Bitwise_or makes (yellow line and white line) combining -> mask
     # bitwise_and maeks (original image and mask) -> then left just masked part -> masked
-    # yellow_mask = cv2.inRange(hls, yellow_lower, yellow_upper)
-    # white_mask = cv2.inRange(hls, white_lower, white_upper)
-    # mask = cv2.bitwise_or(yellow_mask, white_mask)
-    # masked = cv2.bitwise_and(image, image, mask=mask)
-    binary = cv2.bitwise_or(yellow_mask, white_mask)
 
-    # return masked
-    # for second lane detection method, mask(bitwise_or) is added or selected, original way is with masked!
-    return binary
+    mask = cv2.bitwise_or(yellow_mask, white_mask)
+    # masked = cv2.bitwise_and(img, img, mask=mask)
+    return mask
 
-
-"""
+# STEP 3.2: Using Sobel, detecting the white and yellow lane
 def binary_thresholded(img):
-    # Transform image to gray scale
     gray_img =cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     # Apply sobel (derivative) in x direction, this is usefull to detect lines that tend to be vertical
     sobelx = cv2.Sobel(gray_img, cv2.CV_64F, 1, 0)
@@ -510,16 +404,13 @@ def binary_thresholded(img):
     # plt.imshow(binary, cmap='gray')
 
     return binary
-"""
 
-
-# -------------------------------------ROI--------------------------------------------------------
-# Another Idea is first ROI, in order to decrease the input area, then we don't need anymore, sky etc...
-# but in this case we need to set a wrapping area, so it is not so effective, but in case SortDeep.. could be...
-
-def roi(image):
-    x = int(image.shape[1])
-    y = int(image.shape[0])
+# STEP 4: Region of Interest, from the bird eye's view, decreasing the area, focus more on the lane
+# STEP 4.1: Another Idea is first ROI, in order to decrease the input area, then we don't need anymore, sky etc...
+#           but in this case we need to set a wrapping area, so it is not so effective, but in case SortDeep.. could be...
+def roi(img):
+    x = int(img.shape[1])
+    y = int(img.shape[0])
     # height, width, number of channels in image
     # height = img.shape[0]
     # width = img.shape[1]
@@ -554,19 +445,19 @@ def roi(image):
         [int(0.11 * x), int(0.95 * y)]  # 9
     ])
 
-    mask = np.zeros_like(image)
+    mask = np.zeros_like(img)
 
-    if len(image.shape) > 2:
-        channel_count = image.shape[2]
+    if len(img.shape) > 2:
+        channel_count = img.shape[2]
         ignore_mask_color = (255,) * channel_count
     else:
         ignore_mask_color = 255
 
     cv2.fillPoly(mask, np.int32([_shape]), ignore_mask_color)
     # cv2.fillPoly(mask, np.float32([_shape]), ignore_mask_color)
-    masked_image = cv2.bitwise_and(image, mask)
+    masked_img = cv2.bitwise_and(img, mask)
 
-    return masked_image
+    return masked_img
 
 
 # ---------------------------------------------------------------------------------------------
