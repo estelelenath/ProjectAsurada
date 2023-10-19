@@ -47,7 +47,7 @@
 <br/>
 
 <p align="center">
-    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_008.png?raw=true" width="957" height="538"></center>
+    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_009.png?raw=true" width="957" height="538"></center>
 </p>
 
 <br/>
@@ -371,7 +371,7 @@ Therefore, the objective this chapter is to determine how dangerous the other ve
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="500" height="500">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/Graph2.png?raw=true" width="500" height="500">
     </p>
     <figcaption align="center"> Risk Judgment Algorithm Tree </figcaption>
 </figure>
