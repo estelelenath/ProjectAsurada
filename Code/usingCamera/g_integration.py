@@ -1,6 +1,6 @@
 from ultralytics import YOLO
 import cv2
-import cvzone
+#import cvzone
 import math
 import numpy as np
 # https://moon-coco.tistory.com/entry/OpenCV%EC%B0%A8%EC%84%A0-%EC%9D%B8%EC%8B%9D
@@ -239,12 +239,12 @@ def slide_window_search(binary_warped, left_current, right_current):
     out_img[nonzero_y[left_lane], nonzero_x[left_lane]] = [255, 0, 0]
     out_img[nonzero_y[right_lane], nonzero_x[right_lane]] = [0, 0, 255]
 
-    #plt.imshow(out_img)
-    #plt.plot(left_fitx, ploty, color = 'yellow')
-    #plt.plot(right_fitx, ploty, color = 'yellow')
-    #plt.xlim(0, 1280)
-    #plt.ylim(720, 0)
-    #plt.show()
+    plt.imshow(out_img)
+    plt.plot(left_fitx, ploty, color = 'yellow')
+    plt.plot(right_fitx, ploty, color = 'yellow')
+    plt.xlim(0, 1280)
+    plt.ylim(720, 0)
+    plt.show()
 
     ret = {'left_fitx' : ltx, 'right_fitx': rtx, 'ploty': ploty}
 
@@ -323,14 +323,14 @@ while True:
             # cv2.rectangle(img_front, (x1,y1), (x2,y2), (0, 0, 255, 127), -1)
             w, h = x2 - x1, y2 - y1
             # rt = -1 -> fullfilled rectangle, 0~ -> normal thickness
-            cvzone.cornerRect(img_front, (x1, y1, w, h), rt=1, colorR=(0, 0, 255))         
+            #cvzone.cornerRect(img_front, (x1, y1, w, h), rt=1, colorR=(0, 0, 255))
             # Confidence
             confidence = math.ceil((boxf.conf[0] * 100)) / 100
             
             # Class Name
             cls = int(boxf.cls[0])
 
-            cvzone.putTextRect(img_front, f'{classNames[cls]} {confidence}', (max(0, x1), max(35, y1))) # , scale = 3, thickness = 3
+            #cvzone.putTextRect(img_front, f'{classNames[cls]} {confidence}', (max(0, x1), max(35, y1))) # , scale = 3, thickness = 3
 
 # Vehicle Detection for rear camera
     for rr in results_rear:

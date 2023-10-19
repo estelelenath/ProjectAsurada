@@ -1,6 +1,6 @@
 from ultralytics import YOLO
 import cv2
-import cvzone
+#import cvzone
 import math
 import pandas
 import numpy as np

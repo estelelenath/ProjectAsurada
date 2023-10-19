@@ -1,6 +1,6 @@
 from ultralytics import YOLO
 import cv2
-import cvzone
+#import cvzone
 import math
 import numpy as np
 # https://moon-coco.tistory.com/entry/OpenCV%EC%B0%A8%EC%84%A0-%EC%9D%B8%EC%8B%9D
@@ -376,7 +376,7 @@ while True:
             # cv2.rectangle(frame_front, (x1,y1), (x2,y2), (0, 0, 255, 127), -1)
             w, h = x2 - x1, y2 - y1
             # rt = -1 -> fullfilled rectangle, 0~ -> normal thickness
-            cvzone.cornerRect(frame_front, (x1, y1, w, h), rt=0, colorR=(0, 0, 255))
+            #cvzone.cornerRect(frame_front, (x1, y1, w, h), rt=0, colorR=(0, 0, 255))
             # Confidence
             confidence = math.ceil((boxf.conf[0] * 100)) / 100
             
@@ -488,7 +488,7 @@ while True:
             center_points_prev_frame = center_points_cur_frame_f.copy()
 
 
-            cvzone.putTextRect(frame_front, f'{classNames[cls]} {confidence}',(max(0, x1), max(35, y1)), thickness=1, scale=1, offset=5)  # , scale = 3, thickness = 3
+            #cvzone.putTextRect(frame_front, f'{classNames[cls]} {confidence}',(max(0, x1), max(35, y1)), thickness=1, scale=1, offset=5)  # , scale = 3, thickness = 3
 
 
 # Vehicle Detection for rear camera

@@ -3,68 +3,49 @@ import cv2
 import pandas
 import numpy as np
 import os
-
-from tracking_function import *
-
 import math
 import glob
 import sys
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+from tracking_function import *
 
 
 '''
-September_1
 #ToDo: 1) Traffic Signal 2) M.A.P,(Canny Mask? or white and yellow color) 3) Camera Calibration of Lane Finding
-September_2
-#ToDo: 4) Advanced Lane Detection 5)Futuristic Rectangles] 6) Code Integration 
-September_3
-#ToDo: 7) Unity Simulation 8) ROS Simulation
-September_4
-#ToDo: 9) Unity Controllable Simulation
-October_1
+#ToDo: 4) Advanced Lane Detection 5)Futuristic Rectangles
+#ToDo: 6) Unity Simulation 7) ROS Simulation
 #ToDo: 10) Data Transfer with Unity 11) Data Transfer with ROS
-November_3
 #ToDo: 12) Unity Simulation with VR
-November_4
 #ToDo: 13) ROS Simulation with VR
-December_1
 #ToDo: 14) Jetson Environment Setting and Testing
-December_2
 #ToDo: 15) Making a Film
 '''
 
-# Check and change Working Directory
-# print("Current Working Directory:", os.getcwd())
-os.chdir("d:\\ProjectAsurada\\ProjectAsurada\\Code\\usingCamera")
 
 ################################################################################################
 # ------------------------------------------Settings------------------------------------------ #
 ################################################################################################
+# Check and change Working Directory
+# print("Current Working Directory:", os.getcwd())
+os.chdir("d:\\ProjectAsurada\\ProjectAsurada\\Code\\usingCamera")
 # --------------------------------------Object Detection-------------------------------------- #
-
+# A model in machine learning refers to the mathematical and computational framework that is used to make predictions or decisions based on input data.
+# It consists of an architecture (the structure and type of the neural network) and weights (the parameters learned during training).
+# The purpose of model is used to predict outputs (e.g., object classes and bounding box coordinates in object detection) given new, unseen inputs.
+# The model is a convolutional neural network (CNN) that has been trained to detect objects in images.
+# YOLO is known for its ability to detect objects in real-time due to its efficient architecture and computation.
 # YOLO (https://github.com/alanzhichen/yolo8-ultralytics)
-model = YOLO('yolov8n.pt')  # load the official pretrained model (recommended for training)
-# model = YOLO('yolov8s.pt')
-# model = YOLO('yolov8m.pt')
-# model = YOLO('yolov8l.pt')
-# model = YOLO('yolov8x.pt')
-
+model = YOLO('yolov8n.pt')      # Nano is the fastest and smallest
+# model = YOLO('yolov8s.pt')    #               ...
+# model = YOLO('yolov8m.pt')    #               ...
+# model = YOLO('yolov8l.pt')    #               ...
+# model = YOLO('yolov8x.pt')    # the most accurate yet the slowest among them
+# The coco.txt file is used to map the numerical predictions of the model to human-readable class names, which can be displayed in the output, e.g., in bounding box labels.
 # open_coco = open("D:\ProjectAsurada\ProjectAsurada\Code\usingCamera\coco.txt", "r")
 open_coco = open("coco.txt", "r")
 read_coco = open_coco.read()
 class_list = read_coco.split("\n")
-# Check and change Working Directory
-# print("Current Working Directory:", os.getcwd())
-
-# --------------------------------------Object Tracking-------------------------------------- #
-
-# Initialize count frame
-count_f = 0  # intialize for front camera video frame count
-count_r = 0  # intialize for rear camera video frame count
-# Call the class for tracking of front and rear video
-tracker_f = Tracker()  # Tracking class call for front camera
-tracker_r = Tracker()  # Tracking class call for rear camera
 
 ################################################################################################
 # ------------------------------------------Function------------------------------------------ #
@@ -90,9 +71,9 @@ cv2.setMouseCallback('camera_front_input', cursor_Coordinate)
 # ============================================================================================ #
 # ---------------------------------------Lane Detection--------------------------------------- #
 # ============================================================================================ #
-
 # https://docs.opencv.org/3.4.3/dc/dbb/tutorial_py_calibration.html
 # https://foss4g.tistory.com/1665
+
 # Step 1: Distortion and Camera Calibration
 def camera_calibration():
     nx = 11         # 9 , 11, number of chessboard's horizontal pattern -1
@@ -146,36 +127,36 @@ def camera_calibration():
     return mtx, dist
 
 
-# STEP 2: Perspective Transform from driver's view to Bird's Eye View _ For Front Camera
-# img_width = 1280
-# img_heigt = 720
+# STEP 2_A: Perspective transform from driver's view to bird's eye view _ for main Lane
+# input_img_width = 1280
+# input_img_heigt = 720
 
-# Source Point of front Camera          #top_left(1)                         #top_right(2)
-# (1)                                       #(x,y)###########################(x,y)#
-x_top_left_src_f        = 480               #                                     #
-y_top_left_src_f        = 390               #                                     #
-# (2)                                       #                                     #
-x_top_right_src_f       = 565               #                                     #
-y_top_right_src_f       = 390               #                                     #
-# (3)                                       #                                     #
-x_bottom_left_src_f     = 110               #(x,y)###########################(x,y)#
-y_bottom_left_src_f     = 690           # bottom_left(3)                   # bottom_right(4)
+# Source point of front camera (for main Lane)
+# (1)                                  # top_left(1)                         # top_right(2)
+x_top_left_src_f        = 180               #(x,y)###########################(x,y)#
+y_top_left_src_f        = 390                #                                   #
+# (2)                                         #                                 #
+x_top_right_src_f       = 900                  #                               #
+y_top_right_src_f       = 390                   #                             #
+# (3)                                            #                           #
+x_bottom_left_src_f     = 80                    #(x,y)###############(x,y)#
+y_bottom_left_src_f     = 690             # bottom_left(3)          # bottom_right(4)
 # (4)
-x_bottom_right_src_f    = 885
+x_bottom_right_src_f    = 1000
 y_bottom_right_src_f    = 690
 
-# Destination Point of front Camera
-# (1)
-x_top_left_dst_f        = 55
-y_top_left_dst_f        = 0
-# (2)
-x_top_right_dst_f       = 1035
-y_top_right_dst_f       = 0
-# (3)
-x_bottom_left_dst_f     = 150
-y_bottom_left_dst_f     = 720
+# Destination point of front camera (for main Lane)
+# (1)                                 # top_left(1)                         # top_right(2)
+x_top_left_dst_f        = 10               #(x,y)###########################(x,y)#
+y_top_left_dst_f        = 0                #                                     #
+# (2)                                      #                                     #
+x_top_right_dst_f       = 1070             #                                     #
+y_top_right_dst_f       = 0                #                                     #
+# (3)                                      #                                     #
+x_bottom_left_dst_f     = 480              #(x,y)###########################(x,y)#
+y_bottom_left_dst_f     = 720      # bottom_left(3)                   # bottom_right(4)
 # (4)
-x_bottom_right_dst_f    = 880
+x_bottom_right_dst_f    = 600
 y_bottom_right_dst_f    = 720
 
 
@@ -190,41 +171,42 @@ def wrapping_f(img):
     offset = 150
 
     # Set the wrapping area
-    # Method 1. Set the image size, proportional to input image size
+
+    # Method A: Set the image size, proportional to input image size
     # source = np.float32([[w // 2 - 30, h * 0.53], [w // 2 + 60, h * 0.53], [w * 0.3, h], [w, h]])
     # destination = np.float32([[0, 0], [w-350, 0], [400, h], [w-150, h]])
 
-    # Method 2. Set image size to set value
+    # Method B: Set image size to set value
     source_f = np.float32(
         [
-            (x_bottom_left_src_f, y_bottom_left_src_f),  # bottom-left corner
-            (x_top_left_src_f, y_top_left_src_f),  # top-left corner
-            (x_top_right_src_f, y_top_right_src_f),  # top-right corner
-            (x_bottom_right_src_f, y_bottom_right_src_f)  # bottom-right corner
+            (x_bottom_left_src_f, y_bottom_left_src_f),     # bottom-left corner
+            (x_top_left_src_f, y_top_left_src_f),           # top-left corner
+            (x_top_right_src_f, y_top_right_src_f),         # top-right corner
+            (x_bottom_right_src_f, y_bottom_right_src_f)    # bottom-right corner
         ])
 
     destination_f = np.float32(
         [
-            (x_bottom_left_dst_f, y_bottom_left_dst_f),  # bottom-left corner
-            (x_top_left_dst_f, y_top_left_dst_f),  # top-left corner
-            (x_top_right_dst_f, y_top_right_dst_f),  # top-right corner
-            (x_bottom_right_dst_f, y_bottom_right_dst_f)  # bottom-right corner
+            (x_bottom_left_dst_f, y_bottom_left_dst_f),     # bottom-left corner
+            (x_top_left_dst_f, y_top_left_dst_f),           # top-left corner
+            (x_top_right_dst_f, y_top_right_dst_f),         # top-right corner
+            (x_bottom_right_dst_f, y_bottom_right_dst_f)    # bottom-right corner
         ])
 
     # getPerspectiveTransformation? the properties that it hold the property of linear, but not the property of parallelity
     # for example, train lanes are parallel but through the perspective transformation, it looks like they are meeting at the end of point
     # we need 4 point of input and moving point of output
     transform_matrix = cv2.getPerspectiveTransform(source_f, destination_f)
-    # * minv: In the final process, we need to use the inverse function again to change from bird's eye view to driver view.
+    # minv: In the final process, we need to use the inverse function again to change from bird's eye view to driver view. (matrix inverse)
     minv = cv2.getPerspectiveTransform(destination_f, source_f)
+    # _img: wr
     _img = cv2.warpPerspective(img, transform_matrix, (img.shape[1], img.shape[0]))
 
     return _img, minv
 
 
-# STEP 2.1: Perspective Transform from driver's view to Bird's Eye View _ For Left/Right Lane Check
-# Left line check Camera
-# Source Point of left Camera
+# STEP 2.B: Perspective transform from driver's view to bird's eye view _ for left/right side Lane
+# Source point of front camera (for left side Lane)
 # (1)
 x_top_left_src_left     = 420
 y_top_left_src_left     = 395
@@ -238,7 +220,7 @@ y_bottom_left_src_left  = 510
 x_bottom_right_src_left = 420
 y_bottom_right_src_left = 510
 
-# Destination Point of rear Camera
+# Destination point of front camera (for left side Lane)
 # (1)
 x_top_left_dst_left     = 55
 y_top_left_dst_left     = 0
@@ -252,8 +234,7 @@ y_bottom_left_dst_left  = 720
 x_bottom_right_dst_left = 880
 y_bottom_right_dst_left = 720
 
-# Right line check Camera
-# Source Point of right Camera
+# Source point of front camera (for right side Lane)
 # (1)
 x_top_left_src_right     = 550
 y_top_left_src_right     = 410
@@ -267,7 +248,7 @@ y_bottom_left_src_right  = 510
 x_bottom_right_src_right = 1060
 y_bottom_right_src_right = 510
 
-# Destination Point of right Camera
+# Destination point of front camera (for right side Lane)
 # (1)
 x_top_left_dst_right     = 55
 y_top_left_dst_right     = 0
@@ -330,11 +311,13 @@ def wrapping_line_lr(img, scanning_state):
 
     return _img, minv
 
-# STEP 3.1: Filtering the warped image for white and yellow lane to check (using HLS)
+# STEP 3
+# Method A: Filtering the warped image for white and yellow lane to check (using HLS)
 # https://stackoverflow.com/questions/55822409/hsl-range-for-yellow-lane-lines
 # HLS(Hue, Luminanse, Saturation) :
 # lower = ([minimum_blue, m_green, m_red])
 # upper = ([Maximum_blue, M_green, M_red])
+
 def color_filter(img):
     hls = cv2.cvtColor(img, cv2.COLOR_BGR2HLS)
     # White Filter
@@ -369,7 +352,7 @@ def color_filter(img):
     # masked = cv2.bitwise_and(img, img, mask=mask)
     return mask
 
-# STEP 3.2: Using Sobel, detecting the white and yellow lane
+# Method B: Using Sobel, detecting the white and yellow lane
 def binary_thresholded(img):
     gray_img =cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     # Apply sobel (derivative) in x direction, this is usefull to detect lines that tend to be vertical
@@ -405,26 +388,24 @@ def binary_thresholded(img):
 
     return binary
 
-# STEP 4: Region of Interest, from the bird eye's view, decreasing the area, focus more on the lane
-# STEP 4.1: Another Idea is first ROI, in order to decrease the input area, then we don't need anymore, sky etc...
+# STEP 4
+# Method A: Region of Interest, from the bird eye's view, decreasing the area, focus more on the lane.
+# Method B: Another Idea is first ROI, in order to decrease the input area, then we don't need anymore, sky etc...
 #           but in this case we need to set a wrapping area, so it is not so effective, but in case SortDeep.. could be...
+
 def roi(img):
-    x = int(img.shape[1])
-    y = int(img.shape[0])
-    # height, width, number of channels in image
-    # height = img.shape[0]
-    # width = img.shape[1]
-    # channels = img.shape[2]
+    x = int(img.shape[1])       # height = img.shape[0]
+    y = int(img.shape[0])       # width = img.shape[1]
+                                # channels = img.shape[2]
     # Height represents the number of pixel rows in the image or the number of pixels in each column of the image array.
     # Width represents the number of pixel columns in the image or the number of pixels in each row of the image array.
     # Number of Channels represents the number of components used to represent each pixel.
     # In the above example, Number of Channels = 4 represent Alpha, Red, Green and Blue channels.
     # *** here traffic sign on the street is deleted and ignored, if you don't wanna that, modify the ROI part.
-    # 한 붓 그리기
 
     ### R.O.I Area ###
 
-    # 2###3      6####7
+    #2###3      6####7
     ######      ######
     ######      ######
     ######      ######
@@ -432,7 +413,8 @@ def roi(img):
     ######      ######
     ######      ######
     #####4######5#####
-    # 1#9#############8
+    #1#9#############8
+
     _shape = np.array([
         [int(0.05 * x), int(0.95 * y)],  # 1
         [int(0.05 * x), int(0.01 * y)],  # 2
@@ -554,11 +536,12 @@ def slide_window_search(binary_warped):
         if len(good_right) > minpix:
             right_current = np.int64(np.mean(nonzero_x[good_right]))
 
-        # ## if scan windows added
-        # cv2.rectangle(window_img,(win_xleft_high,win_y_high),(win_xleft_low,win_y_low),(255,255,255),3)
-        # cv2.rectangle(window_img,(win_xright_high,win_y_high),(win_xright_low,win_y_low),(255,255,255),3)
-        # plt.imshow(window_img)
-        # plt.show
+        ### if scan windows added
+        #cv2.rectangle(window_img,(win_xleft_high,win_y_high),(win_xleft_low,win_y_low),(255,255,255),3)
+        #cv2.rectangle(window_img,(win_xright_high,win_y_high),(win_xright_low,win_y_low),(255,255,255),3)
+        #plt.imshow(window_img)
+        #plt.show
+
 
     # Concatenate the arrays of indices (previously was a list of lists of pixels)
     # left_lane = np.concatenate(left_lane)  # np.concatenate() -> array를 1차원으로 합침 (array를 1차원 배열로 만들어줌)
@@ -595,6 +578,7 @@ def slide_window_search(binary_warped):
     # plt.ylim(720, 0)
     # plt.show()
 
+
     return leftx, lefty, rightx, righty
 
 
@@ -619,6 +603,14 @@ def fit_poly(binary_warped, leftx, lefty, rightx, righty):
         # we have to discuss about that later, whether we should do deleting comma or not.
         # ltx = np.trunc(left_fitx)  # np.trunc() -> 소수점 부분을 버림
         # rtx = np.trunc(right_fitx)
+
+    #plt.imshow(out_img)
+    #plt.plot(left_fitx, ploty, color = 'yellow')
+    #plt.plot(right_fitx, ploty, color = 'yellow')
+    #plt.xlim(0, 1280)
+    #plt.ylim(720, 0)
+    #plt.show()
+
 
     return left_fit, right_fit, left_fitx, right_fitx, ploty
 
@@ -670,6 +662,9 @@ def draw_lane_lines(binary_warped, left_fitx, right_fitx, ploty):
 
     result = cv2.addWeighted(out_img, 1, window_img, 0.9, 0)  # (0.3)
 
+
+
+    # add Dynamic Scanning Lines
     # Initialize dynamic_lines_y if it's the first frame or update it otherwise
     if len(dynamic_lines_y) == 0:
         dynamic_lines_y = list(range(int(min(ploty)), int(max(ploty)), 50))
@@ -868,10 +863,8 @@ def project_lane_info(img, binary_warped, ploty, left_fitx, right_fitx, M_inv, l
     # Combine the result with the original image
     out_img = cv2.addWeighted(img, 0.7, newwarp, 0.3, 0)
 
-    cv2.putText(out_img, 'Curve Radius [m]: ' + str((left_curverad + right_curverad) / 2)[:7], (5, 80),
-                cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.5, (255, 255, 255), 2, cv2.LINE_AA)
-    cv2.putText(out_img, 'Center Offset [m]: ' + str(veh_pos)[:7], (5, 110), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.5,
-                (255, 255, 255), 2, cv2.LINE_AA)
+    #cv2.putText(out_img, 'Curve Radius [m]: ' + str((left_curverad + right_curverad) / 2)[:7], (5, 80), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.5, (255, 255, 255), 2, cv2.LINE_AA)
+    #cv2.putText(out_img, 'Center Offset [m]: ' + str(veh_pos)[:7], (5, 110), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.5, (255, 255, 255), 2, cv2.LINE_AA)
 
     return out_img, colorwarp_img, newwarp
 
@@ -893,20 +886,24 @@ def lane_finding_pipeline(img_lane, img_veh, camera_type, init):
 
     # first warpping? then binary color change? -> ii), first color change and then warp? -> i) check!
     # i)
+    testtest, M_inv = wrapping_f(img_lane)
+    cv2.imshow('testtest', testtest)
     binary_thresh = color_filter(img_lane)
     # if calibration is adjusted below, if without camera calibration, then below below
     # binary_warped, M_inv, _ = wrapping(binary_thresh, mts, dist)
 
     if camera_type == "front":
         binary_warped, M_inv = wrapping_f(binary_thresh)
+
+
     else:
         print("give the line (front/left/right)")
         # binary_warped, M_inv = wrapping_r(binary_thresh)
     # ii)
     # binary_warped, M_inv = wrapping(lane_img)
     # binary_thresh = color_filter(binary_warped)
-
     ## checking ###
+
     binary_thresh_s = np.dstack((binary_thresh, binary_thresh, binary_thresh)) * 255
     binary_warped_s = np.dstack((binary_warped, binary_warped, binary_warped)) * 255
 
@@ -978,7 +975,6 @@ def lane_finding_pipeline(img_lane, img_veh, camera_type, init):
     draw_poly_img_unwarped = cv2.warpPerspective(draw_poly_img, M_inv,
                                                  (video_front_resize_input.shape[1], video_front_resize_input.shape[0]))
     front_out_combined = cv2.addWeighted(video_front_resize_input, 1, draw_poly_img_unwarped, 0.7, 0)
-
     left_curverad, right_curverad = measure_curvature_meters(binary_warped, left_fitx, right_fitx, ploty)
     # measure_curvature_meters(binary_warped, left_fitx, right_fitx, ploty)
     veh_pos = measure_position_meters(binary_warped, left_fit, right_fit)
@@ -1260,6 +1256,13 @@ def point_inside_polygon(x, y, poly):
 
 
 # ---------------------------------------------------------------------------------------------
+# --------------------------------------Object Tracking-------------------------------------- #
+# Initialize count frame
+count_f = 0  # intialize for front camera video frame count
+count_r = 0  # intialize for rear camera video frame count
+# Call the class for tracking of front and rear video
+tracker_f = Tracker()  # Tracking class call for front camera
+tracker_r = Tracker()  # Tracking class call for rear camera
 
 
 # Video Settings
@@ -1267,7 +1270,7 @@ fps = 24.0  # Viedo Frame
 frame_size = (1080, 720)  # Video Size
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Define the codec using VideoWriter_fourcc
 Font = cv2.FONT_HERSHEY_COMPLEX
-FontSize = 0.3
+FontSize = 0.5
 
 start_time = time.time()
 
@@ -1417,10 +1420,13 @@ while True:
         """
 
         distance = float(format(math.sqrt(math.pow((540 - cx), 2) + math.pow((720 - cy), 2)), ".3f"))
+        distance_test = 720 - distance
         if dd == 0:
             collision_time = 2
         else:
-            collision_time = distance / (abs(dd) * fps)
+            #collision_time = distance_test / (abs(dd) * fps)
+            collision_time = distance_test / 1000 * (abs(dd) * fps)
+            #collision_time = distance_test
 
         # print("x3",x3,"y3",y3,"x4",x4,"y4",y4,"sd",sd,"dd",dd,"id",id,"nr",nr,"distance",distance,"collision_time",collision_time, "fps", fps)
 
@@ -1447,58 +1453,70 @@ while True:
         # high 	 Risk : sd is plus and dd is minus, then the object is getting closer and is near the line of motion of your vehicle.
         # dangerous   : sd is plus and dd is minus and t < 1, then the object is getting closer and is near the line of motion of your vehicle 
                         and also having a dangerous potential in 1 second approachable.
+        # red (0,0,255), yellow (0,255,255), green (0,128,0), mintcream(250, 255, 245)
         """
 
-        if sd < 0 and dd > 0:
+        if sd < 0 and dd > 5 or distance_test > 350:
             # low Risk : sd is minus or dd is plus, then the object is moving away or is stationary.
-            cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10),
-                        Font, FontSize, (0, 255, 255), 1)
-            cv2.putText(video_front_resize_input, f'{distance}{"further"}', (x3 + 5, y3 + 25), Font, FontSize,
-                        (0, 255, 255), 1)
-            cv2.putText(video_front_resize_input, f'{"low risk"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
-            cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
-            # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
-        elif sd >= 0 and dd > 0:
+            #cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10), Font, FontSize, (0, 255, 255), 1)
+            #cv2.putText(video_front_resize_input, f'{distance}{"further"}', (x3 + 5, y3 + 25), Font, FontSize, (0, 255, 255), 1)
+            #cv2.putText(video_front_resize_input, f'{"low risk"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
+            #cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
+            # cv2.putText(video_front_resize_input, f'{"distance:"}{distance_test}{"dd:"}{dd}', (int((cx+540)/2), int((cy+719)/2)), Font, FontSize,(0, 255, 255), 1)
+            cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 255, 255), 1)
+            cv2.putText(video_front_resize_input, f'{"distance:"}{distance_test}',
+                        (int((cx + 540) / 2), int((cy + 719) / 2)), Font, FontSize, (0, 255, 255), 1)
+            cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0,128,0), 2)
+        elif sd >= 0 and dd > 5:
             # medium Risk : sd is plus and dd is plus, then the object is getting closer but not directly towards your vehicle.
-            cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10),
-                        Font, FontSize, (0, 255, 255), 1)
-            cv2.putText(video_front_resize_input, f'{distance}{"closer"}', (x3 + 5, y3 + 25), Font, FontSize,
-                        (0, 255, 255), 1)
-            cv2.putText(video_front_resize_input, f'{"medium risk"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255),
-                        1)
-            cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
-            # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
-        elif sd >= 0 and dd <= 0:
+            #cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10), Font, FontSize, (0, 255, 255), 1)
+            #cv2.putText(video_front_resize_input, f'{distance}{"closer"}', (x3 + 5, y3 + 25), Font, FontSize, (0, 255, 255), 1)
+            #cv2.putText(video_front_resize_input, f'{"medium risk"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
+            #cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
+            cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 255, 255), 1)
+            cv2.putText(video_front_resize_input, f'{"collision_time"}{collision_time}', (x3 + 5, y3 + 25), Font,
+                        FontSize, (0, 255, 255), 1)
+            cv2.putText(video_front_resize_input, f'{"distance:"}{distance_test}',
+                        (int((cx + 540) / 2), int((cy + 719) / 2)), Font, FontSize, (0, 255, 255), 1)
+            cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 255, 255), 2)
+        elif sd >= 0 and dd <= 5:
             if collision_time >= 1.5:
                 # high 	 Risk : sd is plus and dd is minus, then the object is getting closer and is near the line of motion of your vehicle.
-                cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10),
-                            Font, FontSize, (0, 255, 255), 1)
-                cv2.putText(video_front_resize_input, f'{distance}{"closer"}', (x3 + 5, y3 + 25), Font, FontSize,
-                            (0, 255, 255), 1)
-                cv2.putText(video_front_resize_input, f'{"medium risk"}', (x3 + 5, y3 + 40), Font, FontSize,
-                            (0, 255, 255), 1)
-                cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
-                # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
+                #cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10), Font, FontSize, (0, 255, 255), 1)
+                #cv2.putText(video_front_resize_input, f'{distance}{"closer"}', (x3 + 5, y3 + 25), Font, FontSize, (0, 255, 255), 1)
+                #cv2.putText(video_front_resize_input, f'{"medium risk"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
+                #cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
+                cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 255, 255), 1)
+                cv2.putText(video_front_resize_input, f'{"collision_time"}{collision_time}', (x3 + 5, y3 + 25), Font,
+                            FontSize, (0, 255, 255), 1)
+                cv2.putText(video_front_resize_input, f'{"distance:"}{distance_test}',
+                            (int((cx + 540) / 2), int((cy + 719) / 2)), Font, FontSize, (0, 255, 255), 1)
+                cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 2)
             else:
                 # dangerous   : sd is plus and dd is minus and t < 1, then the object is getting closer and is near the line of motion of your vehicle
                 # and also having a dangerous potential in 1 second approachable.
-                cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10),
-                            Font, FontSize, (0, 255, 255), 1)
-                cv2.putText(video_front_resize_input, f'{distance}{"closer"}', (x3 + 5, y3 + 25), Font, FontSize,
-                            (0, 255, 255), 1)
-                cv2.putText(video_front_resize_input, f'{"high risk"}', (x3 + 5, y3 + 40), Font, FontSize,
-                            (0, 255, 255), 1)
-                cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
-                # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
+                #cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10), Font, FontSize, (0, 255, 255), 1)
+                #cv2.putText(video_front_resize_input, f'{distance}{"closer"}', (x3 + 5, y3 + 25), Font, FontSize, (0, 255, 255), 1)
+                #cv2.putText(video_front_resize_input, f'{"high risk"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
+                #cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
+                cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 255, 255), 1)
+                cv2.putText(video_front_resize_input, f'{"collision_time"}{collision_time}', (x3 + 5, y3 + 25), Font,
+                            FontSize, (0, 255, 255), 1)
+                cv2.putText(video_front_resize_input, f'{"distance:"}{distance_test}',
+                            (int((cx + 540) / 2), int((cy + 719) / 2)), Font, FontSize, (0, 255, 255), 1)
+                cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 2)
         else:
             # unknown ( #if sd < 0 and dd < 0: )
-            cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10),
-                        Font, FontSize, (0, 255, 255), 1)
-            cv2.putText(video_front_resize_input, f'{distance}{"calculating..."}', (x3 + 5, y3 + 25), Font, FontSize,
-                        (0, 255, 255), 1)
-            cv2.putText(video_front_resize_input, f'{"unknown"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
-            cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
-            # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
+            #cv2.putText(video_front_resize_input, f'{"Type:"}{"not supported"}{"(Vehicle_ID)"}', (x3 + 5, y3 + 10), Font, FontSize, (0, 255, 255), 1)
+            #cv2.putText(video_front_resize_input, f'{distance}{"calculating..."}', (x3 + 5, y3 + 25), Font, FontSize, (0, 255, 255), 1)
+            #cv2.putText(video_front_resize_input, f'{"unknown"}', (x3 + 5, y3 + 40), Font, FontSize, (0, 255, 255), 1)
+            #cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 0, 255), 1)
+            cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 255, 255), 1)
+            cv2.putText(video_front_resize_input, f'{"collision_time"}{collision_time}', (x3 + 5, y3 + 25), Font,
+                        FontSize, (0, 255, 255), 1)
+            cv2.putText(video_front_resize_input, f'{"distance:"}{distance_test}',
+                        (int((cx + 540) / 2), int((cy + 719) / 2)), Font, FontSize, (0, 255, 255), 1)
+            cv2.rectangle(video_front_resize_input, (x3, y3), (x4, y4), (0, 255, 255), 2)
 
     ##########################Front Camera_End##########################
 
@@ -1540,11 +1558,14 @@ while True:
         cy_r = int(y3_r + y4_r) // 2
 
         distance_r = float(format(math.sqrt(math.pow((540 - cx_r), 2) + math.pow((720 - cy_r), 2)), ".3f"))
+        distance_test_r = 720 - distance_r
+
         if dd_r == 0:
             collision_time = 2
         else:
-            collision_time = distance_r / (abs(dd_r) * fps)
-
+            # collision_time = distance_test / (abs(dd) * fps)
+            collision_time = distance_test_r / 1000 * (abs(dd_r) * fps)
+            # collision_time = distance_test
         # print("x3",x3,"y3",y3,"x4",x4,"y4",y4,"sd",sd,"dd",dd,"id",id,"nr",nr,"distance",distance,"collision_time",collision_time, "fps", fps)
 
         ###########################
@@ -1574,57 +1595,72 @@ while True:
 
         if sd_r < 0 and dd_r > 0:
             # low Risk : sd is minus or dd is plus, then the object is moving away or is stationary.
-            cv2.putText(video_rear_resize_input, f'{"Type:"}{"not supported"}{id_r}', (x3_r + 5, y3_r + 10),
-                        Font, FontSize, (0, 255, 255), 1)
-            cv2.putText(video_rear_resize_input, f'{distance_r}{"further"}', (x3_r + 5, y3_r + 25), Font, FontSize,
-                        (0, 255, 255), 1)
-            cv2.putText(video_rear_resize_input, f'{"low risk"}', (x3_r + 5, y3_r + 40), Font, FontSize, (0, 255, 255),
-                        1)
-            cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
+            #cv2.putText(video_rear_resize_input, f'{"Type:"}{"not supported"}{id_r}', (x3_r + 5, y3_r + 10), Font, FontSize, (0, 255, 255), 1)
+            #cv2.putText(video_rear_resize_input, f'{distance_r}{"further"}', (x3_r + 5, y3_r + 25), Font, FontSize, (0, 255, 255), 1)
+            #cv2.putText(video_rear_resize_input, f'{"low risk"}', (x3_r + 5, y3_r + 40), Font, FontSize, (0, 255, 255), 1)
+            #cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
             # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
+            cv2.line(video_rear_resize_input, (cx_r, cy_r), (540, 719), (0, 255, 255), 1)
+            cv2.putText(video_rear_resize_input, f'{"distance:"}{distance_test}', (int((cx_r + 540) / 2), int((cy_r + 719) / 2)), Font, FontSize, (0, 255, 255), 1)
+            cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
         elif sd_r >= 0 and dd_r > 0:
             # medium Risk : sd is plus and dd is plus, then the object is getting closer but not directly towards your vehicle.
-            cv2.putText(video_rear_resize_input, f'{"Type:"}{"not supported"}{id_r}', (x3_r + 5, y3_r + 10),
-                        Font, FontSize, (0, 255, 255), 1)
-            cv2.putText(video_rear_resize_input, f'{distance_r}{"closer"}', (x3_r + 5, y3_r + 25), Font, FontSize,
-                        (0, 255, 255), 1)
-            cv2.putText(video_rear_resize_input, f'{"medium risk"}', (x3_r + 5, y3_r + 40), Font, FontSize,
-                        (0, 255, 255), 1)
-            cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
+            #cv2.putText(video_rear_resize_input, f'{"Type:"}{"not supported"}{id_r}', (x3_r + 5, y3_r + 10),
+            #            Font, FontSize, (0, 255, 255), 1)
+            #cv2.putText(video_rear_resize_input, f'{distance_r}{"closer"}', (x3_r + 5, y3_r + 25), Font, FontSize,
+            #            (0, 255, 255), 1)
+            #cv2.putText(video_rear_resize_input, f'{"medium risk"}', (x3_r + 5, y3_r + 40), Font, FontSize,
+            #            (0, 255, 255), 1)
+            #cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
             # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
+            cv2.line(video_rear_resize_input, (cx_r, cy_r), (540, 719), (0, 255, 255), 1)
+            cv2.putText(video_rear_resize_input, f'{"distance:"}{distance_test}',
+                        (int((cx_r + 540) / 2), int((cy_r + 719) / 2)), Font, FontSize, (0, 255, 255), 1)
+            cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
         elif sd_r >= 0 and dd_r <= 0:
             if collision_time >= 1.5:
                 # high 	 Risk : sd is plus and dd is minus, then the object is getting closer and is near the line of motion of your vehicle.
-                cv2.putText(video_rear_resize_input, f'{"Type:"}{"not supported"}{id_r}',
-                            (x3_r + 5, y3_r + 10), Font, FontSize, (0, 255, 255), 1)
-                cv2.putText(video_rear_resize_input, f'{distance_r}{"closer"}', (x3_r + 5, y3_r + 25), Font, FontSize,
-                            (0, 255, 255), 1)
-                cv2.putText(video_rear_resize_input, f'{"medium risk"}', (x3_r + 5, y3_r + 40), Font, FontSize,
-                            (0, 255, 255), 1)
-                cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
+                #cv2.putText(video_rear_resize_input, f'{"Type:"}{"not supported"}{id_r}',
+                #            (x3_r + 5, y3_r + 10), Font, FontSize, (0, 255, 255), 1)
+                #cv2.putText(video_rear_resize_input, f'{distance_r}{"closer"}', (x3_r + 5, y3_r + 25), Font, FontSize,
+                #            (0, 255, 255), 1)
+                #cv2.putText(video_rear_resize_input, f'{"medium risk"}', (x3_r + 5, y3_r + 40), Font, FontSize,
+                #            (0, 255, 255), 1)
+                #cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
                 # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
+                cv2.line(video_rear_resize_input, (cx_r, cy_r), (540, 719), (0, 255, 255), 1)
+                cv2.putText(video_rear_resize_input, f'{"distance:"}{distance_test}',
+                            (int((cx_r + 540) / 2), int((cy_r + 719) / 2)), Font, FontSize, (0, 255, 255), 1)
+                cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
             else:
                 # dangerous   : sd is plus and dd is minus and t < 1, then the object is getting closer and is near the line of motion of your vehicle
                 # and also having a dangerous potential in 1 second approachable.
-                cv2.putText(video_rear_resize_input, f'{"Type:"}{"not supported"}{id_r}',
-                            (x3_r + 5, y3_r + 10), Font, FontSize, (0, 255, 255), 1)
-                cv2.putText(video_rear_resize_input, f'{distance_r}{"closer"}', (x3_r + 5, y3_r + 25), Font, FontSize,
-                            (0, 255, 255), 1)
-                cv2.putText(video_rear_resize_input, f'{"high risk"}', (x3_r + 5, y3_r + 40), Font, FontSize,
-                            (0, 255, 255), 1)
-                cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
+                #cv2.putText(video_rear_resize_input, f'{"Type:"}{"not supported"}{id_r}',
+                #            (x3_r + 5, y3_r + 10), Font, FontSize, (0, 255, 255), 1)
+                #cv2.putText(video_rear_resize_input, f'{distance_r}{"closer"}', (x3_r + 5, y3_r + 25), Font, FontSize,
+                #            (0, 255, 255), 1)
+                #cv2.putText(video_rear_resize_input, f'{"high risk"}', (x3_r + 5, y3_r + 40), Font, FontSize,
+                #            (0, 255, 255), 1)
+                #cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
                 # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
+                cv2.line(video_rear_resize_input, (cx_r, cy_r), (540, 719), (0, 255, 255), 1)
+                cv2.putText(video_rear_resize_input, f'{"distance:"}{distance_test}',
+                            (int((cx_r + 540) / 2), int((cy_r + 719) / 2)), Font, FontSize, (0, 255, 255), 1)
+                cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
         else:
             # unknown ( #if sd < 0 and dd < 0: )
-            cv2.putText(video_rear_resize_input, f'{"Type:"}{"not supported"}{id_r}', (x3_r + 5, y3_r + 10),
-                        Font, FontSize, (0, 255, 255), 1)
-            cv2.putText(video_rear_resize_input, f'{distance_r}{"calculating..."}', (x3_r + 5, y3_r + 25), Font,
-                        FontSize, (0, 255, 255), 1)
-            cv2.putText(video_rear_resize_input, f'{"unknown"}', (x3_r + 5, y3_r + 40), Font, FontSize, (0, 255, 255),
-                        1)
-            cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
+            #cv2.putText(video_rear_resize_input, f'{"Type:"}{"not supported"}{id_r}', (x3_r + 5, y3_r + 10),
+            #            Font, FontSize, (0, 255, 255), 1)
+            #cv2.putText(video_rear_resize_input, f'{distance_r}{"calculating..."}', (x3_r + 5, y3_r + 25), Font,
+            #            FontSize, (0, 255, 255), 1)
+            #cv2.putText(video_rear_resize_input, f'{"unknown"}', (x3_r + 5, y3_r + 40), Font, FontSize, (0, 255, 255),
+            #            1)
+            #cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
             # cv2.line(video_front_resize_input, (cx, cy), (540, 719), (0, 0, 255), 2)
-
+            cv2.line(video_rear_resize_input, (cx_r, cy_r), (540, 719), (0, 255, 255), 1)
+            cv2.putText(video_rear_resize_input, f'{"distance:"}{distance_test}',
+                        (int((cx_r + 540) / 2), int((cy_r + 719) / 2)), Font, FontSize, (0, 255, 255), 1)
+            cv2.rectangle(video_rear_resize_input, (x3_r, y3_r), (x4_r, y4_r), (0, 0, 255), 1)
     ##########################Front Camera_End##########################
 
     ##########################Front_Lane_Finding_Start###########################
@@ -1677,6 +1713,8 @@ while True:
     ## 원본 이미지에 라인 넣기
     meanPts, video_front_resize_input = draw_lane_lines(video_front_resize_input, thresh, minverse, left_fitx, right_fitx, ploty)
     """
+
+
     if scanning_state == 'left':
 
         front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline(video_front_resize_input_l, video_front_resize_input, "front", init_f)
@@ -1688,7 +1726,7 @@ while True:
         front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline_lr(video_front_resize_input_l, front_out, 'right', init_lr)
         #cv2.imshow('2', front_out)
     else:
-        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline(video_front_resize_input_l, video_front_resize_input, "front", init_f)
+        front_out, angle_f, colorwarp_f, draw_poly_img_f, rotated_image_f = lane_finding_pipeline(video_rear_resize_input_l, video_front_resize_input, "front", init_f)
         #cv2.imshow('3', front_out)
 
     #cv2.imshow('4', front_out)
@@ -1764,19 +1802,9 @@ while True:
     front_out[position_f[1]:position_f[1] + height_f_s, position_f[0]:position_f[0] + width_f_s] = blended_f
 
     # Display the final image with the overlay
-    cv2.imshow('camera_front_input', front_out)
+    #cv2.imshow('camera_front_input', front_out)
 
-    # -----------------------------------StterWheel-----------------------------------
 
-    # Original Image Transfer and processing and add to detected Vehicles Image, not directly using detected Vehicles Images
-    # cv2.namedWindow('camera_front_input', cv2.WINDOW_NORMAL)
-    # cv2.imshow('camera_front_input', img_out)
-
-    # cv2.namedWindow('colorwarp_f', cv2.WINDOW_NORMAL)
-    # cv2.imshow('colorwarp_f', colorwarp_f)
-    # cv2.namedWindow('draw_poly_f', cv2.WINDOW_NORMAL)
-    # to draw the detected lane lines on a "bird's-eye view" image.
-    # cv2.imshow('draw_poly_f', draw_poly_img_f)
 
     ##########################Front_Lane_Finding_End###########################
 
@@ -1870,9 +1898,11 @@ while True:
     # cv2.imshow("camera_rear_input", video_rear_resize_input)
     # cv2.imshow("camera_front_resize_input_test", camera_front_resize_input_test)
     # cv2.imshow("camera_rear_resize_input_test", camera_rear_resize_input_test)
-
+    #Film making used...
+    #cv2.imshow('front_out', front_out)  # for lane detection
+    #cv2.imshow('front_out', front_out)  # for vehicle detection
     ## Video Export
-    output_front.write(front_out)  # Video 2/3
+    output_front.write(video_front_resize_input)  # Video 2/3
     output_rear.write(video_rear_resize_input)
     # output_front.write(camera_front_resize_input)  # Test Video Front
     # output_rear.write(camera_rear_resize_input)    # Test Video Rear
