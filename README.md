@@ -158,8 +158,8 @@ model = YOLO('yolov8n.pt')
 ### Evaluation
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/01_video_rear_output_recctangleBox.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/02_video_front_output_recctangleBox.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> left: Video for front camera / right: Video for rear camera</figcaption>
 </figure>
@@ -189,8 +189,8 @@ This currently requires configuration each time, but will require automation in 
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/00_originalFrontView.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/03_Birdeyeview.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> left: Original Image / right: Birdeye view </figcaption>
 </figure>
@@ -201,8 +201,8 @@ The corrected image uses a color filter to detect white and yellow lanes, intern
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/00_originalFrontView.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/04_colorfilter.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> left: Original Image / right: White/Yellow Filter Image </figcaption>
 </figure>
@@ -220,8 +220,8 @@ Conversely, if no lanes are detected, this value approaches 0.
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/05_SlidingWindow.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/06_histogram.png?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> left: Sliding Window / right: Histogram detection value </figcaption>
 </figure>
@@ -262,7 +262,7 @@ y_bottom_right_dst_f    = 720
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/07_laneDetectionEvaluation.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> Video for front camera</figcaption>
 </figure>
@@ -318,8 +318,8 @@ for id, pt in self.center_points.items():
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/08_trackingFront.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/09_trackingRear.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> left: Front Camera / right: Rear Camera </figcaption>
 </figure>
@@ -357,9 +357,10 @@ self.distance_from_other[id] = math.dist((cx, cy), self.user_vehicle_point)
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/10_distanceEstiFront.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/11_distanceEstiRear.gif?raw=true" width="400" height="225">
     </p>
-    <figcaption align="center"> Distance estimation in real-time </figcaption>
+    <figcaption align="center"> left: Distance estimation in real-time for Front Camera / right: for Rear Camera </figcaption>
 </figure>
 
 <br/>
@@ -404,7 +405,7 @@ if sd < 0 and dd > 0 or distance > 350:
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/12_RiskJudgement.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> Risk Judgment </figcaption>
 </figure>
@@ -435,7 +436,7 @@ The speed can be also controled by checking to see if there is a car ahead in th
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/13_steering.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> Automatic Steering Control System </figcaption>
 </figure>
@@ -450,7 +451,7 @@ Driver is trying to change lanes and the system suggests whether this decision i
 ### Algorithm
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/14_conceptSafeLane.jpg?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> Base concept of safe lane suggestion </figcaption>
 </figure>
@@ -488,8 +489,8 @@ if elapsed_time >= 5:  # 3 seconds
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/15_safeLanecheckLeft.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/16_safeLanecheckRight.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> Safe lane Suggestion (Left Lane / Right Lane) </figcaption></figure>
 
@@ -536,7 +537,7 @@ images, contours, hierachy = cv2.findContours(image, mode, method)
 ### Evaluation
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/17_mapConcept.png?raw=true" width="400" height="225">
         <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> left: Concept of M.A.P / right: Contours image processing </figcaption>
@@ -568,10 +569,11 @@ Objective : Such autonomous driving requires processing a vast amount of data, a
 General CPU-based data processing has limitations, and data processing using GPU is proposed. In particular, efficiency can be dramatically increased by using CUDA, a tool that makes parallel processing possible.
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/18_CPU.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/19_GPU.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> left: CPU / right: GPU </figcaption>
+    <figcaption align="center"> source: https://www.youtube.com/watch?v=-P28LKWTzrI </figcaption>
 </figure>
 
 ### Implementation
@@ -597,7 +599,7 @@ CUDA Install and Configuration at Desktop
   |  torch        |   2.0.1+cu118    |
   |  torchaudio   |   2.0.2+cu118    |
   |  torchvision  |   0.15.2+cu118   |
-  |  Windows      |   11             |
+  |  OS           |   Windows 11     |
   +----------------------------------+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -607,7 +609,7 @@ CUDA Install and Configuration at Desktop
 <div align="center">
 
 ~~~
-CUDA Install and Configuration at Jetson Embedded Board (Nano, Xavier, Orin)
+CUDA Install and Configuration at Jetson Embedded Board (Jetson Nano)
 ~~~
 </div>
 
@@ -618,14 +620,73 @@ CUDA Install and Configuration at Jetson Embedded Board (Nano, Xavier, Orin)
   +----------------------------------+
   |     Model     |      Version     |
   +===============+==================+
-  |  GPU          |  will be updated |
+  |  GPU          |   Maxwell        |
+  |  Jetpack Ver. |        -         |
   |  CUDA cores   |        -         |
   |  CUDA         |        -         |
   |  cudnn        |        -         |
   |  torch        |        -         |
   |  torchaudio   |        -         |
   |  torchvision  |        -         |
-  |  Windows      |        -         |
+  |  OS           |        -         |
+  +----------------------------------+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+
+</div>
+
+<div align="center">
+
+~~~
+CUDA Install and Configuration at Jetson Embedded Board (Jetson Xavier)
+~~~
+</div>
+
+<div align="center">
+
+   
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  +----------------------------------+
+  |     Model     |      Version     |
+  +===============+==================+
+  |  GPU          |   Volta          |
+  |  Jetpack Ver. |        -         |
+  |  CUDA cores   |        -         |
+  |  CUDA         |        -         |
+  |  cudnn        |        -         |
+  |  torch        |        -         |
+  |  torchaudio   |        -         |
+  |  torchvision  |        -         |
+  |  OS           |        -         |
+  +----------------------------------+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+
+</div>
+
+<div align="center">
+
+~~~
+CUDA Install and Configuration at Jetson Embedded Board (Jetson Orin)
+~~~
+</div>
+
+<div align="center">
+
+   
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  +----------------------------------+
+  |     Model     |      Version     |
+  +===============+==================+
+  |  GPU          |   Ampere         |
+  |  Jetpack Ver. |        -         |
+  |  CUDA cores   |        -         |
+  |  CUDA         |        -         |
+  |  cudnn        |        -         |
+  |  torch        |        -         |
+  |  torchaudio   |        -         |
+  |  torchvision  |        -         |
+  |  OS           |        -         |
   +----------------------------------+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    
@@ -643,8 +704,8 @@ px_r = pandas.DataFrame(resbb_r.cpu().numpy()).astype("float")  # all detected v
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/21_withoutCuda.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/20_withCuda.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> left: Data Processing without CUDA / right: Data Processing with CUDA </figcaption>
 </figure>
@@ -711,7 +772,12 @@ Objective : In addition to cameras, it will be tested ultrasonic sensor, Lidar a
 <br/>
 
 ## Final Evaluation
-
+<figure>
+    <p align="center">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/finalEval.gif?raw=true" width="400" height="225">
+    </p>
+    <figcaption align="center"> Final Evaluation </figcaption>
+</figure>
 <br/>
 
 
