@@ -39,20 +39,21 @@
    - System Optimization
      - Jetson Embedded System
      - etc.
-   - Sensor Test
-   - Final Evaluation
+   - Final Evaluation and Conclusion
  
 <br/>
+
+
+
+<p align="center">
+    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_010.png?raw=true" width="957" height="538"></center>
+</p>
 <p align="center">Workflow Version 2.</p>
 <br/>
 
-<p align="center">
-    <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/plan_009.png?raw=true" width="957" height="538"></center>
-</p>
 
 <br/>
 
-Overall, ...
 
 <br/>
 
@@ -232,13 +233,13 @@ configuration of preset points of wrapping image
 
 # Source point of front camera (for main Lane)
 # (1)                                  # top_left(1)                         # top_right(2)
-x_top_left_src_f        = 480               #(x,y)###########################(x,y)#
+x_top_left_src_f        = 480               #(x_1,y_1)###################(x_2,y_2)#
 y_top_left_src_f        = 390                #                                   #
 # (2)                                         #                                 #
 x_top_right_src_f       = 565                  #                               #
 y_top_right_src_f       = 390                   #                             #
 # (3)                                            #                           #
-x_bottom_left_src_f     = 110                     #(x,y)###############(x,y)#
+x_bottom_left_src_f     = 110                     #(x_3,y_3)#######(x_4,y_4)#
 y_bottom_left_src_f     = 690             # bottom_left(3)          # bottom_right(4)
 # (4)
 x_bottom_right_src_f    = 885
@@ -246,13 +247,13 @@ y_bottom_right_src_f    = 690
 
 # Destination point of front camera (for main Lane)
 # (1)                                 # top_left(1)                         # top_right(2)
-x_top_left_dst_f        = 55    #10        #(x,y)###########################(x,y)#
+x_top_left_dst_f        = 55    #10        #(x_1,y_1)###################(x_2,y_2)#
 y_top_left_dst_f        = 0                #                                     #
 # (2)                                      #                                     #
 x_top_right_dst_f       = 1035   #1070     #                                     #
 y_top_right_dst_f       = 0                #                                     #
 # (3)                                      #                                     #
-x_bottom_left_dst_f     = 150   #480       #(x,y)###########################(x,y)#
+x_bottom_left_dst_f     = 150   #480       #(x_3,y_3)###################(x_4,y_4)#
 y_bottom_left_dst_f     = 720      # bottom_left(3)                   # bottom_right(4)
 # (4)
 x_bottom_right_dst_f    = 880    #600
@@ -514,9 +515,6 @@ Goal : Beyond 'software' aspects of autonomous driving, it can be approached as 
 Objective : The amount of data recorded by cameras during autonomous driving is quite large, and there are various ways to use this data.
 In particular, edge computing, a next-generation technology, enables more sharing of data.
 license plate recognition is used not only to track vehicles but also to search vehicles in times of emergency. However, it may become an element of Big Brother or personal information infringement, so measures are needed to deal with this.
-### Algorithm
-### Implementation
-### Evaluation
 
 <br/>
 
@@ -549,9 +547,6 @@ images, contours, hierachy = cv2.findContours(image, mode, method)
 ## Advanced Lane Detection based on Deep Learning (In Planning)
 Objective : Lane detection is basic, but as a core technology in autonomous driving, stability and reliablility must always be guaranteed.
 Additionally, in order to accurately identify lanes with only one camera, lane detection using deep learning will be implemented in the future.
-### Algorithm
-### Implementation
-### Evaluation
 
 <br/>
 
@@ -620,15 +615,16 @@ CUDA Install and Configuration at Jetson Embedded Board (Jetson Nano)
   +----------------------------------+
   |     Model     |      Version     |
   +===============+==================+
-  |  GPU          |   Maxwell        |
-  |  Jetpack Ver. |        -         |
-  |  CUDA cores   |        -         |
-  |  CUDA         |        -         |
-  |  cudnn        |        -         |
-  |  torch        |        -         |
-  |  torchaudio   |        -         |
-  |  torchvision  |        -         |
-  |  OS           |        -         |
+  |  GPU          |     Maxwell      |
+  |  Jetpack Ver. |      4.6.1       |
+  |  CUDA cores   |      128         |
+  |  CUDA         |      10.2        |
+  |  cudnn        |      8.2.1       |
+  |  torch        |      v1.10.0     |
+  |  torchaudio   |      v0.10.0     |
+  |  torchvision  |      v0.11.0     |
+  |  TensorFlow   |      2.7.0       |
+  |  OS           |   Ubuntu 18.04   |
   +----------------------------------+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    
@@ -649,15 +645,16 @@ CUDA Install and Configuration at Jetson Embedded Board (Jetson Xavier)
   +----------------------------------+
   |     Model     |      Version     |
   +===============+==================+
-  |  GPU          |   Volta          |
-  |  Jetpack Ver. |        -         |
-  |  CUDA cores   |        -         |
-  |  CUDA         |        -         |
-  |  cudnn        |        -         |
-  |  torch        |        -         |
-  |  torchaudio   |        -         |
-  |  torchvision  |        -         |
-  |  OS           |        -         |
+  |  GPU          |      Volta       |
+  |  Jetpack Ver. |      4.6.1       |
+  |  CUDA cores   |      512         |
+  |  CUDA         |      10.2        |
+  |  cudnn        |      8.2.1       |
+  |  torch        |      v1.10.0     |
+  |  torchaudio   |      v0.10.0     |
+  |  torchvision  |      v0.11.0     |
+  |  TensorFlow   |      2.7.0       |
+  |  OS           |   Ubuntu 18.04   |
   +----------------------------------+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    
@@ -667,7 +664,7 @@ CUDA Install and Configuration at Jetson Embedded Board (Jetson Xavier)
 <div align="center">
 
 ~~~
-CUDA Install and Configuration at Jetson Embedded Board (Jetson Orin)
+CUDA Install and Configuration at Jetson Embedded Board (Jetson Orin Nano)
 ~~~
 </div>
 
@@ -678,21 +675,50 @@ CUDA Install and Configuration at Jetson Embedded Board (Jetson Orin)
   +----------------------------------+
   |     Model     |      Version     |
   +===============+==================+
-  |  GPU          |   Ampere         |
-  |  Jetpack Ver. |        -         |
-  |  CUDA cores   |        -         |
-  |  CUDA         |        -         |
-  |  cudnn        |        -         |
-  |  torch        |        -         |
-  |  torchaudio   |        -         |
-  |  torchvision  |        -         |
-  |  OS           |        -         |
+  |  GPU          |      Ampere      |
+  |  Jetpack Ver. |      5.1.0       |
+  |  CUDA cores   |      512/1024    |
+  |  CUDA         |      11.4.19     |
+  |  cudnn        |      8.6.0       |
+  |  torch        |      v2.0.0      |
+  |  torchaudio   |      v0.13.1     |
+  |  torchvision  |      v0.14.1     |
+  |  TensorFlow   |      2.12.0      |
+  |  OS           |   Ubuntu 20.04   |
   +----------------------------------+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    
 
 </div>
 
+<div align="center">
+
+~~~
+CUDA Install and Configuration at Jetson Embedded Board (Jetson Orin AGX)
+~~~
+</div>
+
+<div align="center">
+
+   
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  +----------------------------------+
+  |     Model     |      Version     |
+  +===============+==================+
+  |  GPU          |      Ampere      |
+  |  Jetpack Ver. |      5.1.0       |
+  |  CUDA cores   |      1792/2048   |
+  |  CUDA         |      11.4.19     |
+  |  cudnn        |      8.6.0       |
+  |  torch        |      v2.0.0      |
+  |  torchaudio   |      v0.13.1     |
+  |  torchvision  |      v0.14.1     |
+  |  TensorFlow   |      2.12.0      |
+  |  OS           |   Ubuntu 20.04   |
+  +----------------------------------+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+</div>
 
 *Issue: The error message TypeError: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first. 
 -> Solution: suggests that you are trying to convert a PyTorch tensor that is on the GPU (CUDA) to a NumPy array directly. NumPy operates on CPU, so you'll need to move the tensor to CPU before converting it to a NumPy array.
@@ -720,15 +746,13 @@ Software for developed autonomous driving assistance system during the simulatio
 Additionally, implementation in virtual reality through simulation is one of the goals of this project.
 Unity has good support for head-mounted devices(HMD) for virtual reality.
 Thus it should be evaluated in simulations and attempt to interface with virtual reality HMD.
-### Implementation
 ### Evaluation
 
 <figure>
     <p align="center">
         <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
     </p>
-    <figcaption align="center"> left: Simulation Implementation / right: Evaluation of autonous driving assistance system </figcaption>
+    <figcaption align="center"> Simulation in Unity Environment </figcaption>
 </figure>
 
 <br/>
@@ -737,20 +761,81 @@ Thus it should be evaluated in simulations and attempt to interface with virtual
 Objective : Another method for simulation is ROS.
 ROS stands for Robot Operating System and is specialized in robot simulation and control.
 Therefore, it will be also proceeded with simulation and verification of the developed program in ROS.
-### Algorithm
-### Implementation
+
 ### Evaluation
+
+<figure>
+    <p align="center">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+    </p>
+    <figcaption align="center"> Simulation in ROS Environment </figcaption>
+</figure>
 
 <br/>
 
-## Simulation for Real-time Data transfer (In Planning)
+## Simulation for Real-time Data transfer
 Objective : This is the finish line of this project.
-We developed an autonomous driving assistant system and developed project was simulated in Unity and Ros.
+We developed an autonomous driving assistant system and developed project was simulated in Unity and ROS.
 A future project, remote robot control, is our final destination.
 For this purpose, simulations are run in ROS for control aspects, and head-mounted devices are run in Unity for remote access and virtual reality implementation.
-### Algorithm
-### Implementation
+Remote access and virtual reality implementation using head-mounted devices will be postponed to the next project. In this project, YOLOV8 will be tested in a ROS environment and data communication between PCs and embedded systems will be implemented and evaluated.
+
+```bash
+Project Root
+├── /control
+│ ├── /launch
+│  └── yolobot_control.launch.py
+│ ├── /scripts
+│  └── robot_control.py
+│ ├── CMakeLists.txt
+│ └── package.xml
+├── /description
+│ ├── /launch
+│  └── spawn_yolobot.py
+│  └── spawn_yolobot_launch.launch.py
+│ ├── /robot
+│  └── yolobot.urdf
+│ ├── CMakeLists.txt
+│ └── package.xml
+├── /gazebo
+│ ├── /launch
+│  └── yolobot_launch.py
+│  └── start_world_launch.py
+│ ├── /world
+│  └── yolo_test.world
+│ ├── CMakeLists.txt
+│ └── package.xml
+├── recognition
+│ ├── /launch
+│  └── launch_yolov8.launch.py
+│ ├── /scripts
+│  └── yolov8n.pt
+│  └── yolov8_ros2_pt.py
+│  └── yolov8_ros2_subscriber.py
+│  └── .dockerignore
+│  └── .gitattributes
+│  └── .gitignore
+│ ├── CMakeLists.txt
+│ └── package.xml
+├── msg
+│ ├── /msg
+│  └── InferenceResult.msg
+│  └── Yolov8Inference.msg
+│ ├── CMakeLists.txt
+│ └── package.xml
+└── requirements.txt
+```
+
+
+
 ### Evaluation
+
+<figure>
+    <p align="center">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+    </p>
+    <figcaption align="center"> Simulation in ROS Environment </figcaption>
+</figure>
 
 <br/>
 
@@ -759,16 +844,6 @@ For this purpose, simulations are run in ROS for control aspects, and head-mount
 Goal : System optimization and testing on embedded platforms ensure that the system is suitable for real-world applications and can be deployed in actual vehicles.
 ## Jetson Embedded System
 Objective : The compact size, power efficiency, ruggedness, real-time processing capabilities, AI and machine learning support, connectivity options, customization, and strong ecosystem make NVIDIA Jetson embedded boards an attractive option for industrial applications.
-### Algorithm
-### Implementation
-### Evaluation
-<br/>
-
-## Sensor Test (In Planning)
-Objective : In addition to cameras, it will be tested ultrasonic sensor, Lidar and various sensors.
-### Algorithm
-### Implementation
-### Evaluation
 <br/>
 
 ## Final Evaluation
@@ -782,11 +857,16 @@ Objective : In addition to cameras, it will be tested ultrasonic sensor, Lidar a
 
 
 ## Conclusion
+In this project, it was started the work by focusing on the implementation of the overall driving assistance system and especially the implementation and optimization of embedded systems.
+At the beginning of the project, object recognition models were compared, and vehicle recognition was implemented using YOLOv8, one of the most recent object recognition models as of 2023. In addition, lane recognition was implemented.
 
+When it is started the project in earnest, we continuously tracked the vehicle and calculated the speed and distance of other vehicles. Based on this, we built an algorithmic model that determines how much each vehicle poses a risk to the user's vehicle (for example, calculating the possible collision time). Additionally, a driving assistance system called cruise control has been implemented to prevent drivers from leaving their lane. It is also implemented searching for each sideline on the right and left to calculate whether it is recommended when the user changes lanes. Lastly, we visually implemented a risk judgment model algorithm based on front and rear cameras, right and left sideline information, and status information (speed, distance) of other nearby vehicles.
+
+It is implemented so-called Monitoring Aerial Perspective(M.A.P.) through a bird's eye view using the front and rear cameras. This is the same as the navigation and map apps we are familiar with, but ours was a surrounding map system based on real-time data using our own camera. Lastly, it is implemented a head-mounted system for manipulation in a virtual environment, a robot operating system(ROS), and an embedded system using CUDA, especially the Jetson series. Although system optimization between hardware is not yet 100% finished, successful testing of each module is meaningful and has the potential to be further developed through modularization in the next project.
 <br/>
 
 ## Outlining Future Work
-
+This project focuses on software, in particular, implementation of assistance for autonomous driving systems. Now, in the next project, we will use the implemented software program to implement the robot in hardware and apply various sensors, access and control the system using virtual reality that was not completed in this project, optimize data processing in the embedded system, and Tasks related to the collection and processing of various real-time information can be implemented.
 <br/>
 
 
