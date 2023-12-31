@@ -850,7 +850,7 @@ Objective : The compact size, power efficiency, ruggedness, real-time processing
 ## Final Evaluation
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/finalEval.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/finalEval_2.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> Final Evaluation </figcaption>
 </figure>
