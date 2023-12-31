@@ -750,14 +750,14 @@ Thus it should be evaluated in simulations and attempt to interface with virtual
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/unity.png?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> Simulation in Unity Environment </figcaption>
 </figure>
 
 <br/>
 
-## Simulation for ROS (Robot Operating System) (In Development)
+## Simulation for ROS (Robot Operating System)
 Objective : Another method for simulation is ROS.
 ROS stands for Robot Operating System and is specialized in robot simulation and control.
 Therefore, it will be also proceeded with simulation and verification of the developed program in ROS.
@@ -766,7 +766,7 @@ Therefore, it will be also proceeded with simulation and verification of the dev
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/ROS_Simulation.gif?raw=true" width="400" height="225">
     </p>
     <figcaption align="center"> Simulation in ROS Environment </figcaption>
 </figure>
@@ -832,9 +832,10 @@ Project Root
 
 <figure>
     <p align="center">
-        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/loading.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/ROS_Data_Transfer.gif?raw=true" width="400" height="225">
+        <img src="https://github.com/estelelenath/ProjectAsurada/blob/main/pic/ROS_OPENCV.gif?raw=true" width="400" height="225">
     </p>
-    <figcaption align="center"> Simulation in ROS Environment </figcaption>
+    <figcaption align="center"> left: Data Processing without CUDA / right: Data Processing with CUDA </figcaption>
 </figure>
 
 <br/>
